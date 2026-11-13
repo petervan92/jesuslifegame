@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Christ Quest - Nghe thử hiệu ứng</title>
+<style>body{font-family:system-ui,sans-serif;max-width:720px;margin:20px auto;padding:0 14px;line-height:1.5}button{font-size:15px;padding:8px 12px;margin:3px;border-radius:8px;border:1px solid #888;background:#f4efe2;cursor:pointer}.main{background:#e3d39a;font-weight:600}td{padding:6px 4px;vertical-align:top;border-bottom:1px solid #ddd}</style></head><body>
+<h1>Nghe thử hiệu ứng âm thanh</h1>
+<p>Mỗi dòng là một sự kiện trong game. Nút <b>vàng</b> là âm đang dùng, hai nút còn lại là <b>phương án thay thế</b> (A, B). Anh bấm để nghe, rồi cho biết ở dòng nào anh thích phương án A hay B hơn (ví dụ: "Trả lời sai: B"), em sẽ đổi trong <code>js/sounds.js</code>.</p>
+<table>
+<tr><td><b>Chạm vào nhân vật / đồ vật</b><br><small>tap</small></td><td><button class="main" data-s="audio/sfx/tap_select_001.mp3">Đang dùng</button><button data-s="audio/sfx/alt/tap_click_001.mp3">Phương án A</button><button data-s="audio/sfx/alt/tap_pluck_001.mp3">Phương án B</button></td></tr>
+<tr><td><b>Mở hộp thoại / câu hỏi</b><br><small>open</small></td><td><button class="main" data-s="audio/sfx/open_open_001.mp3">Đang dùng</button><button data-s="audio/sfx/alt/open_maximize_007.mp3">Phương án A</button><button data-s="audio/sfx/alt/open_open_002.mp3">Phương án B</button></td></tr>
+<tr><td><b>Trả lời đúng</b><br><small>right</small></td><td><button class="main" data-s="audio/sfx/right_confirmation_001.mp3">Đang dùng</button><button data-s="audio/sfx/alt/right_confirmation_003.mp3">Phương án A</button><button data-s="audio/sfx/alt/right_confirmation_002.mp3">Phương án B</button></td></tr>
+<tr><td><b>Trả lời sai</b><br><small>wrong</small></td><td><button class="main" data-s="audio/sfx/wrong_error_008.mp3">Đang dùng</button><button data-s="audio/sfx/alt/wrong_error_004.mp3">Phương án A</button><button data-s="audio/sfx/alt/wrong_bong_001.mp3">Phương án B</button></td></tr>
+<tr><td><b>Mỗi lần bấm trong trò "Chạm nhanh"</b><br><small>tick</small></td><td><button class="main" data-s="audio/sfx/tick_tick_002.mp3">Đang dùng</button><button data-s="audio/sfx/alt/tick_tick_001.mp3">Phương án A</button><button data-s="audio/sfx/alt/tick_click_003.mp3">Phương án B</button></td></tr>
+<tr><td><b>Nhặt được đồ vật</b><br><small>pick</small></td><td><button class="main" data-s="audio/sfx/pick_glass_002.mp3">Đang dùng</button><button data-s="audio/sfx/alt/pick_pluck_002.mp3">Phương án A</button><button data-s="audio/sfx/alt/pick_drop_002.mp3">Phương án B</button></td></tr>
+<tr><td><b>Bắt đầu chương mới (nhạc tự làm)</b><br><small>chapter</small></td><td><button class="main" data-s="audio/sfx/chapter_jingle.mp3">Đang dùng</button></td></tr>
+<tr><td><b>Hoàn thành chương (nhạc tự làm)</b><br><small>stamp</small></td><td><button class="main" data-s="audio/sfx/stamp_jingle.mp3">Đang dùng</button></td></tr>
+</table>
+<p><small>Nguồn và giấy phép: xem CREDITS.md.</small></p>
+<script>document.querySelectorAll('button[data-s]').forEach(b=>b.onclick=()=>{const a=new Audio(b.dataset.s);a.play().catch(()=>{b.textContent+=' (không phát được)';});});</script>
+</body></html>

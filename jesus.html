@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hành trình theo chân Chúa Giê-su · Walking with Jesus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--ink:#3b2f5c;--sun:#ffd35c;--coral:#ff8a6b;--leaf:#7ed6a5;--lav:#b9a6f5;--cream:#fff8e7;--paper:#fffdf6;--bgtext:#3b2f5c}
+@media (prefers-color-scheme:dark){:root{--bgtext:#fff8e7}body{background:linear-gradient(#1e1b4b 0,#3b2f6e 60%,#5b4a8a 100%) fixed!important}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;font-family:"Nunito","Baloo 2","Trebuchet MS",system-ui,sans-serif;font-weight:700;font-size:17px;line-height:1.55;color:var(--ink);background:linear-gradient(#bfeaff 0,#e9f9ff 55%,#fff3cf 100%) fixed}
+h1,h2,h3{font-family:"Baloo 2","Nunito",system-ui,sans-serif;font-weight:800;line-height:1.15;margin:0}
+p{margin:0 0 8px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:disabled{cursor:default}
+#app{max-width:1100px;margin:0 auto;padding:10px 12px 40px}
+:focus-visible{outline:4px solid var(--lav);outline-offset:3px}
+.card{background:var(--paper);border:3px solid var(--ink);border-radius:26px;box-shadow:0 6px 0 var(--ink)}
+
+/* top bar */
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:4px 14px;background:var(--paper);color:var(--ink);border:3px solid var(--ink);border-radius:999px;box-shadow:0 3px 0 var(--ink);font-weight:800}
+button.chip:active{transform:translateY(3px);box-shadow:none}
+.tools{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.lbl{display:none}
+@media(min-width:640px){.lbl{display:inline}}
+.lang{display:inline-flex;border:3px solid var(--ink);border-radius:999px;overflow:hidden;box-shadow:0 3px 0 var(--ink);background:var(--paper)}
+.lang button{border:0;background:transparent;color:var(--ink);min-width:48px;min-height:44px;font-weight:800}
+.lang button[aria-pressed=true]{background:var(--sun)}
+.tl{flex:1 1 220px;min-width:190px}
+.tlbar{display:flex;gap:5px}
+.seg{flex:1;height:14px;border:3px solid var(--ink);border-radius:99px;background:#fff;overflow:hidden;position:relative}
+.seg b{position:absolute;left:0;top:0;bottom:0;width:var(--p);background:var(--c)}
+.seg.on{outline:3px solid var(--sun);outline-offset:2px}
+.tl small{display:block;font-size:13px;margin-top:4px;font-weight:800;color:var(--bgtext)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:8px 26px;border:3px solid var(--ink);border-radius:999px;background:var(--sun);color:var(--ink);font-family:"Baloo 2","Nunito",system-ui,sans-serif;font-weight:800;font-size:21px;box-shadow:0 5px 0 var(--ink);transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translateY(5px);box-shadow:0 0 0 var(--ink)}
+.btn.coral{background:var(--coral)}
+.btn.leaf{background:var(--leaf)}
+.btn.ghost{background:var(--paper)}
+.btn.small{min-height:44px;font-size:16px;padding:6px 16px}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+
+/* scenes */
+.scenebox{position:relative;aspect-ratio:16/9;overflow:hidden;background:#8fd3f4}
+.scenebox svg{display:block;width:100%;height:100%}
+.o{stroke:#3b2f5c;stroke-width:3;stroke-linejoin:round}
+.bob{animation:bob 2.8s ease-in-out infinite}
+.hands{animation:bob 3.4s ease-in-out infinite}
+.drift{animation:drift 16s ease-in-out infinite alternate}
+.spin{animation:spin 30s linear infinite;transform-box:fill-box;transform-origin:center}
+.pulse2{animation:breathe 3.2s ease-in-out infinite}
+.tw{animation:twinkle 2.4s ease-in-out infinite}
+.wave{animation:wave 5s ease-in-out infinite alternate}
+.rain{animation:rain .7s linear infinite}
+@keyframes bob{50%{transform:translateY(-5px)}}
+@keyframes drift{to{transform:translateX(26px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes breathe{50%{opacity:.25}}
+@keyframes twinkle{50%{opacity:.25}}
+@keyframes wave{to{transform:translateX(60px)}}
+@keyframes rain{to{transform:translate(-14px,40px)}}
+
+/* home */
+.home{overflow:hidden}
+.home .head{padding:22px 20px 14px;text-align:center}
+.home h1{font-size:clamp(30px,6vw,54px)}
+.home .head p{margin:8px auto 0;max-width:34em}
+.home .scenebox,.finish .scenebox{border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+.homebody{padding:16px 20px 26px;text-align:center}
+.homebody p{max-width:40em;margin-left:auto;margin-right:auto}
+.homebody .btns{justify-content:center}
+.finish{overflow:hidden}
+
+/* stop */
+.stop{display:grid;gap:16px}
+@media(min-width:900px){.stop{grid-template-columns:1.3fr 1fr;align-items:start}}
+.stage{position:relative;overflow:hidden}
+.mini{position:absolute;top:10px;right:10px;width:84px;padding:0;border:3px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:0 4px 0 var(--ink);background:#8fd3f4;aspect-ratio:400/640}
+.mini svg{display:block;width:100%;height:100%}
+.panel{padding:18px 20px 24px}
+.dots{display:flex;gap:6px;margin-bottom:12px}
+.dots i{width:28px;height:10px;border-radius:9px;border:2px solid var(--ink);background:#fff}
+.dots i.on{background:var(--leaf)}
+.tag{display:inline-block;padding:2px 12px;border:2px solid var(--ink);border-radius:99px;background:var(--cream);font-size:14px;margin:0 6px 6px 0}
+.panel h2{font-size:clamp(26px,4.2vw,34px);margin:4px 0 6px}
+.when{font-size:15px;opacity:.9;margin-bottom:8px}
+.story{font-size:19px;line-height:1.6}
+.fact{font-size:19px;line-height:1.6}
+
+/* games */
+.targets{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
+.tg{width:84px;height:84px;font-size:46px;line-height:1;border:3px solid var(--ink);border-radius:24px;background:var(--cream);box-shadow:0 5px 0 var(--ink);position:relative;padding:0}
+.tg:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
+.tg.done{background:#d9f7e4;box-shadow:0 2px 0 var(--ink);animation:pop .4s}
+.tg em{position:absolute;right:-6px;bottom:-6px;font-size:22px;font-style:normal}
+.opts{display:grid;gap:12px;margin-top:14px}
+.opt{text-align:left;padding:12px 18px;border:3px solid var(--ink);border-radius:20px;background:var(--cream);color:var(--ink);box-shadow:0 4px 0 var(--ink);font-weight:800;font-size:18px;min-height:56px}
+.opt:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.opt.ok{background:#bff0cf}
+.opt.bad{background:#ffd0c4;opacity:.7}
+.msg{margin-top:14px;padding:10px 16px;border-radius:18px;border:3px solid var(--ink);background:#e8ffe9;font-weight:800}
+.msg.warn{background:#fff0d1}
+@keyframes pop{50%{transform:scale(1.18)}}
+@keyframes wob{25%{transform:scale(1.5)}50%{transform:scale(.8)}}
+
+/* maps */
+.mapbox{position:relative;border:3px solid var(--ink);border-radius:22px;overflow:hidden;background:#8fd3f4;margin-top:12px}
+.mapscroll{overflow:auto;max-height:var(--mh,52vh);-webkit-overflow-scrolling:touch}
+.mapscroll svg{display:block;height:auto}
+.zoom{position:absolute;right:8px;bottom:8px;display:flex;flex-direction:column;gap:6px}
+.zoom button{width:44px;height:44px;border-radius:14px;border:3px solid var(--ink);background:var(--paper);color:var(--ink);font-size:24px;font-weight:800;box-shadow:0 3px 0 var(--ink);padding:0}
+.mk{cursor:pointer}
+.mk text{font:800 15px "Baloo 2","Nunito",sans-serif;fill:#3b2f5c;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round;pointer-events:none}
+.mk .ring{fill:none;stroke:#ff6b6b;stroke-width:4;transform-box:fill-box;transform-origin:center;animation:ping 1.6s ease-out infinite;pointer-events:none}
+.mk .ring.hintring{stroke:#2fbf71}
+.mk.wrong .dot{transform-box:fill-box;transform-origin:center;animation:wob .5s}
+.rg{font:800 21px "Baloo 2","Nunito",sans-serif;fill:#3b2f5c;opacity:.38;letter-spacing:2px;pointer-events:none}
+@keyframes ping{0%{transform:scale(.7);opacity:1}100%{transform:scale(2.2);opacity:0}}
+.travel{overflow:hidden}
+.thead{padding:18px 20px 12px}
+.thead h2{font-size:clamp(22px,4vw,32px)}
+.tmap{aspect-ratio:5/4;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);background:#8fd3f4}
+.tmap svg{display:block;width:100%;height:100%}
+.travel .btns{padding:0 20px 22px;margin-top:14px;justify-content:center}
+
+/* reward, stamps */
+.reward{text-align:center}
+.stamp{display:grid;place-items:center;width:76px;height:76px;border-radius:50%;background:var(--c,#ffd35c);border:3px solid var(--ink);outline:3px dashed var(--ink);outline-offset:4px;font-size:36px;box-shadow:0 4px 0 var(--ink)}
+.stamp.big{width:120px;height:120px;font-size:62px;margin:8px auto 18px;animation:stampin .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes stampin{from{transform:scale(2.4) rotate(-25deg);opacity:0}to{transform:none;opacity:1}}
+.stars{font-size:44px;display:flex;justify-content:center;gap:6px;margin:8px 0}
+.stars span{filter:grayscale(1);opacity:.3}
+.stars span.on{filter:none;opacity:1;animation:pop .5s both}
+.jgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px 6px;padding:10px 4px 14px}
+.st{display:flex;flex-direction:column;align-items:center;gap:8px;padding:8px 2px;border:0;background:transparent;color:var(--ink);text-align:center;font-size:13px;line-height:1.2}
+.st small{font-weight:800}
+.st.lock .stamp{filter:grayscale(1);opacity:.5;outline-color:#999;border-color:#999;box-shadow:none}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:12px;background:rgba(59,47,92,.6)}
+.sheet{width:min(600px,100%);max-height:94vh;overflow:auto;padding:16px}
+.shead{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.shead h2{font-size:26px}
+.legend span{margin-right:12px;white-space:nowrap}
+.cf{position:fixed;top:-40px;z-index:60;pointer-events:none;animation:fall 2.4s ease-in forwards}
+@keyframes fall{to{transform:translateY(112vh) rotate(540deg)}}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+'use strict';
+/* ============ helpers ============ */
+const INK='#3b2f5c';
+const b=(vi,en)=>({vi,en});
+let lang='vi';
+const L=o=>o[lang]||o.vi;
+const $=id=>document.getElementById(id);
+const G=(x,y,s,inner)=>`<g transform="translate(${x},${y}) scale(${s})">${inner}</g>`;
+const sh=(h,a)=>{const n=parseInt(h.slice(1),16),f=v=>Math.max(0,Math.min(255,Math.round(v+a*(a<0?v:255-v))));return '#'+[(n>>16)&255,(n>>8)&255,n&255].map(v=>f(v).toString(16).padStart(2,'0')).join('')};
+const WHO={
+ jesus:{c:'#fff8ec',sash:'#d8503f',hr:'#6b4a2f',beard:'#6b4a2f',hs:3,sk:'#f2c29a',trim:'#e8c06a'},
+ mary:{c:'#ff8fa8',scarf:'#6fa0ff',inner:'#fffdf6',veilTrim:1,sash:'#f6c453'},
+ joseph:{c:'#b98558',hr:'#5a3a24',beard:'#5a3a24',staff:1,sash:'#6b4a2f',band:'#e8d3a8'},
+ john:{c:'#c9a27a',hr:'#6b4a2f',beard:'#6b4a2f',hs:3,fur:1,staff:1,sash:'#6b4a2f'},
+ peter:{c:'#e2b46c',hr:'#4a3326',beard:'#4a3326',hs:1,band:'#3f8f9f',sash:'#3f8f9f'},
+ zacchaeus:{c:'#8e5bd6',sx:1.3,cap:'#d94f6b',beard:'#4a3326',hr:'#4a3326',trim:'#ffd35c',sash:'#ffd35c'},
+ martha:{c:'#ff8a6b',scarf:'#fff3d6',apron:1,sash:'#c9573c'},
+ mary2:{c:'#b9a6f5',scarf:'#fffdf6',flower:1,sash:'#8c76d8'},
+ simeon:{c:'#9ad9ea',gray:1,hr:'#f2f2f2',beard:'#f2f2f2',hs:2,staff:1,sash:'#5aa6c0'},
+ anna:{c:'#d8b4fe',scarf:'#fffdf6',gray:1,staff:1,veilTrim:1,sash:'#a77fe0'},
+ elizabeth:{c:'#ffb38a',scarf:'#d8c4f5',veilTrim:1,sash:'#e48a5c'},
+ widow:{c:'#6b5b95',scarf:'#4a3a6a',sad:1,sash:'#3d3160'}
+};
+const COL=['#ff8a6b','#7ed6a5','#b9a6f5','#ffd35c','#6ea8ff','#ff9ec4','#8fd9e8','#f4a261'];
+const SK=['#f6c9a0','#e8b088','#d49a72','#f0bf94'];
+const HR=['#4a3326','#2e2018','#7a5436','#1f1a2e'];
+
+/* ============ art library ============ */
+const E={
+ cloud:(x,y,s=1,c='#fff')=>G(x,y,s,`<g class="drift"><ellipse rx="48" ry="16" fill="${c}"/><ellipse cx="-24" cy="-10" rx="24" ry="17" fill="${c}"/><ellipse cx="14" cy="-17" rx="28" ry="21" fill="${c}"/></g>`),
+ sun:(x,y,r=34)=>G(x,y,1,`<g class="spin">${[...Array(10)].map((_,i)=>`<rect x="-4" y="${-r-22}" width="8" height="16" rx="4" fill="#ffd35c" transform="rotate(${i*36})"/>`).join('')}</g><circle r="${r}" fill="#ffd35c" stroke="#ffb703" stroke-width="4"/><circle cx="-10" cy="-4" r="3.5" fill="${INK}"/><circle cx="10" cy="-4" r="3.5" fill="${INK}"/><path d="M-10,8 Q0,18 10,8" stroke="${INK}" stroke-width="3.5" fill="none" stroke-linecap="round"/><circle cx="-18" cy="6" r="4" fill="#ff9ea0" opacity=".6"/><circle cx="18" cy="6" r="4" fill="#ff9ea0" opacity=".6"/>`),
+ moon:(x,y)=>G(x,y,1,`<path class="o" d="M0,-34 A34,34 0 1,0 34,0 A26,26 0 1,1 0,-34Z" fill="#fff6c4"/>`),
+ star:(x,y,s=1,c='#ffd35c')=>G(x,y,s,`<g class="tw"><polygon class="o" points="0,-20 6,-6 22,-6 9,3 14,18 0,9 -14,18 -9,3 -22,-6 -6,-6" fill="${c}"/></g>`),
+ emo:(x,y,ch,sz=40,cls='')=>`<text x="${x}" y="${y}" font-size="${sz}" text-anchor="middle"${cls?` class="${cls}"`:''}>${ch}</text>`,
+ hills:(c1,c2)=>`<path class="o" d="M-10,300 Q150,214 300,290 T610,268 T810,300 V460 H-10Z" fill="${c1}"/><path class="o" d="M-10,356 Q200,306 400,352 T810,340 V460 H-10Z" fill="${c2}"/>`,
+ ground:(c,y)=>`<path class="o" d="M-10,${y} Q200,${y-18} 400,${y} T810,${y} V460 H-10Z" fill="${c}"/>`,
+ tree:(x,y,s=1,c='#6fcf97')=>G(x,y,s,`<rect class="o" x="-7" y="-44" width="14" height="46" rx="5" fill="#a9744f"/><g class="o" fill="${c}"><circle cx="-20" cy="-50" r="21"/><circle cx="20" cy="-50" r="21"/><circle cx="0" cy="-64" r="30"/></g>`),
+ palm:(x,y,s=1)=>G(x,y,s,`<path d="M-4,0 Q10,-40 0,-84" stroke="#a9744f" stroke-width="10" fill="none" stroke-linecap="round"/>${[-165,-130,-95,-55,-20].map(a=>`<ellipse class="o" cx="30" cy="0" rx="32" ry="9" fill="#4fb477" transform="translate(0,-84) rotate(${a})"/>`).join('')}<circle cx="-4" cy="-80" r="6" fill="#a9744f"/>`),
+ olive:(x,y,s=1,c='#9bc7a8')=>G(x,y,s,`<path class="o" d="M-10,0 Q-18,-26 -6,-52 L6,-52 Q18,-26 10,0Z" fill="#a9744f"/><ellipse class="o" cx="0" cy="-70" rx="46" ry="30" fill="${c}"/><ellipse cx="-14" cy="-78" rx="20" ry="10" fill="#fff" opacity=".25"/>`),
+ bush:(x,y,s=1,c='#7ed6a5')=>G(x,y,s,`<g class="o" fill="${c}"><circle cx="-16" cy="-12" r="14"/><circle cx="16" cy="-12" r="14"/><circle cx="0" cy="-20" r="17"/></g>`),
+ rock:(x,y,s=1,c='#cfc2b0')=>G(x,y,s,`<path class="o" d="M-26,0 Q-28,-24 -8,-28 Q14,-34 26,-12 Q30,-2 24,0Z" fill="${c}"/>`),
+ house:(x,y,s=1,c='#ffe0c2')=>G(x,y,s,`<rect class="o" x="6" y="-86" width="30" height="30" rx="4" fill="${c}"/><rect class="o" x="-42" y="-52" width="84" height="52" rx="5" fill="${c}"/><rect class="o" x="-48" y="-62" width="96" height="12" rx="5" fill="#e8c9a0"/><path class="o" d="M-30,0 V-24 Q-20,-38 -10,-24 V0Z" fill="#7a5a45"/><rect class="o" x="12" y="-40" width="18" height="18" rx="9" fill="#ffe8a3"/>`),
+ temple:(x,y,s=1)=>G(x,y,s,`<rect class="o" x="-130" y="-18" width="260" height="18" rx="4" fill="#f4e4b8"/><rect class="o" x="-112" y="-36" width="224" height="18" rx="4" fill="#f1d98f"/><rect class="o" x="-95" y="-132" width="190" height="96" fill="#ffe9a8"/><path class="o" d="M-12,-36 V-78 Q0,-92 12,-78 V-36Z" fill="#8a5a3c"/>${[-72,-30,12,54].map((c,i)=>`<rect class="o" x="${c+(i>1?6:-6)}" y="-126" width="18" height="90" rx="5" fill="#fff6d6"/>`).join('')}<path class="o" d="M-112,-132 L0,-196 L112,-132Z" fill="#ffc857"/><circle class="o" cx="0" cy="-158" r="10" fill="#fff"/>`),
+ wall:(x,y,s=1)=>G(x,y,s,`<rect class="o" x="-170" y="-78" width="340" height="78" fill="#ead2a8"/>${Array.from({length:9},(_,i)=>`<rect class="o" x="${-170+i*40}" y="-96" width="24" height="20" fill="#ead2a8"/>`).join('')}<rect class="o" x="-190" y="-124" width="44" height="124" fill="#e3c796"/><rect class="o" x="146" y="-124" width="44" height="124" fill="#e3c796"/><path class="o" d="M-34,0 V-46 Q0,-84 34,-46 V0Z" fill="#6d4c3a"/>`),
+ arch:(x)=>`<g transform="translate(${x},330)"><path class="o" d="M-52,0 V-150 Q-52,-215 0,-215 Q52,-215 52,-150 V0Z" fill="#c9ecff"/><path d="M0,-215 V0 M-52,-110 H52" stroke="${INK}" stroke-width="3" fill="none"/></g>`,
+ mountain:(x,y,s=1,c='#c8b6ff')=>G(x,y,s,`<path class="o" d="M-140,0 Q-40,-190 0,-220 Q40,-190 140,0Z" fill="${c}"/><path d="M-32,-168 L0,-220 L32,-172 Q16,-156 0,-172 Q-16,-156 -32,-168Z" fill="#fff"/>`),
+ cross:(x,y,s=1)=>G(x,y,s,`<rect class="o" x="-6" y="-80" width="12" height="80" fill="#a9744f"/><rect class="o" x="-26" y="-62" width="52" height="12" fill="#a9744f"/>`),
+ tomb:(x,y,s=1)=>G(x,y,s,`<path class="o" d="M-120,0 Q-112,-112 0,-122 Q112,-112 120,0Z" fill="#cfc2b0"/><path class="o pulse2" d="M-38,0 V-52 Q0,-84 38,-52 V0Z" fill="#fff6c4"/><circle class="o" cx="92" cy="-30" r="34" fill="#e5dccd"/>`),
+ water:(y,c1='#6ec6f2',c2='#a6e0ff')=>`<path d="M0,${y} q50,-14 100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 V450 H0Z" fill="${c1}"/><g class="wave"><path d="M-100,${y+36} q50,-12 100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0" fill="none" stroke="${c2}" stroke-width="5" stroke-linecap="round"/></g><path d="M0,${y+84} q60,-12 120,0 t120,0 t120,0 t120,0 t120,0 t120,0 t120,0" fill="none" stroke="${c2}" stroke-width="4" stroke-linecap="round" opacity=".7"/>`,
+ rain:()=>`<g class="rain" stroke="#d6e6ff" stroke-width="3" stroke-linecap="round" opacity=".8">${Array.from({length:22},(_,i)=>`<path d="M${i*40-20},${(i*53)%300+20} l-8,22"/>`).join('')}</g>`,
+ glow:(x,y,r,c='#fff6c4')=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}" opacity=".55" class="pulse2"/>`,
+ ray:(x,y,c='#fff6c4')=>`<g transform="translate(${x},${y})" class="pulse2" opacity=".5">${[-48,-32,-16,0,16,32,48].map(a=>`<path d="M0,0 L-26,520 L26,520Z" fill="${c}" transform="rotate(${a})"/>`).join('')}</g>`,
+ cloak:(x,y,c)=>`<ellipse class="o" cx="${x}" cy="${y}" rx="36" ry="9" fill="${c}"/>`,
+ ears:(x,y)=>`<ellipse class="o" cx="${x-34}" cy="${y}" rx="20" ry="62" transform="rotate(-14 ${x-34} ${y})" fill="#b9b4c9"/><ellipse cx="${x-34}" cy="${y}" rx="9" ry="40" transform="rotate(-14 ${x-34} ${y})" fill="#ffc9d6"/><ellipse class="o" cx="${x+34}" cy="${y}" rx="20" ry="62" transform="rotate(14 ${x+34} ${y})" fill="#b9b4c9"/><ellipse cx="${x+34}" cy="${y}" rx="9" ry="40" transform="rotate(14 ${x+34} ${y})" fill="#ffc9d6"/><path class="o" d="M${x-52},${y+40} Q${x},${y-30} ${x+52},${y+40}Z" fill="#9c97b5"/>`,
+ sheep:(x,y,s=1)=>G(x,y,s,`<rect class="o" x="-14" y="-12" width="6" height="14" rx="3" fill="#6b5b7b"/><rect class="o" x="8" y="-12" width="6" height="14" rx="3" fill="#6b5b7b"/><g class="o" fill="#fff"><circle cx="-14" cy="-24" r="14"/><circle cx="2" cy="-30" r="16"/><circle cx="18" cy="-24" r="14"/><circle cx="2" cy="-18" r="14"/></g><ellipse class="o" cx="-26" cy="-26" rx="9" ry="10" fill="#6b5b7b"/><circle cx="-29" cy="-28" r="1.8" fill="#fff"/>`),
+ donkey:(x,y,s=1)=>G(x,y,s,`<rect class="o" x="-30" y="-30" width="10" height="32" rx="4" fill="#a8a3bd"/><rect class="o" x="18" y="-30" width="10" height="32" rx="4" fill="#a8a3bd"/><path class="o" d="M-42,-48 Q-62,-40 -58,-18" fill="none" style="stroke-width:5"/><ellipse class="o" cx="0" cy="-44" rx="44" ry="22" fill="#b9b4c9"/><ellipse class="o" cx="54" cy="-62" rx="19" ry="15" fill="#b9b4c9"/><ellipse class="o" cx="48" cy="-84" rx="6" ry="14" transform="rotate(-12 48 -84)" fill="#b9b4c9"/><ellipse class="o" cx="62" cy="-84" rx="6" ry="14" transform="rotate(14 62 -84)" fill="#b9b4c9"/><ellipse class="o" cx="68" cy="-56" rx="10" ry="8" fill="#f3ecdf"/><circle cx="56" cy="-66" r="2.6" fill="${INK}"/>`),
+ boat:(x,y,s=1)=>G(x,y,s,`<g class="bob"><path class="o" d="M-64,-22 H64 Q54,12 30,12 H-30 Q-54,12 -64,-22Z" fill="#d9a066"/><rect class="o" x="-4" y="-120" width="8" height="100" fill="#a9744f"/><path class="o" d="M6,-116 V-28 H54Z" fill="#fff8e7"/></g>`),
+ fish:(x,y,s=1,c='#ff9ec4')=>G(x,y,s,`<g class="bob"><ellipse class="o" rx="22" ry="12" fill="${c}"/><path class="o" d="M18,0 L36,-11 L36,11Z" fill="${c}"/><circle cx="-11" cy="-2" r="2.8" fill="${INK}"/></g>`),
+ dove:(x,y,s=1)=>G(x,y,s,`<g class="bob"><ellipse class="o" rx="20" ry="12" fill="#fff"/><path class="o" d="M-4,-4 Q-14,-32 10,-28 Q4,-12 6,-4Z" fill="#fff"/><circle class="o" cx="-20" cy="-8" r="8" fill="#fff"/><path d="M-28,-8 L-35,-6 L-28,-4Z" fill="#ffb703"/><circle cx="-22" cy="-9" r="1.8" fill="${INK}"/></g>`),
+ angel:(x,y,s=1)=>G(x,y,s,`<circle cy="-70" r="80" fill="#fff6c4" opacity=".55" class="pulse2"/><g class="bob"><ellipse class="o" cx="-30" cy="-52" rx="12" ry="30" transform="rotate(28 -30 -52)" fill="#fff"/><ellipse class="o" cx="30" cy="-52" rx="12" ry="30" transform="rotate(-28 30 -52)" fill="#fff"/>${E.person(0,0,1,{c:'#fffdf6',hr:'#ffd35c',arms:'up'})}<ellipse cx="0" cy="-113" rx="17" ry="5" fill="none" stroke="#ffc857" stroke-width="5"/></g>`),
+ person:(x,y,s=1,o={})=>{
+   o={...(WHO[o.who]||{}),...o};const W=o.sx||1;
+   const c=o.c||'#ff8a6b',sk=o.sk||'#f6c9a0',hr=o.hr||'#4a3326',dk=sh(c,-.22),lt=sh(c,.38),skd=sh(sk,-.14),hs=o.hs||0,up=o.arms==='up';
+   const arm=sx=>up
+    ?`<ellipse class="o" cx="${sx*24*W}" cy="-52" rx="6.5" ry="13" transform="rotate(${sx*32} ${sx*24*W} -52)" fill="${c}"/><circle class="o" cx="${sx*31*W}" cy="-65" r="6" fill="${sk}"/>`
+    :`<ellipse class="o" cx="${sx*21*W}" cy="-31" rx="6.5" ry="13" transform="rotate(${-sx*6} ${sx*21*W} -31)" fill="${c}"/><circle class="o" cx="${sx*23*W}" cy="-18" r="5.6" fill="${sk}"/>`;
+   const back=o.scarf
+    ?`<path class="o" d="M-33,-72 Q-37,-113 0,-113 Q37,-113 33,-72 Q35,-52 22,-45 Q0,-39 -22,-45 Q-35,-52 -33,-72Z" fill="${o.scarf}"/>`
+    :`<path class="o" d="M-28,-76 Q-33,-111 0,-111 Q33,-111 28,-76Z" fill="${hr}"/>${hs===3?`<g class="o" fill="${hr}"><circle cx="-23" cy="-93" r="11"/><circle cx="-9" cy="-104" r="12"/><circle cx="9" cy="-104" r="12"/><circle cx="23" cy="-93" r="11"/><path d="M-27,-84 Q-40,-56 -28,-40 Q-22,-50 -23,-66Z"/><path d="M27,-84 Q40,-56 28,-40 Q22,-50 23,-66Z"/></g>`:''}${hs===1?`<g class="o" fill="${hr}"><circle cx="-22" cy="-92" r="10"/><circle cx="-9" cy="-103" r="11"/><circle cx="9" cy="-103" r="11"/><circle cx="22" cy="-92" r="10"/></g>`:''}`;
+   const front=o.scarf
+    ?`<path d="M-26,-84 Q-12,-101 0,-99 Q12,-101 26,-84 Q14,-92 0,-91 Q-14,-92 -26,-84Z" fill="${o.inner||sh(o.scarf,-.18)}"/>`
+    :hs===2?`<path d="M-14,-98 Q0,-104 14,-98 Q0,-95 -14,-98Z" fill="${hr}"/><circle class="o" cx="-27" cy="-76" r="7" fill="${hr}"/><circle class="o" cx="27" cy="-76" r="7" fill="${hr}"/>`
+    :`<path d="M-26,-82 Q-28,-103 0,-103 Q28,-103 26,-82 Q20,-94 6,-93 Q-4,-91 -10,-95 Q-20,-92 -26,-82Z" fill="${hr}"/>`;
+   const eye=ex=>o.sleep
+    ?`<path d="M${ex-5},-76 q5,5 10,0" stroke="${INK}" stroke-width="2.6" fill="none" stroke-linecap="round"/>`
+    :`<ellipse cx="${ex}" cy="-76" rx="4.3" ry="5.6" fill="${INK}"/><circle cx="${ex+1.3}" cy="-78.2" r="1.8" fill="#fff"/><circle cx="${ex-1.4}" cy="-73.8" r=".9" fill="#fff"/>`;
+   const brow=o.sad?`<path d="M-16,-83 L-6,-87 M16,-83 L6,-87" stroke="${hr}" stroke-width="2.4" stroke-linecap="round"/>`:`<path d="M-15,-85 q5,-3 10,0 M5,-85 q5,-3 10,0" stroke="${hr}" stroke-width="2.2" fill="none" stroke-linecap="round"/>`;
+   const mouth=o.sad?`<path d="M-5,-60 Q0,-65 5,-60" stroke="${INK}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`:up?`<path d="M-6,-64 Q0,-52 6,-64Z" fill="#c4505a" stroke="${INK}" stroke-width="2" stroke-linejoin="round"/>`:`<path d="M-5.5,-63 Q0,-57 5.5,-63" stroke="${INK}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`;
+   const beard=o.beard?`<path d="M-24,-70 Q-25,-45 0,-43 Q25,-45 24,-70 Q17,-59 0,-58 Q-17,-59 -24,-70Z" fill="${o.beard}"/>`:'';
+   const extras=(o.trim?`<rect x="-3" y="-54" width="6" height="50" fill="${o.trim}"/><path d="M-10,-56 Q0,-46 10,-56" stroke="${o.trim}" stroke-width="3.5" fill="none"/>`:'')+(o.fur?`<path class="o" d="M-19,-18 L-14,-8 L-9,-17 L-4,-6 L1,-16 L6,-5 L11,-15 L16,-6 L19,-14 L19,-3 Q0,2 -19,-3Z" fill="${dk}"/><path d="M-14,-56 L14,-30" stroke="${dk}" stroke-width="6"/>`:'')+(o.apron?`<path class="o" d="M-12,-48 L12,-48 L15,-6 Q0,0 -15,-6Z" fill="#fffdf6"/><path d="M-12,-48 Q0,-40 12,-48" stroke="${INK}" stroke-width="2" fill="none"/>`:'');
+   const extraHead=(o.veilTrim?`<path d="M-33,-72 Q-35,-52 -22,-45 Q0,-39 22,-45 Q35,-52 33,-72" stroke="#ffd35c" stroke-width="3" fill="none"/>`:'')+(o.gray?`<path d="M-19,-74 l-4,-1 M-19,-71 l-4,1 M19,-74 l4,-1 M19,-71 l4,1" stroke="${skd}" stroke-width="1.6" stroke-linecap="round"/>`:'')+(o.band?`<path d="M-25,-86 Q0,-95 25,-86 L25,-80 Q0,-89 -25,-80Z" fill="${o.band}" stroke="${INK}" stroke-width="2"/>`:'')+(o.cap?`<path class="o" d="M-17,-98 Q0,-120 17,-98 Q0,-93 -17,-98Z" fill="${o.cap}"/><circle cx="0" cy="-114" r="3.5" fill="#ffd35c"/>`:'')+(o.flower?`<circle cx="-20" cy="-98" r="6" fill="#ff9ec4" stroke="${INK}" stroke-width="2"/><circle cx="-20" cy="-98" r="2.2" fill="#ffd35c"/>`:'');
+   return `<g transform="translate(${x},${y}) rotate(${o.rot||0}) scale(${s*1.2})"><ellipse cx="0" cy="2" rx="26" ry="5.5" fill="rgba(59,47,92,.16)"/><ellipse class="o" cx="-8" cy="-1" rx="8" ry="4.5" fill="#8a5a3c"/><ellipse class="o" cx="8" cy="-1" rx="8" ry="4.5" fill="#8a5a3c"/><g transform="scale(${W},1)"><path class="o" d="M-19,-3 Q-23,-34 -14,-56 L14,-56 Q23,-34 19,-3Z" fill="${c}"/><path d="M-20,-30 Q0,-24 20,-30 L19.5,-22 Q0,-16 -19.5,-22Z" fill="${o.sash||dk}"/><path d="M-9,-56 Q0,-46 9,-56Z" fill="${lt}"/><path d="M-19,-9 Q0,-4 19,-9 L19,-3 Q0,2 -19,-3Z" fill="${lt}" opacity=".7"/>${extras}</g>${o.staff?`<path d="M${30*W},-4 L${33*W},-98" stroke="#8a5a3c" stroke-width="5" stroke-linecap="round"/><circle cx="${33*W}" cy="-100" r="4" fill="#8a5a3c"/>`:''}${arm(-1)}${arm(1)}${back}<ellipse class="o" cx="0" cy="-76" rx="25" ry="23" fill="${sk}"/>${front}${beard}${extraHead}<path d="M-24,-70 Q-24,-60 -18,-54" stroke="${skd}" stroke-width="3" fill="none" stroke-linecap="round" opacity=".5"/>${eye(-10)}${eye(10)}${brow}<path d="M-1.8,-69 q1.8,2.4 3.6,0" stroke="${skd}" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="-17" cy="-67" r="5" fill="#ff8f9a" opacity=".55"/><circle cx="17" cy="-67" r="5" fill="#ff8f9a" opacity=".55"/>${mouth}</g>`;
+  }
+};
+const crowd=(x0,y,n,gap,s=.8,o={})=>Array.from({length:n},(_,i)=>E.person(x0+i*gap,y+(i%2)*10,s*(1+(i%3)*.05),{c:COL[(i+(o.k||0))%COL.length],sk:SK[i%4],hr:HR[(i+1)%4],hs:i%3,arms:o.arms&&i%2?'up':'down',scarf:o.f&&i%3===1?COL[(i+3)%COL.length]:null,sad:o.sad,sleep:o.sleep})).join('');
+
+/* first-person hands: the player is Jesus */
+const hands=(held,pose)=>{
+ const h=`<rect class="o" x="-26" y="-92" width="52" height="112" rx="24" fill="#fbf3e2"/><rect x="-26" y="-30" width="52" height="10" fill="#ffd35c" stroke="${INK}" stroke-width="2"/><ellipse class="o" cx="0" cy="-100" rx="21" ry="25" fill="#f6c9a0"/><ellipse class="o" cx="19" cy="-92" rx="8" ry="14" transform="rotate(24 19 -92)" fill="#f6c9a0"/>`;
+ return `<g transform="translate(0,${pose==='up'?-40:0})"><g class="hands"><g transform="translate(322,478) rotate(16)">${h}</g><g transform="translate(478,478) scale(-1,1) rotate(16)">${h}</g>${held?`<text x="400" y="404" font-size="62" text-anchor="middle">${held}</text>`:''}</g></g>`;
+};
+const SKY={day:{a:'#7fd3f7',b:'#e6f8ff'},dawn:{a:'#ffa98a',b:'#fff1b8'},dusk:{a:'#ff9a76',b:'#d3b3ff'},night:{a:'#1f1b4d',b:'#5a4a9a',stars:1},storm:{a:'#55627f',b:'#9fb0cc'},dim:{a:'#9aa3c7',b:'#e3dcef'},bright:{a:'#fff3b0',b:'#ffe9f2'},desert:{a:'#ffd9a0',b:'#fff1cf'},warm:{a:'#ffe3b3',b:'#fff3de'}};
+const STARS=(()=>{let r=7,o='';for(let i=0;i<26;i++){r=(r*9301+49297)%233280;const x=r/233280*800;r=(r*9301+49297)%233280;const y=r/233280*250;o+=`<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${1.5+i%3}" fill="#fff6c4" class="tw" style="animation-delay:${(i%5)*.4}s"/>`}return o})();
+function sceneSVG(sp){
+ const k=SKY[sp.sky||'day'];
+ let s=`<svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${k.a}"/><stop offset="1" stop-color="${k.b}"/></linearGradient></defs><rect width="800" height="450" fill="url(#sg)"/>`;
+ if(k.stars)s+=STARS;
+ s+=sp.els.join('');
+ if(!sp.nohands)s+=hands(sp.hold,sp.pose);
+ return s+'</svg>';
+}
+
+/* ============ geography ============ */
+const PL={
+ jerusalem:{n:b("Giê-ru-sa-lem","Jerusalem"),ll:[31.78,35.22],xy:[270,614],a:'e'},
+ nazareth:{n:b("Na-xa-rét","Nazareth"),ll:[32.70,35.30],xy:[288,240],a:'e'},
+ hills:{n:b("Vùng đồi Giu-đê","Hills of Judea"),ll:[31.77,35.16],xy:[190,700],a:'e'},
+ bethlehem:{n:b("Bết-lê-hem","Bethlehem"),ll:[31.70,35.20],xy:[270,676],a:'s'},
+ jordan:{n:b("Sông Giô-đanh","Jordan River"),ll:[31.84,35.55],xy:[394,530],a:'s'},
+ desert:{n:b("Hoang mạc Giu-đê","Judean Desert"),ll:[31.75,35.40],xy:[332,730],a:'e'},
+ capernaum:{n:b("Ca-phác-na-um","Capernaum"),ll:[32.88,35.575],xy:[356,162],a:'e'},
+ sea:{n:b("Biển Ga-li-lê","Sea of Galilee"),ll:[32.82,35.59],xy:[392,200],a:'m'},
+ nain:{n:b("Na-in","Nain"),ll:[32.63,35.35],xy:[316,284],a:'s'},
+ gerasa:{n:b("Ghê-ra-sa","Gerasa"),ll:[32.83,35.65],xy:[440,214],a:'s'},
+ bethsaida:{n:b("Bết-xai-đa","Bethsaida"),ll:[32.91,35.63],xy:[420,152],a:'s'},
+ tabor:{n:b("Núi biến hình","Mount of Transfiguration"),ll:[32.69,35.39],xy:[336,246],a:'s'},
+ samaria:{n:b("Sa-ma-ri","Samaria"),ll:[32.22,35.26],xy:[272,412],a:'e'},
+ bethany:{n:b("Bê-ta-ni","Bethany"),ll:[31.77,35.26],xy:[344,630],a:'s'},
+ jericho:{n:b("Giê-ri-cô","Jericho"),ll:[31.86,35.46],xy:[336,556],a:'e'},
+ olives:{n:b("Núi Ô-liu","Mount of Olives"),ll:[31.78,35.245],xy:[326,588],a:'s'},
+ golgotha:{n:b("Đồi Sọ","Golgotha"),ll:[31.78,35.23],xy:[206,584],a:'e'},
+ tomb:{n:b("Mộ trống","The Empty Tomb"),ll:[31.78,35.23],xy:[206,644],a:'e'},
+ emmaus:{n:b("Em-mau","Emmaus"),ll:[31.83,35.10],xy:[140,552],a:'e'}
+};
+const CH=[
+ {vi:"Khởi đầu",en:"The Beginning",col:'#ffd35c'},
+ {vi:"Bắt đầu sứ vụ",en:"Ministry Begins",col:'#7ed6a5'},
+ {vi:"Quanh Ga-li-lê",en:"Around Galilee",col:'#8ed9f6'},
+ {vi:"Lên Giê-ru-sa-lem",en:"Up to Jerusalem",col:'#b9a6f5'},
+ {vi:"Thập giá và Phục sinh",en:"Cross and Resurrection",col:'#ff8a6b'}
+];
+const RG={gal:b("Ga-li-lê","Galilee"),sam:b("Sa-ma-ri","Samaria"),jud:b("Giu-đê","Judea"),med:b("Biển Địa Trung Hải","Mediterranean Sea"),dead:b("Biển Chết","Dead Sea")};
+const LAND='M216,-100 L214,0 C212,40 208,80 204,120 C198,160 184,186 172,204 C164,232 156,270 146,318 C136,368 120,410 106,468 C92,520 74,560 56,612 C40,660 20,700 6,760 L-20,830 L-60,1100 L700,1100 L700,-100Z';
+const VB_FULL='0 0 500 960',MINI_VB='60 110 400 640',QUIZ_VB='50 100 420 660';
+
+function dist(a,b2){
+ const [la1,lo1]=PL[a].ll,[la2,lo2]=PL[b2].ll,R=6371,r=Math.PI/180;
+ const dl=(la2-la1)*r,dg=(lo2-lo1)*r;
+ const h=Math.sin(dl/2)**2+Math.cos(la1*r)*Math.cos(la2*r)*Math.sin(dg/2)**2;
+ return Math.max(1,Math.round(2*R*Math.asin(Math.sqrt(h))));
+}
+function walkText(km){
+ const road=km*1.35;
+ if(road<18){const h=Math.max(1,Math.round(road/4.5));return lang==='vi'?`đi bộ khoảng ${h} giờ`:`about ${h} hour${h>1?'s':''} on foot`}
+ const d=Math.max(1,Math.round(road/25));
+ return lang==='vi'?`đi bộ khoảng ${d} ngày`:`about ${d} day${d>1?'s':''} on foot`;
+}
+function routeD(a,b2){
+ const [x1,y1]=PL[a].xy,[x2,y2]=PL[b2].xy,mx=(x1+x2)/2,my=(y1+y2)/2,dx=x2-x1,dy=y2-y1;
+ return `M${x1},${y1} Q${mx-dy*.18},${my+dx*.18} ${x2},${y2}`;
+}
+function vbFor(a,b2){
+ const [x1,y1]=PL[a].xy,[x2,y2]=PL[b2].xy,cx=(x1+x2)/2,cy=(y1+y2)/2,r=1.25;
+ let w=Math.abs(x1-x2)+280,h=Math.abs(y1-y2)+200;
+ if(w/h<r)w=h*r;else h=w/r;
+ return `${(cx-w/2).toFixed(0)} ${(cy-h/2).toFixed(0)} ${w.toFixed(0)} ${h.toFixed(0)}`;
+}
+
+/* ============ map drawing ============ */
+function mapSVG(o){
+ const mode=o.mode||'big',vb=o.vb||VB_FULL;
+ const lab=mode!=='mini'&&mode!=='quiz';
+ const done=new Set(STOPS.filter(s=>S.done[s.id]).map(s=>s.place));
+ let h=`<svg class="mapsvg" viewBox="${vb}" preserveAspectRatio="xMidYMid meet" style="width:${(o.zoom||1)*100}%" role="img" aria-label="${T('map')}"><defs><clipPath id="lc-${mode}"><path d="${LAND}"/></clipPath></defs><rect x="-400" y="-400" width="1400" height="1900" fill="#8fd3f4"/>`;
+ h+=[[30,120],[70,230],[40,420],[20,560],[60,760],[30,900]].map(([x,y])=>`<path d="M${x},${y} q10,-9 20,0 t20,0 t20,0" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/>`).join('');
+ h+=`<path d="${LAND}" fill="#fbefc8" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><g clip-path="url(#lc-${mode})">`;
+ h+=`<path d="M452,-100 L700,-100 L700,1100 L414,1100 Q404,800 408,700 Q414,640 430,600 Q452,470 454,300 Q456,150 452,-100Z" fill="#f6dcaa"/>`;
+ h+=`<path d="M200,110 Q300,80 400,120 L440,260 Q330,310 230,300 Q190,200 200,110Z" fill="#c4eaa6"/>`;
+ h+=`<path d="M205,330 Q300,320 370,350 Q390,450 330,495 Q250,505 195,445 Q185,385 205,330Z" fill="#d3efb2"/>`;
+ h+=`<path d="M185,535 Q270,520 345,545 Q360,650 305,715 Q215,735 170,665 Q155,590 185,535Z" fill="#dff0b5"/>`;
+ h+=`<path d="M0,760 Q200,720 400,770 L430,1100 L0,1100Z" fill="#f7e3a8"/></g>`;
+ h+=[[250,140],[300,168],[236,206],[316,206],[240,350],[300,372],[330,452],[250,472],[226,560],[300,700],[240,730]].map(([x,y])=>`<path d="M${x-18},${y} q18,-28 36,0z" fill="#9edb8e" stroke="${INK}" stroke-width="2.5" stroke-linejoin="round"/>`).join('');
+ h+=`<path d="M388,240 C376,290 404,320 390,360 C376,400 402,430 390,470 C380,510 398,550 384,580 L378,612" fill="none" stroke="${INK}" stroke-width="15" stroke-linecap="round"/><path d="M388,240 C376,290 404,320 390,360 C376,400 402,430 390,470 C380,510 398,550 384,580 L378,612" fill="none" stroke="#6ec6f2" stroke-width="9" stroke-linecap="round"/>`;
+ h+=`<path d="M372,160 C395,148 428,165 432,198 C434,228 412,246 388,242 C364,234 352,184 372,160Z" fill="#6ec6f2" stroke="${INK}" stroke-width="3.5"/>`;
+ h+=`<path d="M372,612 C392,610 402,640 400,690 C398,750 392,800 378,850 C362,830 352,760 354,700 C356,650 358,620 372,612Z" fill="#6ec6f2" stroke="${INK}" stroke-width="3.5"/>`;
+ h+=[['🌳',240,196],['🌳',226,268],['🌳',262,306],['🌳',302,356],['🌳',226,440],['🌳',326,470],['🫒',236,540],['🌴',304,520],['🌴',318,512],['🐪',300,810],['⛵',414,184],['🐟',372,192],['🏔️',320,56]].map(([c,x,y])=>`<text x="${x}" y="${y}" font-size="22" text-anchor="middle">${c}</text>`).join('');
+ if(mode!=='mini'){
+  h+=`<text class="rg" x="205" y="152" text-anchor="middle">${L(RG.gal)}</text><text class="rg" x="232" y="374" text-anchor="middle">${L(RG.sam)}</text><text class="rg" x="98" y="636" text-anchor="middle">${L(RG.jud)}</text><text class="rg" transform="translate(68,330) rotate(-90)" text-anchor="middle">${L(RG.med)}</text><text class="rg" x="410" y="780">${L(RG.dead)}</text>`;
+ }
+ if(mode==='travel'){
+  const d=routeD(o.from,o.to);
+  h+=`<path id="routebg" d="${d}" fill="none" stroke="${INK}" stroke-width="5" stroke-dasharray="1 12" stroke-linecap="round" opacity=".6"/><path id="route" d="${d}" fill="none" stroke="#ff6b6b" stroke-width="7" stroke-linecap="round" style="stroke-dasharray:${o.arrived?'none':'0 9999'}"/>`;
+ }
+ for(const id in PL){
+  const p=PL[id],[x,y]=p.xy;
+  const isCur=o.cur===id||(mode==='travel'&&o.to===id);
+  const fill=mode==='quiz'?'#fff':isCur?'#ff6b6b':done.has(id)?'#ffb703':'#fff';
+  const r=mode==='mini'?15:11;
+  h+=`<g class="mk"${o.click?` data-act="pin" data-p="${id}" role="button" aria-label="${mode==='quiz'?'?':L(p.n)}"`:''}>`;
+  if(isCur&&mode!=='quiz')h+=`<circle class="ring" cx="${x}" cy="${y}" r="${r}"/>`;
+  h+=`<circle cx="${x}" cy="${y}" r="${r+8}" fill="transparent"/><circle class="dot" cx="${x}" cy="${y}" r="${r}" fill="${fill}" stroke="${INK}" stroke-width="3.5"/>`;
+  if(mode!=='quiz'&&done.has(id)&&!isCur)h+=`<circle cx="${x}" cy="${y}" r="${r*.36}" fill="#fff" pointer-events="none"/>`;
+  if(lab){
+   const tx=p.a==='e'?x-15:p.a==='s'?x+15:x,ty=p.a==='m'?y+30:y+5,an=p.a==='e'?'end':p.a==='s'?'start':'middle';
+   h+=`<text x="${tx}" y="${ty}" text-anchor="${an}">${L(p.n)}</text>`;
+  }
+  h+='</g>';
+ }
+ if(mode==='travel'){
+  const [wx,wy]=PL[o.arrived?o.to:o.from].xy;
+  h+=`<g id="walker" transform="translate(${wx},${wy})"><g transform="scale(.36)">${E.person(0,0,1,{who:'jesus'})}</g></g>`;
+ }
+ return h+'</svg>';
+}
+function mapBox(o){
+ return `<div class="mapbox"><div class="mapscroll" id="mscroll" style="--mh:${o.h||'52vh'}">${mapSVG(o)}</div><div class="zoom"><button data-act="zoom" data-d="1" aria-label="+">+</button><button data-act="zoom" data-d="-1" aria-label="-">&minus;</button></div></div>`;
+}
+
+/* ============ the 25 stops (Gospel of Luke) ============ */
+const STOPS=[
+{id:'temple1',ch:0,place:'jerusalem',ico:'🏛️',ref:'1:5-25',
+ title:b("Đền thờ Giê-ru-sa-lem","The Temple in Jerusalem"),
+ time:b("Thời vua Hê-rốt, trước khi bạn ra đời (1:5)","In the days of King Herod, before you were born (1:5)"),
+ story:b("Bạn đang ngồi bên Mẹ Ma-ri-a. Mẹ kể: «Trước khi con ra đời, thầy tế lễ Xa-cha-ri vào đền thờ để dâng hương. Một thiên sứ hiện ra và báo: vợ ông là Ê-li-sa-bét sẽ sinh một con trai tên là Giăng. Giăng sẽ giúp mọi người sẵn sàng đón Chúa!»","You are sitting beside your mother, Mary. She tells you: “Before you were born, the priest Zechariah went into the Temple to burn incense. An angel appeared and said his wife Elizabeth would have a baby boy named John. John would help everyone get ready for the Lord!”"),
+ fact:b("Đền thờ nằm trên một ngọn đồi cao ở Giê-ru-sa-lem. Vì thành ở trên cao nên người ta luôn nói «đi lên» Giê-ru-sa-lem.","The Temple stood on a high hill in Jerusalem. Because the city sits up high, people always said they were “going up” to Jerusalem."),
+ g:{t:'quiz',q:b("Thiên sứ báo tin vui cho ai trong đền thờ?","Who did the angel visit in the Temple?"),o:[b("Xa-cha-ri, thầy tế lễ","Zechariah the priest"),b("Giô-sép","Joseph"),b("Một người chăn chiên","A shepherd")],a:0},
+ sc:()=>({sky:'day',els:[E.sun(700,78),E.cloud(170,80),E.cloud(520,56,.8),E.hills('#b9ecb0','#8fdca5'),E.palm(70,336,1),E.temple(560,320,1),E.angel(560,300,.5),E.tree(350,338,.9),E.person(190,358,1.05,{who:'mary'})]})},
+
+{id:'nazareth1',ch:0,place:'nazareth',ico:'🏡',ref:'1:26-38',
+ title:b("Na-xa-rét","Nazareth"),
+ time:b("Sáu tháng sau đó (1:26)","Six months later (1:26)"),
+ story:b("Mẹ kể tiếp: «Ở làng Na-xa-rét, thiên sứ Gáp-ri-ên đến gặp mẹ và nói: Đừng sợ! Con sẽ sinh một con trai và đặt tên là Giê-su.» Mẹ mỉm cười đáp: «Xin cứ làm theo lời thiên sứ.»","Mary goes on: “In the village of Nazareth, the angel Gabriel came to me and said, ‘Do not be afraid! You will have a son, and you will name him Jesus.’ I smiled and answered, ‘May it happen just as you said.’”"),
+ fact:b("Na-xa-rét là một làng nhỏ trên đồi ở miền Ga-li-lê, phía bắc đất nước. Từ đây đi bộ đến Giê-ru-sa-lem mất nhiều ngày.","Nazareth was a small hill village in Galilee, in the north of the country. Walking from here to Jerusalem took many days."),
+ g:{t:'map',q:b("Tìm làng Na-xa-rét trên bản đồ. Gợi ý: nó ở miền Ga-li-lê, phía bắc.","Find the village of Nazareth on the map. Hint: it is in Galilee, in the north."),a:'nazareth'},
+ sc:()=>({sky:'day',els:[E.sun(90,80),E.cloud(300,70),E.cloud(620,90,.8),E.hills('#b9ecb0','#8fdca5'),E.house(520,322,1,'#ffe0c2'),E.house(618,336,.9,'#ffd1dc'),E.house(700,324,1.1,'#d9f0ff'),E.tree(100,336,.9),E.angel(380,332,.9),E.person(190,360,1.05,{who:'mary'})]})},
+
+{id:'hills1',ch:0,place:'hills',ico:'⛰️',ref:'1:39-45',
+ title:b("Vùng đồi Giu-đê","The Hills of Judea"),
+ time:b("Ít lâu sau (1:39)","Soon afterward (1:39)"),
+ story:b("Bạn còn bé xíu, nằm trong lòng Mẹ. Mẹ đi thật nhanh lên vùng đồi Giu-đê để thăm dì Ê-li-sa-bét. Khi dì nghe tiếng Mẹ chào, em bé trong bụng dì nhảy lên vì vui! Dì reo lên: «Em thật có phúc, vì đã tin lời Chúa phán!»","You are tiny, safe inside your mother. Mary hurries up into the hills of Judea to visit her cousin Elizabeth. When Elizabeth hears Mary’s greeting, the baby inside her leaps for joy! She cries out, “How blessed you are, because you believed what the Lord said!”"),
+ fact:b("Từ Na-xa-rét đến vùng đồi Giu-đê là hơn 100 km. Thời đó không có xe, mọi người đi bộ hoặc cưỡi lừa.","From Nazareth to the hills of Judea is more than 100 km. There were no cars then, so people walked or rode donkeys."),
+ g:{t:'tap',q:b("Chạm vào 5 dấu chân để cùng Mẹ đi lên đồi!","Tap the 5 footprints to climb the hills with Mary!"),s:['👣','👣','👣','👣','👣']},
+ sc:()=>({sky:'day',els:[E.sun(700,70),E.cloud(260,80),E.hills('#cfe8a0','#a5d86e'),E.olive(80,340,1.1),E.olive(300,324,.8),E.house(640,326,1.1,'#ffe9c9'),E.person(480,354,1.05,{who:'elizabeth',arms:'up'}),E.person(190,362,1,{who:'mary'})]})},
+
+{id:'bethlehem1',ch:0,place:'bethlehem',ico:'⭐',ref:'2:1-20',
+ title:b("Bết-lê-hem","Bethlehem"),
+ time:b("Khi Hoàng đế Au-gút-tơ cho đếm dân số (2:1)","When Emperor Augustus counted all the people (2:1)"),
+ story:b("Bạn vừa chào đời ở Bết-lê-hem! Mẹ quấn bạn trong khăn và đặt bạn nằm trong máng cỏ, vì nhà trọ đã hết chỗ. Ngoài đồng, thiên sứ báo tin vui cho các mục đồng. Họ chạy đến, nhìn thấy bạn và vui mừng ca ngợi Chúa.","You have just been born in Bethlehem! Mary wraps you in cloths and lays you in a manger, because the inn had no room. Out in the fields, an angel gives the shepherds good news. They hurry to see you and joyfully praise God."),
+ fact:b("Giô-sép phải về Bết-lê-hem để ghi tên vì ông thuộc dòng dõi vua Đa-vít. Bết-lê-hem chỉ cách Giê-ru-sa-lem chừng 9 km.","Joseph had to go to Bethlehem to be counted because he came from the family of King David. Bethlehem is only about 9 km from Jerusalem."),
+ g:{t:'quiz',q:b("Bé Giê-su được đặt nằm ở đâu?","Where was baby Jesus laid?"),o:[b("Trong máng cỏ","In a manger"),b("Trên giường lớn","In a big bed"),b("Trong một chiếc thuyền","In a boat")],a:0},
+ sc:()=>({sky:'night',nohands:true,els:[E.star(110,112,1.9),E.moon(700,96),`<path class="o" d="M0,0H800V38H0Z" fill="#a9744f"/>`,E.emo(690,160,'🏮',44,'bob'),E.sheep(150,394,1.1),E.person(650,398,1.1,{who:'joseph'}),E.person(400,452,2.2,{who:'mary'}),`<path d="M40,450 Q400,352 760,450" stroke="#f2c14e" stroke-width="22" fill="none" stroke-linecap="round"/><path class="o" d="M130,450 Q400,330 670,450Z" fill="#fff8e7"/>`]})},
+
+{id:'temple2',ch:0,place:'jerusalem',ico:'🕊️',ref:'2:22-38',
+ title:b("Đền thờ: Dâng bạn cho Chúa","The Temple: Given to God"),
+ time:b("Khi đủ ngày theo luật Môi-se (2:22)","When the days of the Law of Moses were complete (2:22)"),
+ story:b("Mẹ và Giô-sép bế bạn lên đền thờ ở Giê-ru-sa-lem để dâng bạn cho Chúa. Cụ Si-mê-ôn nhận bạn trên tay và hát lời tạ ơn. Bà An-ne cũng đến, cảm ơn Chúa và kể cho mọi người nghe về bạn.","Mary and Joseph carry you up to the Temple in Jerusalem to present you to God. Old Simeon takes you in his arms and sings a prayer of thanks. Anna comes too, thanks God, and tells everyone about you."),
+ fact:b("Luật dạy dâng một đôi chim cu gáy hoặc hai chim bồ câu con (2:24). Đó là của lễ đơn sơ mà gia đình nghèo cũng dâng được.","The Law asked for a pair of doves or two young pigeons (2:24). It was a simple gift that even a poor family could give."),
+ g:{t:'tap',q:b("Chạm vào hai chú bồ câu để dâng của lễ.","Tap the two doves to give the offering."),s:['🕊️','🕊️']},
+ sc:()=>({sky:'day',els:[E.sun(700,70),E.cloud(150,70),E.hills('#b9ecb0','#8fdca5'),E.temple(400,330,1.35),E.dove(300,190,1.1),E.dove(500,150,1.3),E.person(190,358,1.05,{who:'simeon',arms:'up'}),E.person(620,358,1.05,{who:'anna'})]})},
+
+{id:'nazareth2',ch:0,place:'nazareth',ico:'🌱',ref:'2:39-52',
+ title:b("Lớn lên ở Na-xa-rét","Growing up in Nazareth"),
+ time:b("Những năm thơ ấu (2:40)","The childhood years (2:40)"),
+ story:b("Cả nhà trở về làng Na-xa-rét. Bạn lớn lên từng ngày, ngày càng khôn ngoan, và ơn Chúa ở cùng bạn. Bạn vâng lời Mẹ và Giô-sép, và được mọi người thương mến.","The family goes home to Nazareth. You grow bigger every day, wiser and wiser, and God’s favor is with you. You obey Mary and Joseph, and people love you."),
+ fact:b("Làng Na-xa-rét lúc ấy rất nhỏ, nhà xây bằng đá, nằm giữa những ngọn đồi xanh. Mỗi năm cả nhà cùng đi dự lễ ở Giê-ru-sa-lem (2:41).","Nazareth was tiny then, with stone houses among green hills. Every year the family traveled together to the festival in Jerusalem (2:41)."),
+ g:{t:'quiz',q:b("Theo Lu-ca 2:52, bạn lớn lên trong điều gì?","According to Luke 2:52, what did you grow in?"),o:[b("Khôn ngoan, và được Chúa và mọi người thương mến","Wisdom, and favor with God and people"),b("Chỉ cao lớn hơn thôi","Only getting taller"),b("Thật giàu có","Becoming very rich")],a:0},
+ sc:()=>({sky:'day',els:[E.sun(90,80),E.cloud(330,70),E.hills('#b9ecb0','#8fdca5'),E.house(500,322,1,'#ffe0c2'),E.house(610,336,.9,'#ffd1dc'),E.house(700,324,1.1,'#d9f0ff'),E.tree(100,338,.9),E.person(240,356,1.05,{who:'mary'}),E.person(410,342,.6,{c:'#ffd35c'}),E.person(455,348,.55,{c:'#7ed6a5',sk:'#e8b088'}),E.person(570,358,1.05,{who:'joseph'})]})},
+
+{id:'jerusalem12',ch:0,place:'jerusalem',ico:'📖',ref:'2:41-52',
+ title:b("Giê-ru-sa-lem lúc 12 tuổi","Jerusalem at age 12"),
+ time:b("Lễ Vượt Qua, khi bạn 12 tuổi (2:41-42)","Passover, when you were 12 (2:41-42)"),
+ story:b("Năm 12 tuổi, bạn cùng cả nhà đi lên Giê-ru-sa-lem dự lễ Vượt Qua. Khi mọi người ra về, bạn ở lại đền thờ để nghe và hỏi các thầy dạy luật. Ba ngày sau Mẹ và Giô-sép tìm thấy bạn. Bạn nói: «Cha mẹ không biết con phải ở trong nhà Cha con sao?»","When you are 12, your family goes up to Jerusalem for Passover. When everyone leaves, you stay in the Temple to listen to the teachers and ask them questions. After three days Mary and Joseph find you. You say, “Did you not know I had to be in my Father’s house?”"),
+ fact:b("Mọi người đi chung thành đoàn đông. Vì thế Mẹ và Giô-sép tưởng bạn đang đi cùng bạn bè, và đã đi cả một ngày đường mới biết là bạn không có đó (2:44).","Everyone traveled in a big group. So Mary and Joseph thought you were with your friends, and they walked a whole day before they noticed you were missing (2:44)."),
+ g:{t:'map',q:b("Từ Na-xa-rét, cả nhà đi lên thành nào để dự lễ Vượt Qua? Tìm trên bản đồ.","From Nazareth, which city did the family go up to for Passover? Find it on the map."),a:'jerusalem'},
+ sc:()=>({sky:'day',els:[E.sun(100,70),E.cloud(330,80),E.hills('#b9ecb0','#8fdca5'),E.temple(590,320,1),E.person(190,356,1,{c:'#e6c9ff',beard:'#ddd',hr:'#ccc'}),E.person(285,364,1,{c:'#9ad9ea',beard:'#ddd',hr:'#ccc'}),E.person(500,358,1,{c:'#ffe29a',beard:'#4a3326'}),E.person(710,340,.6,{who:'mary',sad:1}),E.person(752,340,.6,{who:'joseph',sad:1})]})},
+
+{id:'jordan1',ch:1,place:'jordan',ico:'💧',ref:'3:1-22',
+ title:b("Sông Giô-đanh: Phép báp-têm","The Jordan River: Baptism"),
+ time:b("Năm thứ 15 đời Hoàng đế Ti-be-ri-ô; bạn khoảng 30 tuổi (3:1, 3:23)","The 15th year of Emperor Tiberius; you were about 30 (3:1, 3:23)"),
+ story:b("Bạn đến sông Giô-đanh. Giăng Báp-tít đang rửa tội cho dân chúng. Bạn bước xuống nước để chịu phép rửa. Khi bạn cầu nguyện, trời mở ra, Thánh Linh như chim bồ câu đậu xuống, và có tiếng từ trời: «Con là Con yêu dấu của Ta, Ta rất hài lòng về con.»","You come to the Jordan River. John the Baptist is baptizing people. You step into the water to be baptized. While you pray, heaven opens, the Holy Spirit comes down like a dove, and a voice says, “You are my Son, whom I love. I am very pleased with you.”"),
+ fact:b("Sông Giô-đanh chảy từ phía bắc, qua Biển Ga-li-lê, rồi xuống Biển Chết. Biển Chết là nơi thấp nhất trên đất liền, thấp hơn mặt biển hơn 400 mét!","The Jordan flows from the north, through the Sea of Galilee, down to the Dead Sea. The Dead Sea is the lowest place on dry land, more than 400 meters below sea level!"),
+ g:{t:'tap',q:b("Chạm vào chú bồ câu đang bay xuống.","Tap the dove flying down."),s:['🕊️']},
+ sc:()=>({sky:'day',els:[E.sun(90,70),E.cloud(300,70),E.hills('#b9ecb0','#8fdca5'),E.palm(60,330,1),E.water(304),E.ray(400,-10),E.person(290,340,1.1,{who:'john',arms:'up'}),crowd(560,336,4,56,.7,{arms:1}),E.ground('#a8e6a1',396),E.dove(400,150,1.4)]})},
+
+{id:'desert1',ch:1,place:'desert',ico:'🏜️',ref:'4:1-13',
+ title:b("Hoang mạc Giu-đê","The Judean Desert"),
+ time:b("Bốn mươi ngày (4:2)","Forty days (4:2)"),
+ story:b("Thánh Linh dẫn bạn vào hoang mạc. Suốt bốn mươi ngày bạn không ăn gì. Kẻ xấu đến thử bạn: «Hãy biến hòn đá này thành bánh đi!» Bạn đáp bằng lời Kinh Thánh: «Người ta sống không chỉ nhờ bánh.» Bạn luôn chọn vâng lời Cha.","The Spirit leads you into the desert. For forty days you eat nothing. The enemy comes to test you: “Turn this stone into bread!” You answer with words from Scripture: “People do not live on bread alone.” You always choose to obey your Father."),
+ fact:b("Hoang mạc Giu-đê toàn đá và cát, rất ít nước. Ban ngày nóng bức, ban đêm lại lạnh. Chỉ cách thành Giê-ru-sa-lem một quãng ngắn mà cảnh vật đã khác hẳn.","The Judean Desert is full of rock and sand, with very little water. It is hot by day and cold at night. It is not far from Jerusalem, yet the land looks completely different."),
+ g:{t:'quiz',q:b("Bạn dùng điều gì để trả lời kẻ thử thách?","What did you use to answer the tempter?"),o:[b("Lời Kinh Thánh","Words from Scripture"),b("Một cuộc thi chạy","A running race"),b("Bỏ chạy thật nhanh","Running away fast")],a:0},
+ sc:()=>({sky:'desert',els:[E.sun(690,82,38),E.mountain(610,312,.9,'#e8b36a'),E.mountain(210,316,.7,'#f0c27f'),E.hills('#ffe0a3','#f5c97a'),E.rock(180,358,1.3,'#e0b36a'),E.emo(180,318,'🍞',34,'bob'),E.rock(520,366,1,'#d9a85f'),E.rock(330,342,.7,'#e8bd76'),E.bush(690,352,1,'#c9b26a'),E.bush(80,344,.8,'#c9b26a')]})},
+
+{id:'synagogue1',ch:1,place:'nazareth',ico:'📜',ref:'4:16-30',
+ title:b("Hội đường Na-xa-rét","The Synagogue in Nazareth"),
+ time:b("Ngày Sa-bát (4:16)","On the Sabbath day (4:16)"),
+ story:b("Bạn trở về Na-xa-rét, nơi bạn đã lớn lên. Ngày Sa-bát, bạn đứng lên trong hội đường và đọc cuộn sách tiên tri Ê-sai: «Thánh Linh Chúa ở trên Ta, để báo tin mừng cho người nghèo.» Mọi người chăm chú nhìn bạn. Nhưng không phải ai cũng tin bạn.","You return to Nazareth, where you grew up. On the Sabbath you stand up in the synagogue and read from the scroll of the prophet Isaiah: “The Spirit of the Lord is on me, to bring good news to the poor.” Everyone looks at you. But not everyone believes you."),
+ fact:b("Hội đường là nơi cả làng họp để cầu nguyện và nghe đọc Kinh Thánh. Sách thời đó là những cuộn da dài, chưa có sách đóng như bây giờ.","The synagogue was where the whole village met to pray and hear Scripture read. Books then were long scrolls, not bound books like today."),
+ g:{t:'tap',q:b("Chạm vào cuộn sách để mở ra.","Tap the scroll to open it."),s:['📜>📖']},
+ sc:()=>({sky:'warm',hold:'📜',els:[`<rect y="330" width="800" height="130" fill="#e9c9a0"/>`,E.arch(150),E.arch(400),E.arch(650),crowd(70,346,10,70,.62,{f:1})]})},
+
+{id:'capernaum1',ch:1,place:'capernaum',ico:'🏘️',ref:'4:31-44',
+ title:b("Ca-phác-na-um","Capernaum"),
+ time:b("Ngày Sa-bát và buổi chiều tối (4:31, 4:40)","On the Sabbath and in the evening (4:31, 4:40)"),
+ story:b("Bạn đi xuống Ca-phác-na-um, thành bên bờ hồ. Trong hội đường, mọi người kinh ngạc vì lời dạy của bạn. Rồi bạn vào nhà Si-môn và chữa mẹ vợ ông khỏi cơn sốt. Chiều tối, nhiều người bệnh được đưa đến, và bạn đặt tay chữa lành từng người.","You go down to Capernaum, a town by the lake. In the synagogue everyone is amazed by your teaching. Then you visit Simon’s house and heal his mother-in-law of her fever. That evening many sick people are brought to you, and you lay your hands on each one and heal them."),
+ fact:b("Lu-ca viết «đi xuống» Ca-phác-na-um vì thành nằm bên bờ hồ, thấp hơn Na-xa-rét trên đồi rất nhiều. Đây là một làng chài nhộn nhịp.","Luke says you “went down” to Capernaum because the town sits by the lake, much lower than Nazareth on its hill. It was a busy fishing town."),
+ g:{t:'tap',q:b("Chạm vào các bạn bị bệnh để chữa lành.","Tap the sick friends to heal them."),s:['🤒>😊','🤒>😊','🤒>😊']},
+ sc:()=>({sky:'day',els:[E.sun(700,70),E.cloud(200,70),E.water(282),E.boat(620,302,.9),E.ground('#ead9a6',338),E.house(110,338,1,'#ffe0c2'),E.house(230,344,.9,'#d9f0ff'),E.house(340,338,1,'#ffd1dc'),E.palm(470,346,1),crowd(520,356,4,56,.8,{arms:1,k:1})]})},
+
+{id:'sea1',ch:2,place:'sea',ico:'⛵',ref:'5:1-11',
+ title:b("Biển Ga-li-lê","The Sea of Galilee"),
+ time:b("Một buổi sáng bên hồ (5:1-2)","One morning by the lake (5:1-2)"),
+ story:b("Bạn đứng bên bờ hồ Ghê-nê-xa-rết, cũng gọi là Biển Ga-li-lê. Đám đông chen lại để nghe bạn dạy, nên bạn bước lên thuyền của Si-môn. Sau đó bạn bảo: «Hãy chèo ra khơi và thả lưới!» Lưới đầy cá đến mức gần rách! Si-môn, Gia-cơ và Giăng bỏ hết mọi thứ để đi theo bạn.","You stand by Lake Gennesaret, also called the Sea of Galilee. Crowds press in to hear you, so you step into Simon’s boat. Then you say, “Row out into the deep water and let down your nets!” The nets fill with so many fish they almost tear! Simon, James and John leave everything to follow you."),
+ fact:b("Lu-ca gọi đây là «hồ» (5:1), vì thật ra nó là một hồ nước ngọt lớn. Gió có thể nổi lên rất nhanh vì hồ nằm giữa các ngọn đồi cao.","Luke calls it a “lake” (5:1), because it really is a large freshwater lake. Wind can rise very quickly there because the lake lies between tall hills."),
+ g:{t:'tap',q:b("Chạm vào những chú cá để kéo đầy lưới.","Tap the fish to fill the net."),s:['🐟','🐟','🐟','🐟','🐟','🐟']},
+ sc:()=>({sky:'dawn',els:[E.sun(690,100),E.cloud(180,70),E.water(262),E.person(204,300,.55,{who:'peter'}),E.boat(236,314,1.1),E.person(548,296,.5,{c:'#7ed6a5',beard:'#2e2018'}),E.person(636,298,.5,{c:'#ff9ec4',hr:'#2e2018'}),E.boat(590,310,.95),E.fish(390,352,1.2,'#ff9ec4'),E.fish(470,374,1,'#ffd35c'),E.fish(300,386,.9,'#8fd9e8'),E.fish(540,358,.9,'#ff8a6b'),E.fish(180,382,1,'#b9a6f5'),E.fish(660,388,1.1,'#7ed6a5')]})},
+
+{id:'nain1',ch:2,place:'nain',ico:'🌅',ref:'7:11-17',
+ title:b("Làng Na-in","The Town of Nain"),
+ time:b("Ngay sau đó (7:11)","Soon after (7:11)"),
+ story:b("Bạn cùng các môn đồ và đám đông đến cổng thành Na-in. Có một đám tang đi ra: người mẹ góa đang khóc vì đứa con trai duy nhất đã mất. Bạn thương bà lắm và nói: «Đừng khóc nữa.» Bạn chạm vào quan tài và nói: «Hỡi chàng trai, Ta bảo anh hãy dậy!» Chàng ngồi dậy và nói chuyện. Mọi người ca ngợi Đức Chúa Trời.","You and your disciples and a big crowd come to the gate of the town of Nain. A funeral is coming out: a widow is crying because her only son has died. Your heart goes out to her. You say, “Don’t cry.” You touch the stretcher and say, “Young man, I tell you, get up!” He sits up and starts to talk. Everyone praises God."),
+ fact:b("Na-in là thị trấn nhỏ ở chân đồi, cách Na-xa-rét chừng 10 km. Lu-ca nhắc đến «cổng thành» (7:12), nơi dân làng thường gặp gỡ nhau.","Nain was a small town at the foot of a hill, about 10 km from Nazareth. Luke mentions the “town gate” (7:12), where villagers often met."),
+ g:{t:'quiz',q:b("Khi thấy người mẹ khóc, bạn cảm thấy thế nào?","How did you feel when you saw the mother crying?"),o:[b("Thương xót bà","Full of compassion for her"),b("Giận dữ","Angry"),b("Không để ý","You did not notice")],a:0},
+ sc:()=>({sky:'day',els:[E.sun(90,70),E.cloud(330,70),E.hills('#b9ecb0','#8fdca5'),E.wall(600,336,1.2),`<rect class="o" x="455" y="352" width="100" height="10" rx="4" fill="#a9744f"/>`,E.person(470,340,.7,{c:'#fffdf6',rot:90}),E.person(380,358,1.1,{who:'widow'}),crowd(90,342,5,60,.75,{k:2})]})},
+
+{id:'gerasa1',ch:2,place:'gerasa',ico:'⛈️',ref:'8:22-39',
+ title:b("Vượt hồ sang Ghê-ra-sa","Crossing to the Gerasenes"),
+ time:b("Một ngày nọ (8:22)","One day (8:22)"),
+ story:b("Bạn bảo các môn đồ: «Chúng ta sang bờ bên kia hồ nhé.» Giữa hồ, bạn ngủ thiếp đi thì bão nổi lên! Các môn đồ hoảng sợ đánh thức bạn. Bạn truyền cho gió và sóng: «Im đi!» và mọi sự yên lặng. Rồi thuyền cập bến vùng Ghê-ra-sa, nơi bạn giúp một người đau khổ được bình an trở lại.","You tell your disciples, “Let’s go over to the other side of the lake.” In the middle of the lake you fall asleep, and a storm rises! Your frightened disciples wake you. You tell the wind and waves, “Quiet!” and everything becomes calm. Then the boat lands in the region of the Gerasenes, where you help a suffering man find peace again."),
+ fact:b("Ghê-ra-sa nằm ở bờ đông của hồ, đối diện miền Ga-li-lê. Đa số dân ở đó không phải người Do Thái, và họ nuôi heo (8:32).","The land of the Gerasenes lies on the east shore of the lake, across from Galilee. Most people there were not Jewish, and they kept herds of pigs (8:32)."),
+ g:{t:'tap',q:b("Chạm vào các đám mây bão để làm trời quang.","Tap the storm clouds to clear the sky."),s:['⛈️>☀️','⛈️>☀️','⛈️>☀️']},
+ sc:()=>({sky:'storm',els:[E.cloud(160,80,1.4,'#6f7a99'),E.cloud(520,60,1.6,'#7c86a8'),E.cloud(710,124,1,'#6f7a99'),E.emo(230,160,'⚡',48,'tw'),E.emo(610,150,'⚡',40,'tw'),E.water(292,'#4f86c6','#7fb0e8'),E.person(350,308,.6,{c:'#ff8a6b',sad:1}),E.person(450,306,.6,{c:'#7ed6a5',sad:1}),E.person(400,302,.55,{c:'#ffd35c',sad:1}),E.boat(400,324,1.5),E.rain()]})},
+
+{id:'bethsaida1',ch:2,place:'bethsaida',ico:'🍞',ref:'9:10-17',
+ title:b("Bết-xai-đa: Năm cái bánh","Bethsaida: Five Loaves"),
+ time:b("Khi các sứ đồ trở về (9:10)","When the apostles returned (9:10)"),
+ story:b("Bạn đưa các sứ đồ đến vùng Bết-xai-đa để nghỉ ngơi, nhưng đám đông tìm theo. Bạn đón tiếp họ, dạy dỗ và chữa bệnh. Chiều đến, chỉ có năm cái bánh và hai con cá. Bạn tạ ơn, bẻ bánh, và ai cũng được ăn no. Còn dư đến mười hai giỏ!","You take the apostles to the area of Bethsaida to rest, but the crowds follow. You welcome them, teach them and heal the sick. By evening there are only five loaves and two fish. You give thanks and break the bread, and everyone eats until they are full. Twelve baskets of food are left over!"),
+ fact:b("Bết-xai-đa ở phía đông bắc của hồ Ga-li-lê. Lu-ca kể có khoảng 5.000 người nam. Đó là nơi vắng vẻ, xa nhà, nên ai cũng cần được cho ăn (9:12).","Bethsaida is on the northeast side of the Sea of Galilee. Luke says there were about 5,000 men. It was a quiet place far from home, so everyone needed food (9:12)."),
+ g:{t:'tap',q:b("Chạm vào 5 cái bánh và 2 con cá để tạ ơn.","Tap the 5 loaves and 2 fish to give thanks."),s:['🍞','🍞','🍞','🍞','🍞','🐟','🐟']},
+ sc:()=>({sky:'day',hold:'🍞',els:[E.sun(90,70),E.cloud(300,80),E.cloud(620,60,.8),E.hills('#b7ecab','#8fdca5'),crowd(40,324,11,70,.7,{arms:1}),crowd(80,348,9,76,.82,{k:3,f:1}),E.emo(160,402,'🧺',42),E.emo(650,406,'🧺',42),E.emo(720,394,'🐟',34)]})},
+
+{id:'tabor1',ch:2,place:'tabor',ico:'✨',ref:'9:28-36',
+ title:b("Núi biến hình","The Mountain of Transfiguration"),
+ time:b("Khoảng tám ngày sau đó (9:28)","About eight days later (9:28)"),
+ story:b("Bạn dẫn Phi-e-rơ, Gia-cơ và Giăng lên núi để cầu nguyện. Đang cầu nguyện, mặt bạn đổi khác và áo bạn trắng chói. Môi-se và Ê-li hiện ra trong ánh sáng, nói chuyện với bạn. Rồi có tiếng từ đám mây: «Đây là Con Ta, Người đã được chọn. Hãy nghe lời Người!»","You take Peter, James and John up a mountain to pray. While you pray, your face changes and your clothes shine brilliant white. Moses and Elijah appear in glorious light and talk with you. Then a voice comes from a cloud: “This is my Son, whom I have chosen. Listen to him!”"),
+ fact:b("Lu-ca chỉ viết «một ngọn núi», không nêu tên. Theo truyền thống, nhiều người nghĩ đó là núi Ta-bô ở miền Ga-li-lê.","Luke only says “a mountain” and does not give its name. By tradition, many people think it was Mount Tabor in Galilee."),
+ g:{t:'quiz',q:b("Ba môn đồ cùng lên núi với bạn là ai?","Which three disciples went up the mountain with you?"),o:[b("Phi-e-rơ, Gia-cơ và Giăng","Peter, James and John"),b("Ma-thi-ơ, Phi-líp và Tô-ma","Matthew, Philip and Thomas"),b("Mác-ta, Ma-ri-a và Da-kêu","Martha, Mary and Zacchaeus")],a:0},
+ sc:()=>({sky:'bright',els:[E.ray(400,-10),E.cloud(130,90,1.2),E.cloud(680,80,1.2),E.mountain(400,352,1.55,'#c8b6ff'),E.glow(300,215,58),E.person(300,262,.75,{c:'#fffdf6',sk:'#fff0d6',hr:'#e6d9b8',beard:'#e6d9b8'}),E.glow(500,215,58),E.person(500,262,.75,{c:'#fffdf6',sk:'#fff0d6',hr:'#e6d9b8',beard:'#e6d9b8'}),E.person(120,384,.8,{who:'peter',sleep:1,rot:80}),E.person(200,392,.75,{c:'#6ea8ff',sleep:1,rot:80}),E.person(690,388,.8,{c:'#7ed6a5',sleep:1,rot:80}),E.emo(150,320,'💤',30,'bob'),E.emo(700,320,'💤',30,'bob')]})},
+
+{id:'samaria1',ch:3,place:'samaria',ico:'🤝',ref:'9:51-56; 10:25-37',
+ title:b("Sa-ma-ri: Người láng giềng nhân lành","Samaria: The Kind Neighbor"),
+ time:b("Khi bạn quyết tâm đi lên Giê-ru-sa-lem (9:51)","When you set out for Jerusalem (9:51)"),
+ story:b("Bạn quyết tâm đi lên Giê-ru-sa-lem và đi qua vùng Sa-ma-ri. Một làng không chịu đón tiếp bạn. Các môn đồ nổi giận, nhưng bạn nhẹ nhàng nhắc họ rồi đi sang làng khác. Trên đường, bạn kể một câu chuyện: một người Sa-ma-ri đã dừng lại giúp người bị thương, trong khi những người khác đi ngang qua.","You are determined to go up to Jerusalem, and you travel through Samaria. One village will not welcome you. Your disciples are angry, but you gently correct them and move on to another village. On the road you tell a story: a Samaritan stopped to help an injured man while others walked right past."),
+ fact:b("Người Do Thái và người Sa-ma-ri thời đó thường không thân nhau. Vì thế, khi bạn chọn người Sa-ma-ri làm người tốt trong câu chuyện, ai cũng ngạc nhiên!","Jews and Samaritans in those days often did not get along. So when you made the Samaritan the hero of your story, everyone was surprised!"),
+ g:{t:'quiz',q:b("Trong câu chuyện, ai đã dừng lại giúp người bị thương?","In the story, who stopped to help the injured man?"),o:[b("Người Sa-ma-ri","The Samaritan"),b("Thầy tế lễ","The priest"),b("Người Lê-vi","The Levite")],a:0},
+ sc:()=>({sky:'day',els:[E.sun(90,70),E.cloud(300,80),E.hills('#d9eda0','#b7dc78'),E.house(110,324,1,'#ffe0c2'),E.house(214,336,.9,'#d9f0ff'),`<path d="M300,452 C330,392 430,384 420,344 C410,316 470,306 520,302 L545,302 C480,322 520,344 548,372 C566,398 610,424 650,452Z" fill="#f0d49b"/>`,E.donkey(660,350,1.1),E.person(490,354,1,{c:'#ffa94d',arms:'up'}),E.person(585,386,.85,{c:'#6ea8ff',rot:86,sad:1})]})},
+
+{id:'bethany1',ch:3,place:'bethany',ico:'🧡',ref:'10:38-42',
+ title:b("Bê-ta-ni: Nhà Mác-ta và Ma-ri-a","Bethany: Martha and Mary’s Home"),
+ time:b("Trên đường đi (10:38)","On the way (10:38)"),
+ story:b("Bạn vào một làng và được chị Mác-ta mời về nhà. Mác-ta bận rộn lo bữa ăn. Còn em gái chị, Ma-ri-a, ngồi dưới chân bạn để lắng nghe. Bạn nhẹ nhàng nói: «Mác-ta ơi, con lo lắng nhiều việc quá. Nhưng chỉ có một việc cần thiết. Ma-ri-a đã chọn phần tốt nhất.»","You enter a village and Martha invites you into her home. Martha is busy getting the meal ready. Her sister Mary sits at your feet and listens. You say gently, “Martha, you are worried about many things. But only one thing is needed. Mary has chosen what is better.”"),
+ fact:b("Lu-ca không nêu tên làng. Phúc âm Giăng cho biết Mác-ta và Ma-ri-a sống ở Bê-ta-ni, gần Giê-ru-sa-lem (Giăng 11:1).","Luke does not name the village. The Gospel of John tells us that Martha and Mary lived in Bethany, near Jerusalem (John 11:1)."),
+ g:{t:'quiz',q:b("Ma-ri-a đã chọn làm gì?","What did Mary choose to do?"),o:[b("Ngồi nghe bạn dạy","Sit and listen to you"),b("Nấu thật nhiều món ăn","Cook lots of food"),b("Đi ra chợ","Go to the market")],a:0},
+ sc:()=>({sky:'day',els:[E.sun(700,70),E.cloud(300,80),E.hills('#b9ecb0','#8fdca5'),E.house(600,332,1.75,'#ffe0c2'),E.tree(60,340,1),E.person(150,354,1.1,{who:'martha',arms:'up'}),E.emo(150,236,'🍲',42,'bob'),E.person(250,380,.95,{who:'mary2'})]})},
+
+{id:'jericho1',ch:3,place:'jericho',ico:'🌳',ref:'19:1-10',
+ title:b("Giê-ri-cô: Da-kêu trên cây","Jericho: Zacchaeus in the Tree"),
+ time:b("Khi bạn đi qua thành (19:1)","As you passed through the city (19:1)"),
+ story:b("Bạn đi qua Giê-ri-cô, đường phố đông nghẹt người. Có một người thấp bé tên Da-kêu, làm chủ thu thuế. Ông trèo lên cây sung để nhìn bạn! Bạn ngước lên và gọi: «Da-kêu, xuống mau đi! Hôm nay Ta sẽ ở nhà con.» Da-kêu vui mừng, hứa giúp người nghèo và trả lại gấp bốn lần cho ai ông đã lấy lầm.","You walk through Jericho, and the streets are packed. A short man named Zacchaeus, a chief tax collector, climbs a sycamore tree to see you! You look up and call, “Zacchaeus, come down at once! Today I must stay at your house.” Zacchaeus is full of joy. He promises to help the poor and pay back four times as much to anyone he cheated."),
+ fact:b("Giê-ri-cô là một trong những thành cổ nhất thế giới, nằm trong thung lũng thấp, có nhiều cây cọ và nước. Từ đây đường lên Giê-ru-sa-lem dốc cao khoảng 1.000 mét!","Jericho is one of the oldest cities in the world. It lies in a low valley with palm trees and water. From here the road climbs about 1,000 meters up to Jerusalem!"),
+ g:{t:'map',q:b("Giê-ri-cô nằm gần sông Giô-đanh, trên đường lên Giê-ru-sa-lem. Hãy tìm Giê-ri-cô!","Jericho is near the Jordan River, on the road up to Jerusalem. Find Jericho!"),a:'jericho'},
+ sc:()=>({sky:'day',els:[E.sun(700,70),E.cloud(200,70),E.hills('#b9ecb0','#8fdca5'),E.palm(70,338,1.2),E.palm(140,342,1),E.house(660,324,1,'#ffe9c9'),E.house(760,340,.9,'#d9f0ff'),E.tree(330,360,2.2,'#6fcf97'),E.person(330,238,.5,{who:'zacchaeus',arms:'up'}),crowd(470,344,3,60,.75,{arms:1})]})},
+
+{id:'olives1',ch:3,place:'olives',ico:'🫒',ref:'19:28-44',
+ title:b("Núi Ô-liu: Vào thành","The Mount of Olives: Entering the City"),
+ time:b("Gần đến Giê-ru-sa-lem (19:29)","Near Jerusalem (19:29)"),
+ story:b("Gần đến Bê-ta-ni, bạn nhờ hai môn đồ đi dắt về một chú lừa con chưa ai cưỡi. Bạn cưỡi lừa con đi xuống Núi Ô-liu. Dân chúng trải áo choàng trên đường và hát: «Chúc tụng Vua nhân danh Chúa! Bình an ở trên trời!»","Near Bethany you ask two disciples to bring you a young donkey that no one has ever ridden. You ride it down the Mount of Olives. The people spread their cloaks on the road and sing, “Blessed is the king who comes in the name of the Lord! Peace in heaven!”"),
+ fact:b("Từ Núi Ô-liu, bạn nhìn thấy cả thành Giê-ru-sa-lem và đền thờ ở bên kia thung lũng.","From the Mount of Olives you can see all of Jerusalem and the Temple across the valley."),
+ g:{t:'tap',q:b("Chạm để trải áo choàng trên đường.","Tap to spread cloaks on the road."),s:['🧥','🧥','🧥','🧥']},
+ sc:()=>({sky:'day',nohands:true,els:[E.sun(700,72),E.cloud(220,70),E.cloud(560,96,.8),E.hills('#b9ecb0','#8fdca5'),E.temple(215,292,.5),E.wall(215,312,.8),E.olive(70,342,1.1),E.olive(745,336,1.2),`<path d="M335,452 Q410,392 305,336 L262,324 L240,330 Q352,384 470,452Z" fill="#f0d49b"/>`,E.cloak(352,396,'#ff8a6b'),E.cloak(326,364,'#7ed6a5'),E.cloak(298,340,'#b9a6f5'),E.cloak(385,430,'#ffd35c'),crowd(100,354,3,52,.9,{arms:1}),crowd(560,354,4,52,.9,{arms:1,k:2}),E.ears(400,452)]})},
+
+{id:'gethsemane1',ch:4,place:'olives',ico:'🙏',ref:'22:39-46',
+ title:b("Núi Ô-liu: Đêm cầu nguyện","The Mount of Olives: A Night of Prayer"),
+ time:b("Đêm sau bữa tối Vượt Qua (22:14, 22:39)","The night after the Passover supper (22:14, 22:39)"),
+ story:b("Sau bữa tối Vượt Qua với các môn đồ, bạn đến Núi Ô-liu để cầu nguyện. Đêm tối, bạn quỳ xuống thưa với Cha: «Xin cho ý Cha được nên.» Một thiên sứ từ trời đến giúp bạn thêm sức. Khi bạn đứng dậy, các môn đồ đang ngủ vì quá buồn.","After the Passover supper with your disciples, you go to the Mount of Olives to pray. In the dark you kneel and say to your Father, “May your will be done.” An angel from heaven comes to give you strength. When you get up, your disciples are asleep, worn out with sadness."),
+ fact:b("Lu-ca chỉ nói «Núi Ô-liu». Các sách Ma-thi-ơ và Mác gọi nơi này là Ghết-sê-ma-ni, nghĩa là «nơi ép dầu ô-liu».","Luke only says “the Mount of Olives.” Matthew and Mark call the place Gethsemane, which means “olive press.”"),
+ g:{t:'tap',q:b("Chạm vào thiên sứ để nhận thêm sức mạnh.","Tap the angel to receive strength."),s:['👼']},
+ sc:()=>({sky:'night',els:[E.moon(690,86),E.hills('#4b7f8f','#3d6b80'),E.olive(130,346,1.5,'#6fa8a0'),E.olive(690,336,1.7,'#6fa8a0'),E.angel(400,320,1),E.person(190,386,.8,{c:'#ff8a6b',sleep:1,rot:82}),E.person(250,394,.75,{c:'#6ea8ff',sleep:1,rot:82}),E.person(560,390,.8,{c:'#7ed6a5',sleep:1,rot:82})]})},
+
+{id:'golgotha1',ch:4,place:'golgotha',ico:'💛',ref:'23:33-46',
+ title:b("Đồi Sọ: Tình yêu và sự tha thứ","The Skull Hill: Love and Forgiveness"),
+ time:b("Buổi trưa, bóng tối kéo dài ba giờ (23:44)","Midday, when darkness lasted three hours (23:44)"),
+ story:b("Người ta đưa bạn đến nơi gọi là Đồi Sọ, ở ngoài thành Giê-ru-sa-lem. Dù rất đau đớn, bạn vẫn cầu nguyện: «Thưa Cha, xin tha cho họ.» Bạn yêu thương mọi người đến cùng. Rồi bạn phó thác mọi sự cho Cha. Trời tối đi và nhiều người rất buồn, nhưng câu chuyện chưa kết thúc đâu!","You are taken to a place called the Skull, outside the city of Jerusalem. Even though you are in great pain, you pray, “Father, forgive them.” You love everyone to the very end. Then you trust everything into your Father’s hands. The sky grows dark and many people are very sad, but the story is not over yet!"),
+ fact:b("Lu-ca gọi nơi này là «nơi gọi là Cái Sọ» (23:33). Các sách Phúc âm khác dùng tên Gôn-gô-tha, nghĩa là «cái sọ». Nơi này ở bên ngoài tường thành.","Luke calls this place “the Skull” (23:33). Other Gospels use the name Golgotha, which means “skull.” It was outside the city walls."),
+ g:{t:'quiz',q:b("Bạn đã xin Cha điều gì cho những người làm bạn buồn?","What did you ask your Father for the people who hurt you?"),o:[b("Xin tha thứ cho họ","To forgive them"),b("Xin phạt họ","To punish them"),b("Xin quên họ đi","To forget them")],a:0},
+ sc:()=>({sky:'dim',els:[E.cloud(180,80,1.3,'#c5c1dc'),E.cloud(620,70,1.3,'#c5c1dc'),E.hills('#b7a7d8','#8f7fb8'),E.glow(400,216,120,'#fff0b8'),`<path class="o" d="M240,344 Q400,196 560,344Z" fill="#a899cf"/>`,E.cross(400,284,1.1),E.emo(290,160,'💛',34,'bob'),E.emo(520,130,'💛',40,'bob'),E.emo(410,90,'💛',30,'bob'),E.emo(640,210,'💛',30,'bob'),E.emo(180,220,'💛',32,'bob'),crowd(80,358,2,64,.8,{sad:1,k:5}),crowd(640,358,2,64,.8,{sad:1,k:6})]})},
+
+{id:'tomb1',ch:4,place:'tomb',ico:'🌷',ref:'23:50–24:12',
+ title:b("Mộ trống: Chúa đã sống lại!","The Empty Tomb: He Is Risen!"),
+ time:b("Sáng sớm ngày đầu tuần (24:1)","Very early on the first day of the week (24:1)"),
+ story:b("Bạn đã sống lại! Sáng sớm ngày đầu tuần, các phụ nữ mang thuốc thơm đến mộ. Họ thấy tảng đá đã lăn đi! Hai thiên sứ áo sáng rực nói: «Sao các bà tìm người sống ở giữa người chết? Ngài không ở đây, Ngài đã sống lại!» Các bà chạy đi báo tin vui cho các môn đồ.","You are alive again! Very early on the first day of the week, the women bring spices to the tomb. They find the stone rolled away! Two angels in shining clothes say, “Why do you look for the living among the dead? He is not here, he has risen!” The women run to tell the disciples the good news."),
+ fact:b("Mộ thời đó là cái hang đục trong đá, cửa được đậy bằng một tảng đá lớn. Ngày đầu tuần chính là ngày Chúa nhật, ngày nhiều người nhóm lại thờ phượng cho đến ngày nay.","Tombs then were caves cut into rock, with the entrance closed by a large stone. The first day of the week is Sunday, the day many people still gather to worship today."),
+ g:{t:'tap',q:b("Chạm vào tảng đá để lăn nó đi.","Tap the stone to roll it away."),s:['🪨>✨']},
+ sc:()=>({sky:'dawn',els:[E.sun(640,234,40),E.cloud(160,70),E.hills('#b9ecb0','#8fdca5'),E.tomb(310,340,1.3),E.angel(530,338,.85),E.angel(620,342,.85),E.person(110,358,1,{c:'#ff9ec4',scarf:'#fffdf6',arms:'up'}),E.person(190,364,.95,{who:'mary2'}),E.emo(60,394,'🌷',34),E.emo(720,394,'🌷',34),E.emo(664,406,'🌼',28),E.emo(250,398,'🌷',30)]})},
+
+{id:'emmaus1',ch:4,place:'emmaus',ico:'🚶',ref:'24:13-35',
+ title:b("Đường đi Em-mau","The Road to Emmaus"),
+ time:b("Cũng ngày hôm đó (24:13)","That same day (24:13)"),
+ story:b("Cùng ngày ấy, bạn bước đi bên cạnh hai người đang buồn trên đường về làng Em-mau. Họ chưa nhận ra bạn. Bạn giải nghĩa Kinh Thánh cho họ nghe. Chiều tối, ở bàn ăn, bạn cầm bánh, tạ ơn và bẻ ra. Mắt họ mở ra và họ nhận ra bạn! Họ vội chạy về Giê-ru-sa-lem báo tin.","That same day you walk beside two sad travelers on the road to the village of Emmaus. They do not recognize you. You explain the Scriptures to them. In the evening at the table, you take bread, give thanks and break it. Their eyes open and they recognize you! They hurry back to Jerusalem to tell everyone."),
+ fact:b("Làng Em-mau cách Giê-ru-sa-lem khoảng 11 km (60 stadia, 24:13), đi bộ mất vài giờ. Ngày nay chưa ai chắc Em-mau ở đâu, có vài nơi được đề nghị.","Emmaus was about 11 km from Jerusalem (60 stadia, 24:13), a few hours on foot. Today no one is sure where it was, and several places have been suggested."),
+ g:{t:'map',q:b("Em-mau chỉ cách Giê-ru-sa-lem chừng 11 km. Hãy tìm Em-mau trên bản đồ (một trong những nơi được đề nghị).","Emmaus was only about 11 km from Jerusalem. Find Emmaus on the map (one of the suggested places)."),a:'emmaus'},
+ sc:()=>({sky:'dusk',hold:'🍞',els:[E.sun(130,264,36),E.cloud(300,90,1,'#ffe3cf'),E.hills('#e6c07b','#c99a5b'),`<path d="M240,452 C300,402 380,390 420,360 C450,338 540,334 580,330 L600,340 C540,354 500,360 470,380 C440,404 420,430 440,452Z" fill="#e8c88e"/>`,E.glow(650,292,80,'#fff0b8'),E.house(650,328,1.4,'#ffd9a8'),E.person(350,354,1.05,{c:'#8fd9e8'}),E.person(450,358,1.05,{c:'#ffa94d'})]})},
+
+{id:'ascension1',ch:4,place:'bethany',ico:'☁️',ref:'24:44-53',
+ title:b("Bê-ta-ni: Lời chúc phước","Bethany: The Blessing"),
+ time:b("Một thời gian sau khi sống lại (24:50)","Some time after you rose again (24:50)"),
+ story:b("Bạn dẫn các môn đồ ra gần Bê-ta-ni. Bạn giơ tay chúc phước cho họ. Đang khi chúc phước, bạn được đem lên trời. Các môn đồ thờ phượng bạn, rồi trở về Giê-ru-sa-lem với niềm vui lớn và luôn ngợi khen Đức Chúa Trời trong đền thờ.","You lead your disciples out near Bethany. You raise your hands and bless them. While you are blessing them, you are taken up into heaven. The disciples worship you, then go back to Jerusalem with great joy and keep praising God in the Temple."),
+ fact:b("Bê-ta-ni nằm trên sườn đông Núi Ô-liu, cách Giê-ru-sa-lem chừng 3 km. Sách Lu-ca bắt đầu trong đền thờ Giê-ru-sa-lem và cũng kết thúc bằng niềm vui ở đó.","Bethany lies on the east slope of the Mount of Olives, about 3 km from Jerusalem. The Gospel of Luke begins in the Temple in Jerusalem and ends with joy there too."),
+ g:{t:'tap',q:b("Chạm vào các môn đồ để chúc phước cho họ.","Tap the disciples to bless them."),s:['😐>😊','😐>😊','😐>😊','😐>😊']},
+ sc:()=>({sky:'bright',pose:'up',els:[E.ray(400,-10),E.cloud(400,112,2.4),E.cloud(160,80,1.3),E.cloud(660,70,1.3),E.hills('#b9ecb0','#8fdca5'),crowd(90,346,3,64,.9,{arms:1}),crowd(540,346,3,64,.9,{arms:1,k:4})]})}
+];
+
+const HOME={sky:'day',hold:'🗺️',els:[E.sun(700,76),E.cloud(160,70),E.cloud(520,56,.8),E.hills('#b9ecb0','#8fdca5'),E.house(520,324,1,'#ffe0c2'),E.house(612,338,.9,'#ffd1dc'),E.palm(710,346,1.1),E.olive(90,340,1.2),E.donkey(240,354,1.1)]};
+const FIN={sky:'bright',pose:'up',els:[E.ray(400,-10),E.cloud(180,80,1.3),E.cloud(640,70,1.3),E.hills('#b9ecb0','#8fdca5'),crowd(60,346,4,64,.9,{arms:1}),crowd(520,346,4,64,.9,{arms:1,k:3}),E.emo(400,120,'🎉',64,'bob'),E.emo(250,170,'⭐',40,'bob'),E.emo(560,170,'🕊️',40,'bob')]};
+
+/* ============ UI strings (VI / EN) ============ */
+const U={
+ title:b("Hành trình theo chân Chúa Giê-su","Walking with Jesus"),
+ sub:b("Khám phá đất Y-sơ-ra-en qua Phúc âm Lu-ca","Explore the land of Israel through the Gospel of Luke"),
+ intro:b("Trong game này, bạn nhìn thế giới bằng đôi mắt của Chúa Giê-su. Hãy đi qua {n} nơi, nghe kể chuyện, tìm vị trí trên bản đồ và sưu tập con tem trong Sổ hành trình!","In this game you see the world through the eyes of Jesus. Visit {n} places, hear the stories, find each one on the map and collect stamps in your Journey Book!"),
+ start:b("Bắt đầu hành trình","Start the journey"),
+ cont:b("Tiếp tục hành trình","Continue the journey"),
+ again:b("Chơi lại từ đầu","Start over"),
+ sure:b("Xóa hết tiến trình và chơi lại từ đầu?","Erase your progress and start over?"),
+ yes:b("Chơi lại","Yes, start over"),no:b("Giữ lại","Keep playing"),
+ journal:b("Sổ hành trình","Journey Book"),map:b("Bản đồ","Map"),home:b("Trang chủ","Home"),
+ next:b("Tiếp tục","Next"),fact:b("Bạn có biết?","Did you know?"),play:b("Thử tài","Your turn"),
+ listen:b("Nghe","Listen"),lk:b("Lu-ca","Luke"),chapter:b("Chương","Chapter"),
+ praise:[b("Giỏi quá!","Great job!"),b("Tuyệt vời!","Wonderful!"),b("Đúng rồi!","You got it!"),b("Hay lắm!","Well done!")],
+ tryagain:b("Chưa đúng, thử lại nhé!","Not quite. Try again!"),
+ thatis:b("Đó là","That is"),
+ got:b("Bạn nhận được một con tem!","You got a new stamp!"),
+ nextStop:b("Đi tiếp","Keep walking"),
+ finishBtn:b("Hoàn thành hành trình","Finish the journey"),
+ skip:b("Bỏ qua","Skip"),arrive:b("Đến nơi!","We are here!"),
+ crow:b("theo đường chim bay","as the crow flies"),
+ close:b("Đóng","Close"),here:b("Đang ở đây","You are here"),been:b("Đã đến","Visited"),notyet:b("Chưa đến","Not yet"),
+ notScale:b("Bản đồ vẽ minh họa, không đúng tỉ lệ.","Illustrated map, not to scale."),
+ notyet2:b("Bạn chưa đến nơi này. Hãy chạm vào một nơi khác.","You have not been here yet. Tap another place."),
+ pickHint:b("Chạm vào một nơi để xem tên.","Tap a place to see its name."),
+ fin1:b("Chúc mừng! Bạn đã đi hết hành trình!","Congratulations! You finished the journey!"),
+ fin2:b("Bạn đã đi qua {n} nơi trong Phúc âm Lu-ca và nhận được {s} sao. Hãy nhớ rằng Chúa Giê-su yêu thương mọi người.","You visited {n} places in the Gospel of Luke and earned {s} stars. Remember: Jesus loves everyone.")
+};
+const T=k=>L(U[k]);
+
+/* ============ state + storage (localStorage, memory fallback) ============ */
+const KEY='luke-journey-v1',memStore={};
+const store={
+ get(){try{const v=window.localStorage.getItem(KEY);if(v)return JSON.parse(v)}catch(e){}return memStore.v||null},
+ set(v){memStore.v=v;try{window.localStorage.setItem(KEY,JSON.stringify(v))}catch(e){}}
+};
+let S={lang:null,cur:0,done:{}};
+const save=()=>store.set(S);
+const ui={screen:'home',modal:null,stopIdx:0,step:0,tapped:[],wrong:[],mistakes:0,gameDone:false,order:[],zoom:1.5,stars:3,from:null,travelP:0,travelDone:false,praise:0};
+const totalStars=()=>Object.values(S.done).reduce((a,v)=>a+v,0);
+const chProg=i=>{const a=STOPS.filter(s=>s.ch===i);return Math.round(a.filter(s=>S.done[s.id]).length/a.length*100)};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const curPlace=()=>(ui.screen==='stop'||ui.screen==='travel')?STOPS[ui.stopIdx].place:STOPS[Math.min(S.cur,STOPS.length-1)].place;
+const speechOK=typeof window!=='undefined'&&'speechSynthesis' in window;
+const stopSpeech=()=>{if(speechOK)speechSynthesis.cancel()};
+const reduceMotion=()=>typeof window!=='undefined'&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ============ rendering ============ */
+function langSw(){
+ return `<div class="lang" role="group" aria-label="Language"><button data-act="lang" data-v="vi" aria-pressed="${lang==='vi'}">VI</button><button data-act="lang" data-v="en" aria-pressed="${lang==='en'}">EN</button></div>`;
+}
+function renderTop(){
+ const home=ui.screen==='home';
+ const c=home?0:STOPS[ui.stopIdx].ch;
+ let h='<header class="bar">';
+ if(!home){
+  h+=`<button class="chip" data-act="home" aria-label="${T('home')}">🏠</button><div class="tl"><div class="tlbar">${CH.map((x,i)=>`<span class="seg${i===c?' on':''}" style="--c:${x.col};--p:${chProg(i)}%"><b></b></span>`).join('')}</div><small>${T('chapter')} ${c+1}: ${L(CH[c])}</small></div>`;
+ }
+ h+='<div class="tools">';
+ if(!home)h+=`<span class="chip">⭐ ${totalStars()}</span><button class="chip" data-act="modal" data-m="map">🗺️<span class="lbl">${T('map')}</span></button>`;
+ h+=`<button class="chip" data-act="modal" data-m="journal">📒<span class="lbl">${T('journal')}</span></button>${langSw()}</div></header>`;
+ $('top').innerHTML=h;
+}
+function homeHTML(){
+ const done=Object.keys(S.done).length,n=STOPS.length;
+ let btns;
+ if(S.cur>=n)btns=`<button class="btn" data-act="modal" data-m="journal">📒 ${T('journal')}</button><button class="btn ghost" data-act="restart">↺ ${T('again')}</button>`;
+ else if(done===0&&S.cur===0)btns=`<button class="btn coral" data-act="start">▶ ${T('start')}</button>`;
+ else btns=`<button class="btn coral" data-act="cont">▶ ${T('cont')}</button><button class="btn ghost" data-act="restart">↺ ${T('again')}</button>`;
+ const prog=done?`<p class="when">⭐ ${totalStars()} &nbsp; 📍 ${done}/${n}</p>`:'';
+ return `<main class="home card"><div class="head"><h1>${T('title')}</h1><p>${T('sub')}</p></div><div class="scenebox">${sceneSVG(HOME)}</div><div class="homebody"><p>${T('intro').replace('{n}',n)}</p>${prog}<div class="btns">${btns}</div></div></main>`;
+}
+function finishHTML(){
+ return `<main class="finish card"><div class="scenebox">${sceneSVG(FIN)}</div><div class="homebody"><h1>🎉 ${T('fin1')}</h1><p>${T('fin2').replace('{n}',STOPS.length).replace('{s}',totalStars())}</p><div class="btns"><button class="btn" data-act="modal" data-m="journal">📒 ${T('journal')}</button><button class="btn ghost" data-act="restart">↺ ${T('again')}</button></div></div></main>`;
+}
+function stopHTML(){
+ const st=STOPS[ui.stopIdx];
+ return `<main class="stop"><section class="stage card"><div class="scenebox" role="img" aria-label="${L(st.title)}">${sceneSVG(st.sc())}</div><button class="mini" data-act="modal" data-m="map" aria-label="${T('map')}">${mapSVG({mode:'mini',vb:MINI_VB,cur:st.place})}</button></section><section class="panel card" id="panel"></section></main>`;
+}
+function travelHTML(){
+ const to=STOPS[ui.stopIdx],A=PL[ui.from],B=PL[to.place],km=dist(ui.from,to.place);
+ return `<main class="travel card"><div class="thead"><h2>🚶 ${L(A.n)} ➜ ${L(B.n)}</h2><p>📏 ≈ ${km} km ${T('crow')}, ${walkText(km)}</p></div><div class="tmap">${mapSVG({mode:'travel',vb:vbFor(ui.from,to.place),from:ui.from,to:to.place,arrived:ui.travelDone})}</div><div class="btns"><button id="goBtn" class="btn ${ui.travelDone?'coral':'ghost'}" data-act="arrive">${ui.travelDone?T('arrive')+' 🌟':T('skip')+' ⏩'}</button></div></main>`;
+}
+function renderScreen(){
+ const s=$('screen');
+ cancelAnimationFrame(raf);
+ if(ui.screen==='home')s.innerHTML=homeHTML();
+ else if(ui.screen==='finish')s.innerHTML=finishHTML();
+ else if(ui.screen==='travel'){s.innerHTML=travelHTML();if(!ui.travelDone)runTravel()}
+ else{s.innerHTML=stopHTML();renderPanel()}
+}
+function panelHTML(){
+ const st=STOPS[ui.stopIdx],pl=PL[st.place];
+ const dots=`<div class="dots">${[0,1,2,3].map(i=>`<i class="${i<=ui.step?'on':''}"></i>`).join('')}</div>`;
+ const nextBtn=`<button class="btn" data-act="next">${T('next')} ▶</button>`;
+ if(ui.step===0)return dots+`<span class="tag" style="background:${CH[st.ch].col}">${T('chapter')} ${st.ch+1}</span><span class="tag">📖 ${T('lk')} ${st.ref}</span><h2>${L(st.title)}</h2><div class="when">🕰️ ${L(st.time)}</div><p class="story" id="txt">${L(st.story)}</p><div class="btns">${speechOK?`<button class="btn ghost" data-act="listen">🔊 ${T('listen')}</button>`:''}${nextBtn}</div>`;
+ if(ui.step===1)return dots+`<h2>💡 ${T('fact')}</h2><div class="when">📍 ${L(pl.n)}</div><p class="fact" id="txt">${L(st.fact)}</p><div class="btns">${speechOK?`<button class="btn ghost" data-act="listen">🔊 ${T('listen')}</button>`:''}${nextBtn}</div>`;
+ if(ui.step===2)return dots+gameHTML(st);
+ return dots+rewardHTML(st);
+}
+function gameHTML(st){
+ const g=st.g;
+ let h=`<h2>🎮 ${T('play')}</h2><p class="story">${L(g.q)}</p>`;
+ if(g.t==='tap'){
+  h+=`<div class="targets">${g.s.map((t,i)=>{const [a,c]=t.split('>'),d=ui.tapped.includes(i);return `<button class="tg${d?' done':''}" data-act="tap" data-i="${i}"${d?' disabled':''}>${d?(c||a):a}${d&&!c?'<em>✓</em>':''}</button>`}).join('')}</div>`;
+ }else if(g.t==='quiz'){
+  if(!ui.order.length)ui.order=shuffle(g.o.map((_,i)=>i));
+  h+=`<div class="opts">${ui.order.map(i=>{const bad=ui.wrong.includes(i),ok=ui.gameDone&&i===g.a;return `<button class="opt${ok?' ok':''}${bad?' bad':''}" data-act="ans" data-i="${i}"${ui.gameDone||bad?' disabled':''}>${L(g.o[i])}</button>`}).join('')}</div>`;
+ }else{
+  h+=mapBox({mode:ui.gameDone?'reveal':'quiz',vb:QUIZ_VB,click:!ui.gameDone,cur:ui.gameDone?g.a:null,zoom:ui.zoom,h:'46vh'})+`<div id="mapmsg" class="msg warn" hidden></div>`;
+ }
+ if(ui.gameDone)h+=`<div class="msg">🎉 ${L(U.praise[ui.praise])}</div><div class="btns"><button class="btn coral" data-act="toreward">${T('next')} ▶</button></div>`;
+ else if(g.t==='quiz'&&ui.wrong.length)h+=`<div class="msg warn">${T('tryagain')}</div>`;
+ return h;
+}
+function rewardHTML(st){
+ const nx=STOPS[S.cur],last=!nx;
+ return `<div class="reward"><div class="stamp big" style="--c:${CH[st.ch].col}"><span>${st.ico}</span></div><h2>${T('got')}</h2><p class="story">${L(st.title)}</p><div class="stars">${[1,2,3].map(i=>`<span class="${i<=ui.stars?'on':''}" style="animation-delay:${i*.18}s">⭐</span>`).join('')}</div>${last?'':`<div class="when">➡️ ${L(PL[nx.place].n)}</div>`}<div class="btns" style="justify-content:center"><button class="btn coral" data-act="go">${last?'🎉 '+T('finishBtn'):T('nextStop')+' ▶'}</button></div></div>`;
+}
+function renderPanel(){
+ const p=$('panel');if(!p)return;
+ p.innerHTML=panelHTML();
+ const st=STOPS[ui.stopIdx];
+ if(ui.step===2&&st.g.t==='map'&&!ui.gameDone)centerMap(290,420,QUIZ_VB);
+}
+function centerMap(x,y,vb){
+ const sc=$('mscroll');if(!sc)return;
+ const [vx,vy,vw,vh]=vb.split(' ').map(Number);
+ sc.scrollLeft=(x-vx)/vw*sc.scrollWidth-sc.clientWidth/2;
+ sc.scrollTop=(y-vy)/vh*sc.scrollHeight-sc.clientHeight/2;
+}
+function zoomMap(d){
+ const sc=$('mscroll');if(!sc)return;
+ const svg=sc.querySelector('svg');
+ const cx=(sc.scrollLeft+sc.clientWidth/2)/sc.scrollWidth,cy=(sc.scrollTop+sc.clientHeight/2)/sc.scrollHeight;
+ ui.zoom=Math.min(3,Math.max(1,ui.zoom+d*.5));
+ svg.style.width=ui.zoom*100+'%';
+ sc.scrollLeft=cx*sc.scrollWidth-sc.clientWidth/2;
+ sc.scrollTop=cy*sc.scrollHeight-sc.clientHeight/2;
+}
+function renderModal(){
+ const m=$('modal');
+ if(!ui.modal){m.innerHTML='';return}
+ let inner='';
+ if(ui.modal==='map'){
+  inner=`<div class="shead"><h2>🗺️ ${T('map')}</h2><button class="chip" data-act="close" aria-label="${T('close')}">✖</button></div>${mapBox({mode:'big',cur:curPlace(),click:true,zoom:ui.zoom,h:'58vh'})}<div id="pininfo" class="msg"><div class="legend"><span>🔴 ${T('here')}</span><span>🟡 ${T('been')}</span><span>⚪ ${T('notyet')}</span></div><div>${T('pickHint')} ${T('notScale')}</div></div>`;
+ }else if(ui.modal==='journal'){
+  inner=`<div class="shead"><h2>📒 ${T('journal')}</h2><button class="chip" data-act="close" aria-label="${T('close')}">✖</button></div><p class="when">⭐ ${totalStars()} &nbsp; 📍 ${Object.keys(S.done).length}/${STOPS.length}</p><div class="jgrid">${STOPS.map((s,i)=>{const d=S.done[s.id];return `<button class="st${d?'':' lock'}" data-act="replay" data-i="${i}"${d?'':' disabled'} style="--c:${CH[s.ch].col}"><span class="stamp"><span>${d?s.ico:'?'}</span></span><small>${d?L(s.title):'???'}</small><span>${d?'⭐'.repeat(d):''}</span></button>`}).join('')}</div>`;
+ }else{
+  inner=`<h2>${T('sure')}</h2><div class="btns"><button class="btn coral" data-act="yes">${T('yes')}</button><button class="btn ghost" data-act="no">${T('no')}</button></div>`;
+ }
+ m.innerHTML=`<div class="modal"><div class="sheet card" role="dialog" aria-modal="true">${inner}</div></div>`;
+ if(ui.modal==='map'){const [x,y]=PL[curPlace()].xy;centerMap(x,y,VB_FULL)}
+ const cb=m.querySelector('[data-act=close],[data-act=no]');if(cb)cb.focus();
+}
+function showPin(id){
+ const p=PL[id];
+ const btns=STOPS.map((s,i)=>[s,i]).filter(([s])=>s.place===id&&S.done[s.id]).map(([s,i])=>`<button class="btn ghost small" data-act="replay" data-i="${i}">🔁 ${L(s.title)}</button>`).join('');
+ $('pininfo').innerHTML=`<strong>📍 ${L(p.n)}</strong>${btns?`<div class="btns" style="margin-top:8px">${btns}</div>`:`<div>${T('notyet2')}</div>`}`;
+}
+function render(){renderTop();renderScreen();renderModal()}
+
+/* ============ game logic ============ */
+let raf=0;
+const TD=2600;
+function startStop(i,from){
+ stopSpeech();
+ Object.assign(ui,{stopIdx:i,step:0,tapped:[],wrong:[],mistakes:0,gameDone:false,order:[],zoom:1.5,praise:Math.floor(Math.random()*4),modal:null});
+ if(from&&from!==STOPS[i].place){ui.screen='travel';ui.from=from;ui.travelP=0;ui.travelDone=false}
+ else ui.screen='stop';
+ render();
+}
+function runTravel(){
+ cancelAnimationFrame(raf);
+ const path=$('routebg'),pr=$('route'),w=$('walker');
+ if(!path||!pr||!w)return;
+ const len=path.getTotalLength(),t0=performance.now()-ui.travelP*TD,red=reduceMotion();
+ const tick=now=>{
+  const p=red?1:Math.min(1,(now-t0)/TD);
+  ui.travelP=p;
+  const e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2,pt=path.getPointAtLength(len*e);
+  w.setAttribute('transform',`translate(${pt.x},${pt.y})`);
+  pr.style.strokeDasharray=`${len*e} ${len+50}`;
+  if(p<1)raf=requestAnimationFrame(tick);
+  else{ui.travelDone=true;const gb=$('goBtn');if(gb){gb.className='btn coral';gb.textContent=T('arrive')+' 🌟'}}
+ };
+ raf=requestAnimationFrame(tick);
+}
+function tapTarget(i){
+ if(ui.tapped.includes(i))return;
+ ui.tapped.push(i);
+ if(ui.tapped.length>=STOPS[ui.stopIdx].g.s.length)ui.gameDone=true;
+ renderPanel();
+}
+function answer(i){
+ const g=STOPS[ui.stopIdx].g;
+ if(i===g.a)ui.gameDone=true;else{ui.wrong.push(i);ui.mistakes++}
+ renderPanel();
+}
+function pin(id){
+ if(ui.modal==='map'){showPin(id);return}
+ const st=STOPS[ui.stopIdx];
+ if(ui.screen!=='stop'||ui.step!==2||st.g.t!=='map'||ui.gameDone)return;
+ if(id===st.g.a){ui.gameDone=true;renderPanel();return}
+ ui.mistakes++;ui.wrong.push(id);
+ const m=$('mapmsg');m.hidden=false;m.textContent=`${T('thatis')} ${L(PL[id].n)}. ${T('tryagain')}`;
+ const el=document.querySelector(`.mk[data-p="${id}"]`);
+ if(el){el.classList.add('wrong');setTimeout(()=>el.classList.remove('wrong'),600)}
+ if(ui.wrong.length>=2){
+  const t=document.querySelector(`.mk[data-p="${st.g.a}"]`);
+  if(t&&!t.querySelector('.hintring')){
+   const d=t.querySelector('.dot'),c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+   c.setAttribute('class','ring hintring');c.setAttribute('cx',d.getAttribute('cx'));c.setAttribute('cy',d.getAttribute('cy'));c.setAttribute('r',d.getAttribute('r'));
+   t.insertBefore(c,t.firstChild);
+  }
+ }
+}
+function toReward(){
+ const st=STOPS[ui.stopIdx];
+ ui.stars=ui.mistakes===0?3:ui.mistakes===1?2:1;
+ S.done[st.id]=Math.max(S.done[st.id]||0,ui.stars);
+ if(ui.stopIdx===S.cur)S.cur++;
+ save();
+ ui.step=3;
+ renderTop();renderPanel();confetti();
+}
+function goNext(){
+ if(S.cur>=STOPS.length){ui.screen='finish';render();return}
+ startStop(S.cur,STOPS[S.cur-1].place);
+}
+function confetti(){
+ if(reduceMotion())return;
+ const em=['⭐','✨','🎉','💛','🌈','🕊️'];
+ for(let i=0;i<30;i++){
+  const s=document.createElement('span');
+  s.className='cf';s.textContent=em[i%em.length];
+  s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.6+'s';s.style.fontSize=18+Math.random()*20+'px';
+  document.body.appendChild(s);setTimeout(()=>s.remove(),3300);
+ }
+}
+function listen(){
+ if(!speechOK)return;
+ if(speechSynthesis.speaking){speechSynthesis.cancel();return}
+ const el=$('txt');if(!el)return;
+ const u=new SpeechSynthesisUtterance(el.textContent);
+ u.lang=lang==='vi'?'vi-VN':'en-US';u.rate=.92;
+ speechSynthesis.speak(u);
+}
+
+/* ============ events ============ */
+function onClick(e){
+ if(e.target.classList&&e.target.classList.contains('modal')){ui.modal=null;renderModal();return}
+ const t=e.target.closest('[data-act]');if(!t)return;
+ const d=t.dataset;
+ switch(d.act){
+  case 'start':startStop(0,null);break;
+  case 'cont':startStop(S.cur,S.cur>0?STOPS[S.cur-1].place:null);break;
+  case 'restart':ui.modal='confirm';renderModal();break;
+  case 'yes':S={lang,cur:0,done:{}};save();ui.modal=null;ui.screen='home';render();break;
+  case 'home':stopSpeech();ui.screen='home';ui.modal=null;render();break;
+  case 'lang':lang=d.v;S.lang=lang;save();document.documentElement.lang=lang;stopSpeech();render();break;
+  case 'modal':ui.modal=d.m;ui.zoom=1.5;renderModal();break;
+  case 'close':case 'no':ui.modal=null;renderModal();break;
+  case 'next':stopSpeech();ui.step++;renderPanel();break;
+  case 'tap':tapTarget(+d.i);break;
+  case 'ans':answer(+d.i);break;
+  case 'pin':pin(d.p);break;
+  case 'zoom':zoomMap(+d.d);break;
+  case 'arrive':cancelAnimationFrame(raf);ui.screen='stop';render();break;
+  case 'toreward':toReward();break;
+  case 'go':goNext();break;
+  case 'replay':ui.modal=null;startStop(+d.i,null);break;
+  case 'listen':listen();break;
+ }
+}
+
+/* ============ start ============ */
+function init(){
+ const v=store.get();
+ if(v)S=Object.assign(S,v);
+ const nav=(typeof navigator!=='undefined'&&navigator.language)||'vi';
+ lang=S.lang||(nav.toLowerCase().startsWith('vi')?'vi':'en');
+ document.documentElement.lang=lang;
+ const app=$('app');
+ app.innerHTML='<div id="top"></div><div id="screen"></div><div id="modal"></div>';
+ app.addEventListener('click',onClick);
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ui.modal){ui.modal=null;renderModal()}});
+ render();
+}
+if(typeof document!=='undefined'&&document.getElementById('app'))init();
+</script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 /* Chapter 6: on the road to Jerusalem. Jericho (Luke 19), the lost sheep (Luke 15), Bethany (John 11).
    None of these passages names a time of day, so all three scenes are set in daylight. */
 'use strict';
-CQ.chapters.push({id:'ch6',no:6,title:'Đường lên Giê-ru-sa-lem',sub:'Xa-chê, con chiên lạc, La-xa-rơ · ban ngày',
+CQ.chapters.push({id:'ch6',no:15,title:'Đường lên Giê-ru-sa-lem',sub:'Xa-chê, con chiên lạc, La-xa-rơ · ban ngày',
  intro:[
   {t:'Thành Giê-ri-cô',x:'Chúa Giê-su đi qua thành Giê-ri-cô, thành của những cây chà là. Ở đó có một người tên Xa-chê, làm đầu bọn thâu thuế và giàu có. Ai cũng ghét ông, vì ông thâu thuế cho người La Mã.',ref:'Theo Lu-ca 19:1-2',cam:[-70,16,-70,-97,3,-95]},
   {t:'Một người thấp bé',x:'Xa-chê muốn xem Chúa Giê-su là ai, nhưng ông thấp quá, mà dân chúng thì đông. Ông bèn chạy trước và trèo lên một cây sung.',ref:'Theo Lu-ca 19:3-4',cam:[-90,4,-88,-97,4.5,-95]}],
@@ -53,20 +53,20 @@ CQ.chapters.push({id:'ch6',no:6,title:'Đường lên Giê-ru-sa-lem',sub:'Xa-ch
   W.steps=[
    {at:'zach',text:'Tìm người đang trốn trên cây sung',run:n=>{CQ.setCine([AX+6.5,6,AZ-2.2,AX-.2,4.6,AZ+3.4]);CQ.walkTo(jesus,AX-1.5,AZ,3.6,()=>CQ.face(jesus,AX+1.2,AZ+3.4));CQ.walkTo(peter,AX-4.5,AZ-1,3.4);
      const leave=()=>{CQ.setCine(null);CQ.goZone('B',BX-9,BZ+8,-2.2,()=>{jesus.dest=null;CQ.place(jesus,BX,BZ,.9);CQ.place(peter,BX-2.4,BZ-1,.9);});n();};
-     const save=()=>CQ.say('Chúa Giê-su','Bởi Con người đã đến tìm và cứu kẻ bị mất.','Lu-ca 19:10 (Bản Truyền Thống 1925)',null,leave);
+     const save=()=>CQ.say('Chúa Giê-su','Bởi Con người đã đến tìm và cứu kẻ bị mất.','Lu-ca 19:10',null,leave);
      const vow=()=>{zach.dy=0;CQ.place(zach,AX+.6,AZ+1.4,3.14);zI.h=2.05;
        CQ.choice({name:'Xa-chê',q:'Xa-chê mừng rỡ tiếp rước Chúa. Ông hứa chia nửa gia tài cho kẻ nghèo. Còn ai bị ông làm thiệt hại, ông sẽ đền lại gấp mấy?',options:['Gấp tư','Gấp đôi','Không đền gì'],ref:'Lu-ca 19:8',wrong:'Chưa đúng. Xa-chê đền lại nhiều hơn thế.'},save);};
-     const call=()=>CQ.fillWord({name:'Chúa Giê-su',before:'Hỡi Xa-chê, hãy xuống cho mau, vì hôm nay ta phải ở',after:' ngươi.',options:['thành','nhà','thuyền'],answer:'nhà',ref:'Lu-ca 19:5 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. Chúa muốn đến thăm nơi Xa-chê ở.'},vow);
+     const call=()=>CQ.fillWord({name:'Chúa Giê-su',before:'Hỡi Xa-chê, hãy xuống cho mau, vì hôm nay ta phải ở',after:' ngươi.',options:['thành','nhà','thuyền'],answer:'nhà',ref:'Lu-ca 19:5',wrong:'Chưa đúng. Chúa muốn đến thăm nơi Xa-chê ở.'},vow);
      CQ.say('Người kể chuyện','Chúa Giê-su đi đến chỗ ấy, ngước mắt lên và nhìn thấy Xa-chê.','Theo Lu-ca 19:5',null,call);}},
    {at:'jesus',text:'Lại nghe Thầy kể một câu chuyện',run:n=>CQ.say('Chúa Giê-su','Trong các ngươi ai là người có một trăm con chiên, nếu mất một con, há chẳng để chín mươi chín con nơi đồng vắng, đặng đi tìm con đã mất cho kỳ được sao?','Theo Lu-ca 15:4','Tôi sẽ đi tìm!',()=>{seek=true;n();})},
    {at:'lost',text:'Hãy làm người chăn: đi tìm con chiên lạc trên đồi đá',run:n=>{seek=false;lost.g.position.y+=.9;
-     CQ.order({name:'Người chăn chiên',q:'Tìm được rồi! Người chăn vác chiên lên vai, về nhà gọi bạn hữu đến. Ghép lại lời người ấy nói.',chunks:['Hãy chung vui với ta,','vì ta đã tìm được','con chiên bị mất.'],ref:'Lu-ca 15:6 (Bản Truyền Thống 1925)'},()=>
+     CQ.order({name:'Người chăn chiên',q:'Tìm được rồi! Người chăn vác chiên lên vai, về nhà gọi bạn hữu đến. Ghép lại lời người ấy nói.',chunks:['Hãy chung vui với ta,','vì ta đã tìm được','con chiên bị mất.'],ref:'Lu-ca 15:6'},()=>
      CQ.say('Chúa Giê-su','Trên trời cũng vậy: sẽ vui mừng cho một kẻ có tội ăn năn hơn là chín mươi chín kẻ công bình không cần phải ăn năn.','Theo Lu-ca 15:7',null,()=>{CQ.goZone('C',CX+5,CZ+8,.4,()=>{CQ.place(jesus,CX-1.5,CZ-3,3.14);CQ.place(peter,CX+3,CZ-1,3.14);jI.hidden=true;});n();}));}},
    {at:'martha',text:'Làng Bê-tha-ni đang than khóc. Hỏi chuyện Ma-thê',run:n=>CQ.say('Ma-thê','Lạy Chúa, nếu Chúa có đây, thì anh tôi không chết. La-xa-rơ đã nằm trong mộ bốn ngày rồi.','Theo Giăng 11:17-21',null,()=>
-     CQ.fillWord({name:'Chúa Giê-su',before:'Ta là sự sống lại và sự',after:'; kẻ nào tin ta thì sẽ sống, mặc dầu đã chết rồi.',options:['sáng','sống','thật'],answer:'sống',ref:'Giăng 11:25 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. Hãy đọc tiếp nửa sau của câu.'},()=>
+     CQ.fillWord({name:'Chúa Giê-su',before:'Ta là sự sống lại và sự',after:'; kẻ nào tin ta thì sẽ sống, mặc dầu đã chết rồi.',options:['sáng','sống','thật'],answer:'sống',ref:'Giăng 11:25',wrong:'Chưa đúng. Hãy đọc tiếp nửa sau của câu.'},()=>
      CQ.say('Người kể chuyện','Thấy Ma-ri và mọi người khóc, Chúa Giê-su đau lòng cảm động. Ngài khóc.','Theo Giăng 11:33-35',null,n)))},
    {at:'stone',text:'Thầy bảo: Hãy lăn hòn đá đi',run:n=>{CQ.setCine([CX+4.5,3.4,CZ+2,CX-.5,1.3,CZ-9]);CQ.face(jesus,CX,CZ-10);
      CQ.tapFill({name:'Lăn hòn đá',text:'Hòn đá chận cửa mộ rất nặng. Chạm thật nhanh để giúp mọi người lăn hòn đá đi!',need:20,onP:p=>{tomb.stone.position.x=p*2.6;tomb.stone.rotation.y=-p*2.2;}},()=>
-     CQ.say('Chúa Giê-su','Hỡi La-xa-rơ, hãy ra!','Giăng 11:43 (Bản Truyền Thống 1925)',null,()=>{laz.g.visible=true;CQ.walkTo(laz,CX,CZ-6.6,1.2);
+     CQ.say('Chúa Giê-su','Hỡi La-xa-rơ, hãy ra!','Giăng 11:43',null,()=>{laz.g.visible=true;CQ.walkTo(laz,CX,CZ-6.6,1.2);
      CQ.say('Người kể chuyện','Người chết đi ra, chân tay buộc bằng vải liệm. Chúa Giê-su phán: Hãy mở cho người, và để người đi.','Theo Giăng 11:44','Xong',()=>{CQ.setCine(null);n();});}));}}];
  }});

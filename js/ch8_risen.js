@@ -1,7 +1,8 @@
 /* Chapter 8: the resurrection. Times of day follow the text: the tomb ("lúc rạng đông, trời còn mờ mờ", John 20:1: dawn),
-   Emmaus ("trời đã xế chiều hầu tối", Luke 24:29: dusk), the shore ("đến sáng", John 21:4: morning), the ascension (no time given: day). */
+   Emmaus ("trời đã xế chiều hầu tối", Luke 24:29: dusk), Thomas in the shut room (John 20:24-29: the first appearance
+   was in the evening, 20:19; 20:26 "eight days later" gives no hour, so dusk is kept for simplicity), the shore ("đến sáng", John 21:4: morning), the ascension (no time given: day). */
 'use strict';
-CQ.chapters.push({id:'ch8',no:8,title:'Phục sinh',sub:'Mộ trống, Em-ma-út, bữa sáng bên bờ biển, thăng thiên',
+CQ.chapters.push({id:'ch8',no:18,title:'Phục sinh',sub:'Mộ trống, Em-ma-út, bữa sáng bên bờ biển, thăng thiên',
  intro:[
   {t:'Ngày thứ nhứt trong tuần lễ',x:'Ba ngày đã trôi qua. Lúc rạng đông, trời còn mờ mờ, mấy người đàn bà đem thuốc thơm ra mộ. Ê-li xin đi theo.',ref:'Theo Lu-ca 24:1 và Giăng 20:1',cam:[-80,9,-82,-95,2,-104]},
   {t:'Hòn đá đã lăn ra',x:'Họ lo không biết ai sẽ lăn hòn đá lớn ở cửa mộ giùm mình. Nhưng khi đến nơi, hòn đá đã lăn ra khỏi cửa mộ rồi.',ref:'Theo Mác 16:3-4',cam:[-91,2.6,-97,-95,1.5,-105]}],
@@ -39,15 +40,25 @@ CQ.chapters.push({id:'ch8',no:8,title:'Phục sinh',sub:'Mộ trống, Em-ma-út
   const fish=[];for(let i=0;i<26;i++){const f=mesh(new T.SphereGeometry(.2,8,6),toon('#b9c9d6'),SX+1+rr(-1.2,1.2),H(SX+1,SZ-3)+.12+rr(0,.25),SZ-3+rr(-1,1));f.scale.set(1.6,.35,.6);f.rotation.y=R()*6;f.visible=false;fish.push(f);}
   [[SX-16,SZ-12],[SX+14,SZ-14],[SX-22,SZ-4]].forEach(p=>CQ.palm(p[0],p[1],rr(1,1.2)));
 
+  /* T: a room in Jerusalem with the doors shut, where Jesus meets Thomas (John 20:24-29) */
+  const TX=0,TZ=0,TF=4.2;W.platforms.push({x0:TX-5,x1:TX+5,z0:TZ-4,z1:TZ+4,top:TF});
+  mesh(CQ.boxUV(10,TF,8,2.6),M.lime,TX,TF/2,TZ);mesh(new T.BoxGeometry(10,.1,8),toon('#c9a877'),TX,TF+.02,TZ,null,false);
+  mesh(CQ.boxUV(10,3,.5,2.6),M.lime,TX,TF+1.5,TZ-4.2);for(const s of[-1,1])mesh(CQ.boxUV(.5,3,8,2.6),M.lime,TX+s*5.2,TF+1.5,TZ);mesh(CQ.boxUV(10,.7,.4,2.6),M.lime,TX,TF+.35,TZ+4.1);
+  mesh(new T.BoxGeometry(.12,2.1,1.3),M.woodD,TX-4.9,TF+1.05,TZ+1);mesh(new T.BoxGeometry(.2,.16,1.6),M.wood,TX-4.8,TF+1.2,TZ+1);
+  const tL=new T.PointLight("#ffc878",.8,13,1.5);tL.position.set(TX,TF+2.4,TZ-1);W.scene.add(tL);mesh(new T.SphereGeometry(.12,8,6),new T.MeshBasicMaterial({color:'#ffd98a'}),TX+3,TF+2.2,TZ-3.9,null,false);
+  CQ.crowd([[TX-3.6,TZ-2.6,.8],[TX-2.3,TZ-3.1,.4],[TX+2.3,TZ-3.1,-.4],[TX+3.6,TZ-2.6,-.8],[TX-4,TZ+.2,1.5],[TX+4,TZ+.4,-1.5],[TX-3.9,TZ+1.9,2],[TX+3.9,TZ+2,-2]]);
+  const thomas=CQ.place(CQ.makeChar({skin:'#b9804f',tunic:'#7a8a5c',hem:.3,mantle:'#9a7350',hair:'#2a1d15',beard:1}),TX+1.5,TZ+.4,-2.6);
+
   /* D: the mount of the ascension */
   const MX=95,MZ=90;CQ.crowd(CQ.ring(MX,MZ,11,3.2,5.5,.2,2.9));
   const cloud=new T.Group();cloud.position.set(MX,H(MX,MZ)+16,MZ);cloud.visible=false;W.scene.add(cloud);for(let i=0;i<6;i++){const m=new T.Mesh(new T.SphereGeometry(rr(2.2,3.4),10,8),new T.MeshBasicMaterial({color:'#ffffff',fog:false}));m.position.set(rr(-4,4),rr(-.6,.6),rr(-2,2));m.scale.y=.6;cloud.add(m);}
   let rise=false;W.tick.push(dt=>{if(rise){jesus.dy=(jesus.dy||0)+dt*1.6;if(jesus.dy>15)jesus.g.visible=false;}});
 
-  CQ.zones({A:{c:[AX,AZ+8],r:20,tod:'dawn'},B:{c:[96,-95],r:36,tod:'dusk'},C:{c:[SX,SZ-12],r:22,tod:'morning'},D:{c:[MX,MZ+5],r:16,tod:'day'}});
+  CQ.zones({A:{c:[AX,AZ+8],r:20,tod:'dawn'},B:{c:[96,-95],r:36,tod:'dusk'},T:{c:[TX,TZ],rect:[4.5,3.5],tod:'dusk'},C:{c:[SX,SZ-12],r:22,tod:'morning'},D:{c:[MX,MZ+5],r:16,tod:'day'}});
   CQ.addInter({id:'angel',P:angel,name:'thiên sứ',verb:'Lại gần ',h:2.5,r:3.4});
   CQ.addInter({id:'cleo',P:cleo,name:'Cơ-lê-ô-ba',h:2.05});
   CQ.addInter({id:'table',obj:tb,x:117,z:-96.5,name:'bàn ăn',verb:'Lại gần ',h:1.8,r:3});
+  CQ.addInter({id:'thomas',P:thomas,name:'Thô-ma',h:2.05,r:2.6});
   CQ.addInter({id:'boat',obj:boatG,x:SX+5,z:SZ+12,name:'chiếc thuyền',verb:'Gọi ',h:6,remote:1});
   const jI=CQ.addInter({id:'jesus',P:jesus,name:'Chúa Giê-su',h:2.05,r:3});
   W.player=CQ.makeChar(CQ.CAST.eli);CQ.goZone('A',AX+3,AZ+15,0,null,true);
@@ -55,21 +66,30 @@ CQ.chapters.push({id:'ch8',no:8,title:'Phục sinh',sub:'Mộ trống, Em-ma-út
   W.steps=[
    {at:'angel',text:'Mộ trống không! Lại gần xem ai đang ở đó',run:n=>{CQ.setCine([AX+7,2.8,AZ+9,AX+1,1.6,AZ+1]);
      CQ.say('Người kể chuyện','Họ bước vào, không thấy xác Chúa Giê-su đâu cả. Đương khi còn bối rối, có thiên sứ mặc áo sáng như chớp hiện ra.','Theo Lu-ca 24:3-4',null,()=>
-     CQ.fillWord({name:'Thiên sứ',before:'Sao các ngươi tìm người sống trong vòng kẻ chết? Ngài không ở đây đâu, song Ngài đã',after:'.',options:['đi xa','sống lại','ngủ yên'],answer:'sống lại',ref:'Lu-ca 24:5-6 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. Đây là tin vui lớn nhất!'},()=>
+     CQ.fillWord({name:'Thiên sứ',before:'Sao các ngươi tìm người sống trong vòng kẻ chết? Ngài không ở đây đâu, song Ngài đã',after:'.',options:['đi xa','sống lại','ngủ yên'],answer:'sống lại',ref:'Lu-ca 24:5-6',wrong:'Chưa đúng. Đây là tin vui lớn nhất!'},()=>
      CQ.choice({name:'Người kể chuyện',q:'Ai là người đầu tiên được gặp Chúa Giê-su sau khi Ngài sống lại?',options:['Ma-ri Ma-đơ-len','Quan Phi-lát','Một người lính canh'],ref:'Mác 16:9',wrong:'Chưa đúng. Đó là một người đàn bà đã đứng khóc bên mộ.'},()=>{CQ.setCine(null);CQ.goZone('B',68,-93,-1.57,()=>{jesus.g.visible=true;});n();})));}},
    {at:'cleo',text:'Chiều hôm ấy, trên đường về làng Em-ma-út. Hỏi chuyện hai môn đồ',run:n=>CQ.say('Cơ-lê-ô-ba','Chúng tôi trông mong Chúa Giê-su sẽ cứu dân Y-sơ-ra-ên, vậy mà Ngài đã bị đóng đinh. Có người lạ này cùng đi, đang cắt nghĩa Kinh Thánh cho chúng tôi nghe.','Theo Lu-ca 24:15-27','Cùng đi',()=>{CQ.walkTo(cleo,114.6,-95.2,3.4);CQ.walkTo(frd,115,-98,3.4);CQ.walkTo(jesus,117,-98.4,3.5,()=>CQ.face(jesus,117,-90));n();})},
    {at:'table',text:'Trời đã xế chiều. Theo họ vào làng, đến bên bàn ăn',run:n=>{CQ.setCine([117,3.2,-90.5,117,1.2,-97.5]);
-     const burn=()=>CQ.order({name:'Hai môn đồ',q:'Hai người nói với nhau. Ghép lại lời họ.',chunks:['lòng chúng ta','há chẳng','nóng nảy sao?'],ref:'Lu-ca 24:32 (Bản Truyền Thống 1925)'},()=>{CQ.setCine(null);CQ.goZone('C',SX+2,SZ-10,3.14,()=>{jesus.g.visible=true;CQ.place(jesus,SX-2,SZ-4,0);});n();});
+     const burn=()=>CQ.order({name:'Hai môn đồ',q:'Hai người nói với nhau. Ghép lại lời họ.',chunks:['lòng chúng ta','há chẳng','nóng nảy sao?'],ref:'Lu-ca 24:32'},()=>{CQ.setCine(null);CQ.goZone('T',TX-.6,TZ+2.8,0,()=>{jesus.dest=null;jesus.g.visible=false;});n();});
      CQ.say('Người kể chuyện','Đang khi ngồi ăn, người lạ cầm lấy bánh, chúc tạ, đoạn bẻ ra cho họ.','Theo Lu-ca 24:30',null,()=>
      CQ.choice({name:'Người kể chuyện',q:'Mắt hai môn đồ mở ra. Họ nhận biết người lạ ấy là Chúa Giê-su vào lúc nào?',options:['Lúc Ngài bẻ bánh','Lúc Ngài chào họ trên đường','Lúc trời sáng'],ref:'Lu-ca 24:30-31',wrong:'Chưa đúng. Hãy nhớ lại việc Ngài vừa làm ở bàn ăn.'},()=>{jesus.g.visible=false;loaf.scale.set(1.4,.3,1);burn();}));}},
+   {at:'thomas',text:'Một phòng ở Giê-ru-sa-lem, cửa đóng kín. Lại gần Thô-ma',run:n=>{CQ.setCine([TX-2.6,TF+2.4,TZ+3.6,TX+.6,TF+1.1,TZ-.8]);
+     const bless=()=>CQ.say('Chúa Giê-su','Vì ngươi đã thấy ta, nên ngươi tin.','Giăng 20:29',null,()=>
+       CQ.order({name:'Chúa Giê-su',q:'Rồi Thầy nói về những người sẽ tin sau nầy, trong đó có cả bạn nữa. Ghép lại lời ấy.',chunks:['Phước cho những kẻ','chẳng từng thấy','mà đã tin vậy!'],ref:'Giăng 20:29'},()=>{CQ.setCine(null);
+       CQ.goZone('C',SX+2,SZ-10,3.14,()=>{jesus.g.visible=true;CQ.place(jesus,SX-2,SZ-4,0);});n();}));
+     const come=()=>{jesus.dest=null;jesus.g.visible=true;CQ.place(jesus,TX,TZ-1.4,.5);CQ.byId('thomas').noTurn=1;CQ.face(thomas,TX,TZ-1.4);
+       CQ.lines([['Chúa Giê-su','Bình an cho các ngươi!','Giăng 20:26'],['Người kể chuyện','Ngài bảo Thô-ma hãy nhìn tay Ngài, và đừng nghi ngờ nữa, nhưng hãy tin.','Theo Giăng 20:27']],()=>
+       CQ.choice({name:'Thô-ma',q:'Thô-ma nhận ra Chúa. Ông thưa thế nào?',options:['Lạy Chúa tôi và Đức Chúa Trời tôi!','Tôi vẫn chưa tin đâu.','Người là ai vậy?'],ref:'Giăng 20:28',wrong:'Chưa đúng. Thô-ma không còn nghi ngờ nữa.'},bless));};
+     CQ.lines([['Người kể chuyện','Chiều ngày Chúa sống lại, Ngài đã hiện ra với các môn đồ. Nhưng Thô-ma không có ở đó. Ông nói: Nếu tôi không thấy dấu đinh trên tay Ngài, thì tôi không tin.','Theo Giăng 20:19-25'],
+       ['Người kể chuyện','Tám ngày sau, các môn đồ lại nhóm nhau trong nhà, có Thô-ma ở đó. Các cửa đều đóng cả. Bỗng Chúa Giê-su đến, đứng giữa họ.','Theo Giăng 20:26']],come);}},
    {at:'boat',text:'Biển Ga-li-lê, đến sáng. Các môn đồ đánh cá suốt đêm chẳng được gì',run:n=>{CQ.setCine([SX-9,3.4,SZ-9,SX+4,.8,SZ+9]);
-     CQ.fillWord({name:'Chúa Giê-su',before:'Hãy thả lưới bên',after:' thuyền, thì các ngươi sẽ được.',options:['tả','hữu','dưới'],answer:'hữu',ref:'Giăng 21:6 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. "Hữu" nghĩa là bên phải.'},()=>
+     CQ.fillWord({name:'Chúa Giê-su',before:'Hãy thả lưới bên',after:' thuyền, thì các ngươi sẽ được.',options:['tả','hữu','dưới'],answer:'hữu',ref:'Giăng 21:6',wrong:'Chưa đúng. "Hữu" nghĩa là bên phải.'},()=>
      CQ.tapFill({name:'Kéo lưới',text:'Lưới đầy cá, nặng đến nỗi kéo không nổi! Chạm thật nhanh để giúp các môn đồ kéo lưới vào bờ.',need:22,onP:p=>fish.forEach((f,i)=>f.visible=i<p*fish.length)},()=>{peter.minY=null;CQ.place(peter,SX+1.5,SZ-5.5,3.6);
      CQ.say('Người kể chuyện','Lưới đầy một trăm năm mươi ba con cá lớn mà không rách. Phi-e-rơ nhảy xuống nước, lội vào bờ trước tiên.','Theo Giăng 21:7-11',null,()=>{CQ.setCine(null);n();});}));}},
    {at:'jesus',text:'Thầy đã nhóm sẵn lửa than. Lại ăn sáng với Thầy',run:n=>CQ.say('Người kể chuyện','Ăn xong, Chúa Giê-su hỏi Phi-e-rơ ba lần: Ngươi yêu ta chăng? Ba lần Phi-e-rơ thưa: Lạy Chúa, Chúa biết rằng tôi yêu Chúa.','Theo Giăng 21:15-17',null,()=>
      CQ.fillWord({name:'Chúa Giê-su',before:'Hãy chăn',after:' ta.',options:['chiên','cá','ngựa'],answer:'chiên',ref:'Theo Giăng 21:17',wrong:'Chưa đúng. Chúa ví những người theo Ngài như một bầy gì?'},()=>{CQ.goZone('D',MX+1,MZ+12,0,()=>{CQ.place(jesus,MX,MZ,0);CQ.place(peter,MX+2.6,MZ+3.4,3.4);});n();}))},
    {at:'jesus',text:'Bốn mươi ngày sau, trên núi. Lại nghe lời Thầy dặn',run:n=>{CQ.setCine([MX+2,H(MX,MZ)+2.6,MZ+10,MX,H(MX,MZ)+2,MZ]);
      CQ.say('Chúa Giê-su','Vậy, hãy đi dạy dỗ muôn dân.','Theo Ma-thi-ơ 28:19',null,()=>
-     CQ.order({name:'Chúa Giê-su',chunks:['Nầy, ta thường ở','cùng các ngươi luôn','cho đến tận thế.'],ref:'Ma-thi-ơ 28:20 (Bản Truyền Thống 1925)'},()=>{rise=true;jI.hidden=true;CQ.marks();cloud.visible=true;CQ.setCine([MX+3,H(MX,MZ)+2.2,MZ+13,MX,H(MX,MZ)+9,MZ]);
+     CQ.order({name:'Chúa Giê-su',chunks:['Nầy, ta thường ở','cùng các ngươi luôn','cho đến tận thế.'],ref:'Ma-thi-ơ 28:20'},()=>{rise=true;jI.hidden=true;CQ.marks();cloud.visible=true;CQ.setCine([MX+3,H(MX,MZ)+2.2,MZ+13,MX,H(MX,MZ)+9,MZ]);
      CQ.say('Người kể chuyện','Ngài được cất lên trong lúc các môn đồ đang nhìn xem, có một đám mây tiếp Ngài khuất đi, không thấy nữa.','Theo Công vụ 1:9','Xong',()=>{CQ.setCine(null);n();});}));}}];
  }});

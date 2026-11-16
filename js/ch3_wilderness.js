@@ -53,22 +53,22 @@ CQ.chapters.push({id:'ch3',no:3,title:'Đồng vắng',sub:'Chúa Giê-su thắn
   W.steps=[
    {at:'jesus',text:'Đi tìm Thầy giữa đồng vắng',run:n=>{CQ.setCine([-5.5,2.6,-1.5,1,1.2,-8]);
      const win=()=>CQ.say('Người kể chuyện','Kẻ cám dỗ lùi xa. Nhưng nó chưa chịu thôi.',null,null,()=>{CQ.setCine(null);go('B',-110,-52.6,-110,-60.5,Math.PI);n();});
-     const ans=()=>CQ.fillWord({name:'Chúa Giê-su',before:'Có lời chép rằng: Người ta sống chẳng phải chỉ nhờ',after:' mà thôi, song nhờ mọi lời nói ra từ miệng Đức Chúa Trời.',options:['vàng','bánh','gươm'],answer:'bánh',ref:'Ma-thi-ơ 4:4 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. Kẻ cám dỗ vừa bảo Ngài biến đá thành thứ gì?'},()=>
+     const ans=()=>CQ.fillWord({name:'Chúa Giê-su',before:'Có lời chép rằng: Người ta sống chẳng phải chỉ nhờ',after:' mà thôi, song nhờ mọi lời nói ra từ miệng Đức Chúa Trời.',options:['vàng','bánh','gươm'],answer:'bánh',ref:'Ma-thi-ơ 4:4',wrong:'Chưa đúng. Kẻ cám dỗ vừa bảo Ngài biến đá thành thứ gì?'},()=>
        drive(16,'Chúa Giê-su đáp bằng lời Kinh Thánh. Chạm thật nhanh để ánh sáng xua bóng tối đi!',win));
      CQ.say('Người kể chuyện','Chúa Giê-su kiêng ăn bốn mươi ngày bốn mươi đêm, rồi Ngài đói. Bấy giờ kẻ cám dỗ đến gần.','Theo Ma-thi-ơ 4:2-3',null,()=>{showSh(2.4,.4);
-      CQ.say('Kẻ cám dỗ','Nếu ngươi phải là Con Đức Chúa Trời, thì hãy khiến đá nầy trở nên bánh đi.','Ma-thi-ơ 4:3 (Bản Truyền Thống 1925)',null,ans);});}},
+      CQ.say('Kẻ cám dỗ','Nếu ngươi phải là Con Đức Chúa Trời, thì hãy khiến đá nầy trở nên bánh đi.','Ma-thi-ơ 4:3',null,ans);});}},
    {at:'jesus',text:'Lại gần Thầy trên nóc đền thờ',run:n=>{CQ.setCine([-116.5,TP.top+3.4,-61,-108.5,TP.top+.5,-52]);
      const win=()=>CQ.say('Người kể chuyện','Lần thứ hai, kẻ cám dỗ lại phải lùi bước.',null,null,()=>{CQ.setCine(null);go('C',MT.x+2,MT.z-2,MT.x-4,MT.z+6,-.64);n();});
-     const ans=()=>CQ.order({name:'Chúa Giê-su',q:'Chúa Giê-su lại đáp bằng lời Kinh Thánh. Chạm vào các mảnh theo đúng thứ tự để ghép lại câu ấy.',chunks:['Ngươi đừng thử','Chúa','là Đức Chúa Trời ngươi.'],ref:'Ma-thi-ơ 4:7 (Bản Truyền Thống 1925)'},()=>
+     const ans=()=>CQ.order({name:'Chúa Giê-su',q:'Chúa Giê-su lại đáp bằng lời Kinh Thánh. Chạm vào các mảnh theo đúng thứ tự để ghép lại câu ấy.',chunks:['Ngươi đừng thử','Chúa','là Đức Chúa Trời ngươi.'],ref:'Ma-thi-ơ 4:7'},()=>
        drive(18,'Chạm thật nhanh để ánh sáng của Lời Chúa xua bóng tối đi!',win));
      CQ.say('Người kể chuyện','Ma quỉ đem Ngài vào thành thánh, đặt Ngài trên nóc đền thờ. Bên dưới là cả thành Giê-ru-sa-lem.','Theo Ma-thi-ơ 4:5',null,()=>{showSh(2.6,-.4);
-      CQ.say('Kẻ cám dỗ','Nếu ngươi phải là Con Đức Chúa Trời, thì hãy gieo mình xuống đi.','Ma-thi-ơ 4:6 (Bản Truyền Thống 1925)',null,ans);});}},
+      CQ.say('Kẻ cám dỗ','Nếu ngươi phải là Con Đức Chúa Trời, thì hãy gieo mình xuống đi.','Ma-thi-ơ 4:6',null,ans);});}},
    {at:'jesus',text:'Lại gần Thầy trên núi rất cao',run:n=>{CQ.setCine([MT.x-6,MT.top+3.6,MT.z+7,MT.x+3,MT.top+.4,MT.z-3]);
      const end=()=>{for(const a of[a1,a2]){a.g.visible=true;a.light.intensity=.3;holy.intensity=.15;CQ.face(a,jesus.x,jesus.z);}
-       CQ.say('Người kể chuyện','Ma quỉ bèn bỏ đi; liền có thiên sứ đến gần mà hầu việc Ngài.','Ma-thi-ơ 4:11 (Bản Truyền Thống 1925)','Xong',()=>{CQ.setCine(null);n();});};
+       CQ.say('Người kể chuyện','Ma quỉ bèn bỏ đi; liền có thiên sứ đến gần mà hầu việc Ngài.','Ma-thi-ơ 4:11','Xong',()=>{CQ.setCine(null);n();});};
      const ans=()=>CQ.choice({name:'Chúa Giê-su',q:'Lần này Chúa Giê-su phán gì với nó?',options:['Hỡi quỉ Sa-tan, ngươi hãy lui ra!','Hãy để ta suy nghĩ thêm.','Ta nhận lời ngươi.'],ref:'Ma-thi-ơ 4:10',wrong:'Chưa đúng. Chúa Giê-su không hề nghe theo nó.'},()=>
-       CQ.say('Chúa Giê-su','Vì có lời chép rằng: Ngươi phải thờ phượng Chúa là Đức Chúa Trời ngươi, và chỉ hầu việc một mình Ngài mà thôi.','Ma-thi-ơ 4:10 (Bản Truyền Thống 1925)',null,()=>
+       CQ.say('Chúa Giê-su','Vì có lời chép rằng: Ngươi phải thờ phượng Chúa là Đức Chúa Trời ngươi, và chỉ hầu việc một mình Ngài mà thôi.','Ma-thi-ơ 4:10',null,()=>
        drive(24,'Lần cuối cùng! Chạm thật nhanh để ánh sáng đuổi hẳn bóng tối đi!',end)));
      CQ.say('Người kể chuyện','Ma quỉ lại đem Ngài lên trên núi rất cao, chỉ cho Ngài các nước thế gian cùng sự vinh hiển các nước ấy.','Theo Ma-thi-ơ 4:8',null,()=>{showSh(-2.4,.6);
-      CQ.say('Kẻ cám dỗ','Ví bằng ngươi sấp mình trước mặt ta mà thờ lạy, thì ta sẽ cho ngươi hết thảy mọi sự nầy.','Ma-thi-ơ 4:9 (Bản Truyền Thống 1925)',null,ans);});}}];
+      CQ.say('Kẻ cám dỗ','Ví bằng ngươi sấp mình trước mặt ta mà thờ lạy, thì ta sẽ cho ngươi hết thảy mọi sự nầy.','Ma-thi-ơ 4:9',null,ans);});}}];
  }});

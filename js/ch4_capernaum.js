@@ -68,10 +68,10 @@ CQ.chapters.push({id:'ch4',no:4,title:'Ca-bê-na-um',sub:'Bờ biển Ga-li-lê 
   W.player=CQ.place(CQ.makeChar(CQ.CAST.eli),5,7,.6);
   W.steps=[
    {at:'jesus',text:'Ra bờ biển gặp Thầy',run:n=>CQ.say('Người kể chuyện','Giảng xong, Chúa Giê-su bảo Si-môn chèo thuyền ra chỗ nước sâu và thả lưới đánh cá.','Theo Lu-ca 5:4',null,n)},
-   {at:'peter',text:'Hỏi chuyện Si-môn Phi-e-rơ',run:n=>CQ.fillWord({name:'Si-môn Phi-e-rơ',before:'Thưa thầy, chúng tôi đã làm suốt đêm không bắt được chi hết; dầu vậy, tôi cũng theo lời thầy mà thả',after:'.',options:['buồm','lưới','neo'],answer:'lưới',ref:'Lu-ca 5:5 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. Người đánh cá thả gì xuống nước để bắt cá?'},n)},
+   {at:'peter',text:'Hỏi chuyện Si-môn Phi-e-rơ',run:n=>CQ.fillWord({name:'Si-môn Phi-e-rơ',before:'Thưa thầy, chúng tôi đã làm suốt đêm không bắt được chi hết; dầu vậy, tôi cũng theo lời thầy mà thả',after:'.',options:['buồm','lưới','neo'],answer:'lưới',ref:'Lu-ca 5:5',wrong:'Chưa đúng. Người đánh cá thả gì xuống nước để bắt cá?'},n)},
    {at:'boat',text:'Lại gần thuyền, giúp Si-môn kéo lưới',run:n=>{CQ.setCine([12.5,3,26.5,18.5,.9,20]);
      CQ.tapFill({name:'Kéo lưới',text:'Lưới nặng trĩu cá! Chạm thật nhanh để giúp Si-môn kéo lưới lên thuyền.',need:22,onP:p=>catchF.forEach((f,i)=>f.visible=i<p*catchF.length)},()=>
      CQ.say('Người kể chuyện','Họ bắt được nhiều cá lắm, đến nỗi lưới gần đứt, phải gọi bạn ở thuyền khác đến giúp. Cá đầy cả hai chiếc thuyền.','Theo Lu-ca 5:6-7',null,()=>{CQ.setCine(null);n();}));}},
-   {at:'jesus',text:'Quay lại gặp Thầy',run:n=>CQ.fillWord({name:'Chúa Giê-su',before:'Các ngươi hãy theo ta, ta sẽ cho các ngươi nên tay đánh lưới',after:'.',options:['cá','người','biển'],answer:'người',ref:'Ma-thi-ơ 4:19 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. Thầy gọi những người đánh cá để họ đi tìm ai?'},()=>
-     CQ.say('Người kể chuyện','Hai anh em liền bỏ lưới mà theo Ngài.','Ma-thi-ơ 4:20 (Bản Truyền Thống 1925)','Xong',n))}];
+   {at:'jesus',text:'Quay lại gặp Thầy',run:n=>CQ.fillWord({name:'Chúa Giê-su',before:'Các ngươi hãy theo ta, ta sẽ cho các ngươi nên tay đánh lưới',after:'.',options:['cá','người','biển'],answer:'người',ref:'Ma-thi-ơ 4:19',wrong:'Chưa đúng. Thầy gọi những người đánh cá để họ đi tìm ai?'},()=>
+     CQ.say('Người kể chuyện','Hai anh em liền bỏ lưới mà theo Ngài.','Ma-thi-ơ 4:20','Xong',n))}];
  }});

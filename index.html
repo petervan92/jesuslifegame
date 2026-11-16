@@ -66,6 +66,7 @@ button:focus-visible{outline:3px solid var(--wheat);outline-offset:2px}
 .vol{display:flex;align-items:center;gap:10px;font-size:14px}
 .vol input{flex:1;accent-color:var(--wheat);height:28px}
 .vol span{width:44px;text-align:right;font-variant-numeric:tabular-nums}
+.iosnote{display:none;margin:12px 0 0}body.ios .iosnote{display:block}body.ios .vol{display:none}
 #bar{z-index:21}#set{z-index:22}
 #pad{position:fixed;z-index:6;left:20px;bottom:64px;display:none;grid-template-areas:". u ." "l . r" ". d .";grid-template-columns:repeat(3,58px);grid-template-rows:repeat(3,58px);gap:4px;touch-action:none}
 #pad button{background:rgba(15,51,68,.72);border:2px solid rgba(246,237,216,.55);border-radius:14px;font-size:22px;touch-action:none;user-select:none;-webkit-user-select:none}
@@ -77,6 +78,8 @@ button:focus-visible{outline:3px solid var(--wheat);outline-offset:2px}
 #title h1{font-family:var(--display);font-weight:800;font-size:clamp(40px,8vw,74px);line-height:1;margin:6px 0 4px;text-shadow:0 3px 0 rgba(0,0,0,.25)}
 #title .tag{font-family:var(--display);font-size:clamp(18px,3vw,26px);color:var(--wheat);margin:0 0 14px}
 #chList{display:grid;gap:8px}
+.part{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--wheat);margin:10px 0 0}
+#title{align-items:flex-start}
 .chap{display:flex;align-items:center;gap:12px;text-align:left;background:rgba(23,72,92,.92);border:1.5px solid rgba(246,237,216,.25);border-radius:14px;padding:10px 14px;width:100%}
 .chap:hover:not(:disabled){border-color:var(--wheat)}
 .chap .no{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--wheat);color:#2a2008;font-family:var(--display);font-weight:800;font-size:20px}
@@ -129,6 +132,7 @@ button:focus-visible{outline:3px solid var(--wheat);outline-offset:2px}
     <button id="cKeys">Bàn phím và chuột</button>
     <button id="cTouch">Nút trên màn hình</button>
   </div>
+  <p class="sub iosnote">Trên iPhone và iPad, hãy chỉnh to nhỏ bằng nút âm lượng của máy. Ở đây chỉ bật hoặc tắt được.</p>
   <div class="sub" style="margin:14px 0 6px">Nhạc nền</div>
   <div class="vol"><label for="aVol">Âm lượng</label><input type="range" id="aVol" min="0" max="100" step="5" value="50"><span id="aVolN">50%</span></div>
   <button class="alt" id="aMute" style="margin-top:8px">Tắt nhạc nền</button>
@@ -172,6 +176,16 @@ button:focus-visible{outline:3px solid var(--wheat);outline-offset:2px}
 <script src="js/ch6_road.js"></script>
 <script src="js/ch7_jerusalem.js"></script>
 <script src="js/ch8_risen.js"></script>
+<script src="js/ch_cana.js"></script>
+<script src="js/ch_nicodemus.js"></script>
+<script src="js/ch_samaria.js"></script>
+<script src="js/ch_bethesda.js"></script>
+<script src="js/ch_gerasa.js"></script>
+<script src="js/ch_jairus.js"></script>
+<script src="js/ch_transfig.js"></script>
+<script src="js/ch_blind.js"></script>
+<script src="js/ch_shepherd.js"></script>
+<script src="js/ch_footwash.js"></script>
 <script>if(window.CQ&&CQ.boot)CQ.boot();</script>
 </body>
 </html>

@@ -2,10 +2,10 @@
    sermon on the mount (no time given: day), feeding the crowd ("trời đã chiều", Mt 14:15: dusk),
    the storm ("đến chiều ngày ấy", Mark 4:35: dark storm), walking on the water ("canh tư đêm", Mt 14:25: night). */
 'use strict';
-CQ.chapters.push({id:'ch5',no:5,title:'Biển Ga-li-lê',sub:'Bài giảng trên núi, năm bánh hai cá, dẹp yên bão',
+CQ.chapters.push({id:'ch5',no:9,title:'Biển Ga-li-lê',sub:'Bài giảng trên núi, năm bánh hai cá, dẹp yên bão',
  intro:[
-  {t:'Đoàn dân rất đông',x:'Tin về Chúa Giê-su lan khắp xứ. Người ta từ mọi nơi kéo đến. Thấy đoàn dân đông, Ngài lên núi, ngồi xuống và bắt đầu dạy dỗ.',ref:'Theo Ma-thi-ơ 4:25 - 5:2',cam:[-58,22,-52,-98,8,-93]},
-  {t:'Ê-li đi theo',x:'Ê-li cùng các môn đồ đi theo Thầy. Hôm nay bạn sẽ thấy nhiều điều lạ lùng bên biển Ga-li-lê.',cam:[-70,6,-62,-96,6,-91]}],
+  {t:'Đoàn dân rất đông',x:'Tin về Chúa Giê-su lan khắp xứ. Người ta từ mọi nơi kéo đến. Thấy đoàn dân đông, Ngài lên núi, ngồi xuống và bắt đầu dạy dỗ.',ref:'Theo Ma-thi-ơ 4:25 - 5:2',cam:[-64,36,-58,-92,14,-87]},
+  {t:'Ê-li đi theo',x:'Ê-li cùng các môn đồ đi theo Thầy. Hôm nay bạn sẽ thấy nhiều điều lạ lùng bên biển Ga-li-lê.',cam:[-78,27,-72,-95,15,-90]}],
  outro:'Những người ở trong thuyền bèn đến quì lạy Ngài mà nói rằng: Thầy thật là Con Đức Chúa Trời!',outroRef:'Theo Ma-thi-ơ 14:33',
  build(W){
   const {T,R,rr,sm,C,noise,toon,mesh,M}=CQ;
@@ -47,22 +47,23 @@ CQ.chapters.push({id:'ch5',no:5,title:'Biển Ga-li-lê',sub:'Bài giảng trên
   const toBoat=()=>{CQ.place(jesus,BX+2.7,BZ,0);jesus.g.rotation.set(0,0,1.4);jesus.dy=.3;jI.noTurn=1;jI.h=1.2;CQ.place(peter,BX-1.2,BZ+.35,1.57);pI.noTurn=1;mate.g.visible=true;CQ.place(mate,BX+.4,BZ-.4,1.57);storm=1;rain.visible=true;};
   W.steps=[
    {at:'jesus',text:'Lên sườn núi nghe Thầy giảng',run:n=>{CQ.setCine([JX+7,H(JX,JZ)+3,JZ+7.5,JX,H(JX,JZ)+1.2,JZ]);
-     CQ.fillWord({name:'Chúa Giê-su',before:'Phước cho những kẻ làm cho người',after:', vì sẽ được gọi là con Đức Chúa Trời!',options:['giàu có','hòa thuận','sợ hãi'],answer:'hòa thuận',ref:'Ma-thi-ơ 5:9 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. Chúa khen những người đem lại bình an cho người khác.'},()=>
-     CQ.order({name:'Chúa Giê-su',chunks:['Các ngươi là','sự sáng','của thế gian'],ref:'Ma-thi-ơ 5:14 (Bản Truyền Thống 1925)'},()=>{CQ.setCine(null);boy.g.visible=true;CQ.goZone('B',-76,-70,.785);n();}));}},
-   {at:'boy',text:'Trời đã về chiều, mọi người đều đói. Tìm cậu bé có bánh',run:n=>CQ.say('Anh-rê','Đây có một đứa con trai, có năm cái bánh mạch nha và hai con cá; nhưng đông người dường nầy, thì ngần ấy có thấm vào đâu?','Giăng 6:9 (Bản Truyền Thống 1925)',null,()=>
+     CQ.fillWord({name:'Chúa Giê-su',before:'Phước cho những kẻ làm cho người',after:', vì sẽ được gọi là con Đức Chúa Trời!',options:['giàu có','hòa thuận','sợ hãi'],answer:'hòa thuận',ref:'Ma-thi-ơ 5:9',wrong:'Chưa đúng. Chúa khen những người đem lại bình an cho người khác.'},()=>
+     CQ.order({name:'Chúa Giê-su',chunks:['Các ngươi là','sự sáng','của thế gian'],ref:'Ma-thi-ơ 5:14'},()=>{CQ.setCine(null);boy.g.visible=true;CQ.goZone('B',-76,-70,.785);n();}));}},
+   {text:'Trời đã về chiều',run:n=>{CQ.setCine([-68,33,-60,-92,13,-86]);CQ.say('Người kể chuyện','Trời đã về chiều. Đoàn dân có chừng năm ngàn người đờn ông, không kể đờn bà con nít, mà nơi nầy vắng vẻ, không có gì ăn.','Theo Ma-thi-ơ 14:15-21',null,()=>{CQ.setCine(null);n();});}},
+   {at:'boy',text:'Trời đã về chiều, mọi người đều đói. Tìm cậu bé có bánh',run:n=>CQ.say('Anh-rê','Đây có một đứa con trai, có năm cái bánh mạch nha và hai con cá; nhưng đông người dường nầy, thì ngần ấy có thấm vào đâu?','Giăng 6:9',null,()=>
      CQ.choice({name:'Người kể chuyện',q:'Cậu bé đã đưa cho Chúa Giê-su những gì?',options:['Năm cái bánh và hai con cá','Hai cái bánh và năm con cá','Mười hai giỏ bánh'],ref:'Giăng 6:9',wrong:'Chưa đúng. Nghe lại lời Anh-rê nhé.'},()=>
      CQ.say('Người kể chuyện','Chúa Giê-su cầm bánh và cá, ngửa mặt lên trời tạ ơn, rồi bẻ ra đưa cho các môn đồ để phát cho đoàn dân.','Theo Ma-thi-ơ 14:19',null,n)))},
    {collect:['g0','g1','g2','g3','g4'],text:'Phát bánh và cá cho từng nhóm',each:I=>{I.br.forEach(b=>b.visible=true);I.hidden=true;},
     run:n=>CQ.choice({name:'Người kể chuyện',q:'Ai nấy đều ăn no. Các môn đồ thu lại được bao nhiêu giỏ bánh thừa?',options:['Mười hai giỏ đầy','Năm giỏ','Không còn gì cả'],ref:'Ma-thi-ơ 14:20',wrong:'Chưa đúng. Bánh còn thừa nhiều hơn cả lúc đầu!'},()=>{CQ.goZone('C',BX-2.6,BZ-.1,-1.57,toBoat);n();})},
    {at:'jesus',text:'Bão nổi lên giữa biển! Lại đánh thức Thầy',run:n=>CQ.tapFill({name:'Bão lớn',text:'Sóng tràn vào thuyền, còn Thầy đang dựa gối mà ngủ ở đằng sau lái. Chạm thật nhanh để tát nước ra!',need:18},()=>
      CQ.say('Các môn đồ','Thầy ôi, Thầy không lo chúng tôi chết sao?','Theo Mác 4:38',null,()=>{jesus.g.rotation.set(0,-1.57,0);jesus.dy=0;jI.h=2.05;
-     CQ.fillWord({name:'Chúa Giê-su',before:'Hãy êm đi,',after:' đi!',options:['mạnh','lặng','chạy'],answer:'lặng',ref:'Mác 4:39 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. Ngài bảo gió và biển phải yên.'},()=>{storm=0;rain.visible=false;CQ.setTod('dusk');
+     CQ.fillWord({name:'Chúa Giê-su',before:'Hãy êm đi,',after:' đi!',options:['mạnh','lặng','chạy'],answer:'lặng',ref:'Mác 4:39',wrong:'Chưa đúng. Ngài bảo gió và biển phải yên.'},()=>{storm=0;rain.visible=false;CQ.setTod('dusk');
      CQ.say('Người kể chuyện','Gió liền dứt và đều yên lặng như tờ. Các môn đồ nói với nhau: Vậy thì người nầy là ai, mà gió và biển cũng đều vâng lịnh người?','Theo Mác 4:39-41',null,()=>{
       CQ.goZone('D',BX-2.6,BZ-.1,-1.57,()=>{jesus.minY=.06;CQ.place(jesus,BX+15,BZ+1.5,-1.57);jI.hidden=true;});n();});});}))},
    {at:'peter',text:'Canh tư đêm. Có ai đó đang đi trên mặt biển!',run:n=>{CQ.setCine([BX-5.5,3,BZ+5,BX+9,.8,BZ+1]);
-     CQ.say('Chúa Giê-su','Các ngươi hãy yên lòng; ấy là ta đây, đừng sợ!','Ma-thi-ơ 14:27 (Bản Truyền Thống 1925)',null,()=>
-     CQ.say('Phi-e-rơ','Lạy Chúa, nếu phải Chúa, xin khiến tôi đi trên mặt nước mà đến cùng Chúa.','Ma-thi-ơ 14:28 (Bản Truyền Thống 1925)',null,()=>{peter.minY=.06;peter.g.rotation.y=1.57;const x0=BX+3.8;
+     CQ.say('Chúa Giê-su','Các ngươi hãy yên lòng; ấy là ta đây, đừng sợ!','Ma-thi-ơ 14:27',null,()=>
+     CQ.say('Phi-e-rơ','Lạy Chúa, nếu phải Chúa, xin khiến tôi đi trên mặt nước mà đến cùng Chúa.','Ma-thi-ơ 14:28',null,()=>{peter.minY=.06;peter.g.rotation.y=1.57;const x0=BX+3.8;
      CQ.balance({name:'Nhìn về Thầy',text:'Phi-e-rơ bước xuống mặt nước. Giữ chấm tròn ở giữa vùng xanh để Phi-e-rơ luôn nhìn về Thầy. Nếu nhìn sóng gió, ông sẽ chìm!',secs:6,onP:(p,x)=>{peter.x=x0+(BX+13.6-x0)*p;peter.z=BZ+.35+1.1*p;peter.dy=Math.abs(x)>.4?-.55:0;}},()=>{peter.dy=0;
-     CQ.say('Chúa Giê-su','Hỡi người ít đức tin, sao ngươi hồ nghi làm vậy?','Ma-thi-ơ 14:31 (Bản Truyền Thống 1925)',null,()=>
+     CQ.say('Chúa Giê-su','Hỡi người ít đức tin, sao ngươi hồ nghi làm vậy?','Ma-thi-ơ 14:31',null,()=>
      CQ.say('Người kể chuyện','Chúa Giê-su giơ tay nắm lấy Phi-e-rơ. Khi hai người lên thuyền rồi thì gió yên lặng.','Theo Ma-thi-ơ 14:31-32','Xong',()=>{CQ.setCine(null);n();}));});}));}}];
  }});

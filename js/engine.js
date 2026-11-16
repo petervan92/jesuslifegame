@@ -169,7 +169,7 @@ function rockTomb(x,z,rot){const g=new T.Group();g.position.set(x,W.H(x,z),z);g.
   const stone=mesh(new T.CylinderGeometry(1.45,1.45,.45,22),toon('#cdbf9f'),0,1.4,1.5,g);stone.rotation.x=Math.PI/2;
   const c=Math.cos(rot||0),s=Math.sin(rot||0);W.obstacles.push({x:x+(-3.6)*s,z:z+(-3.6)*c,w:16,d:8.6,rot:rot||0,ox:0});return{g,stone};}
 function zones(def){W.zones=def;W.zone=null;W.bounds=(x,z)=>{const d=W.zones[W.zone];return !d||(d.rect?(Math.abs(x-d.c[0])<d.rect[0]&&Math.abs(z-d.c[1])<d.rect[1]):Math.hypot(x-d.c[0],z-d.c[1])<d.r);};}
-function goZone(k,px,pz,yw,cb,instant){const f=()=>{W.zone=k;const d=W.zones[k];if(d.tod){W.tgt=TOD[d.tod];applyTOD(1);}place(W.player,px,pz);if(yw!=null)yaw=yw;first=true;goTo=null;if(cb)cb();};if(instant)f();else fade(f);}
+function goZone(k,px,pz,yw,cb,instant){const f=()=>{W.zone=k;const d=W.zones[k];if(d.tod){W.tgt=TOD[d.tod];applyTOD(1);}place(W.player,px,pz);if(yw!=null){yaw=yw;if(instant)W.startYaw=yw;}first=true;goTo=null;if(cb)cb();};if(instant)f();else fade(f);}
 
 /* ---------- characters ---------- */
 const outlineMat=new T.ShaderMaterial({side:T.BackSide,uniforms:{t:{value:.014}},vertexShader:'uniform float t;void main(){gl_Position=projectionMatrix*modelViewMatrix*vec4(position+normal*t,1.);}',fragmentShader:'void main(){gl_FragColor=vec4(.16,.1,.08,1.);}'});
@@ -319,15 +319,16 @@ function setCine(c){cine=c?{pos:new T.Vector3(c[0],c[1],c[2]),look:new T.Vector3
 
 /* ---------- audio: background music with volume and mute ---------- */
 const AU={vol:.5,mute:false,fx:.7,fxMute:false};try{Object.assign(AU,JSON.parse(localStorage.getItem('cq-audio')||'{}'));}catch(e){}
-const bgm=new Audio();bgm.loop=true;bgm.preload='auto';bgm.src='audio/followjesus_background.mp3';let bgmOn=false,bgmGain=null;
-function auApply(){const v=AU.mute?0:AU.vol;if(bgmGain)bgmGain.gain.value=v;else{try{bgm.volume=v;}catch(e){}}bgm.muted=AU.mute;
+const bgm=new Audio();bgm.loop=true;bgm.preload='auto';bgm.src='audio/followjesus_background.mp3';let bgmOn=false;
+function auApply(){const v=AU.mute?0:AU.vol;try{bgm.volume=v;}catch(e){}bgm.muted=AU.mute;
   $('bSnd').textContent=AU.mute?'Nhạc: tắt':'Nhạc: bật';$('bSnd').setAttribute('aria-pressed',!AU.mute);$('aMute').textContent=AU.mute?'Bật nhạc nền':'Tắt nhạc nền';$('aVol').value=Math.round(AU.vol*100);$('aVolN').textContent=Math.round(AU.vol*100)+'%';
   try{localStorage.setItem('cq-audio',JSON.stringify(AU));}catch(e){}}
 function auStart(){fxGo=true;if(bgmOn)return;
-  /* iPhone and iPad ignore audio.volume, so on a served page the music goes through a gain node instead */
-  if(!bgmGain&&/^http/.test(location.protocol)&&/iP(hone|ad|od)|Macintosh.*Mobile/.test(navigator.userAgent)){try{const AC=window.AudioContext||window.webkitAudioContext,ctx=new AC(),src=ctx.createMediaElementSource(bgm);bgmGain=ctx.createGain();src.connect(bgmGain);bgmGain.connect(ctx.destination);ctx.resume();auApply();}catch(e){bgmGain=null;}}
+  /* Plain <audio> only: routing through Web Audio made the music silent on iPhone (it follows the ring/silent switch and needs its own unlock). */
   const p=bgm.play();if(p&&p.then)p.then(()=>{bgmOn=true;}).catch(()=>{});}
-addEventListener('pointerdown',auStart);addEventListener('keydown',auStart);
+['pointerdown','pointerup','touchend','click','keydown'].forEach(ev=>addEventListener(ev,auStart,{passive:true}));
+const isIOS=/iP(hone|ad|od)/.test(navigator.userAgent)||(/Macintosh/.test(navigator.userAgent)&&navigator.maxTouchPoints>1);
+if(isIOS)document.body.classList.add('ios');
 document.addEventListener('visibilitychange',()=>{if(document.hidden){bgm.pause();bgmOn=false;}else auStart();});
 $('bSnd').onclick=$('aMute').onclick=()=>{AU.mute=!AU.mute;auApply();};
 $('aVol').oninput=()=>{AU.vol=$('aVol').value/100;if(AU.vol>0)AU.mute=false;auApply();};
@@ -348,7 +349,7 @@ fxApply();
 /* ---------- chapter flow ---------- */
 let prog={};try{prog=JSON.parse(localStorage.getItem('cq-prog')||'{}');}catch(e){}
 function load(i){chIdx=i;const ch=CQ.chapters[i];if(W)W.scene.traverse(o=>{if(o.geometry)o.geometry.dispose();});
-  newWorld();seed=4000+i*977;ch.build(W);W.step=-1;yaw=W.startYaw;pitch=.17;dist=8;first=true;talking=false;goTo=null;cine=null;near=null;endTalk();
+  $('c').style.filter='';newWorld();seed=4000+i*977;ch.build(W);W.step=-1;yaw=W.startYaw;pitch=.17;dist=8;first=true;talking=false;goTo=null;cine=null;near=null;endTalk();
   $('chT').textContent='Chương '+ch.no+' · '+ch.title;$('chS').textContent=ch.sub;}
 function startChapter(i){const ch=CQ.chapters[i];if(!ch.build)return;fade(()=>{load(i);mode='explore';ui();$('done').style.display='none';sfx('chapter');
   if(ch.intro)story(ch.intro,advance);else advance();});}
@@ -356,7 +357,8 @@ function finish(){sfx('stamp');const ch=CQ.chapters[chIdx];prog[ch.id]=1;try{loc
   $('stNo').textContent=ch.no;$('stName').textContent=ch.title;$('dnT').textContent='Hoàn thành chương '+ch.no;$('dnX').textContent=ch.outro||'';$('dnR').textContent=ch.outroRef||'';
   const nx=CQ.chapters[chIdx+1];$('dnNext').style.display=nx&&nx.build?'':'none';$('dnT').textContent=nx&&nx.build?'Hoàn thành chương '+ch.no:'Bạn đã đi hết hành trình!';$('dnNext').onclick=()=>startChapter(chIdx+1);$('done').style.display='flex';mode='done';ui();}
 function menu(){fade(()=>{$('done').style.display='none';mode='menu';buildMenu();ui();});}
-function buildMenu(){const box=$('chList');box.innerHTML='';CQ.chapters.forEach((ch,i)=>{const b=document.createElement('button');b.className='chap'+(ch.build?'':' soon');b.disabled=!ch.build;
+const PARTS=[[1,'Phần 1 · Khởi đầu'],[5,'Phần 2 · Những dấu lạ đầu tiên'],[9,'Phần 3 · Khắp xứ Ga-li-lê và Giu-đê'],[15,'Phần 4 · Giê-ru-sa-lem']];
+function buildMenu(){const box=$('chList');box.innerHTML='';CQ.chapters.forEach((ch,i)=>{const pt=PARTS.find(p=>p[0]===ch.no);if(pt&&CQ.chapters.length>8){const hd=document.createElement('div');hd.className='part';hd.textContent=pt[1];box.appendChild(hd);}const b=document.createElement('button');b.className='chap'+(ch.build?'':' soon');b.disabled=!ch.build;
     b.innerHTML='<span class="no">'+ch.no+'</span><span class="tx"><b>'+ch.title+'</b><small>'+(ch.build?ch.sub:'Sắp có')+'</small></span>'+(prog[ch.id]?'<span class="tem">Đã có tem</span>':'');b.onclick=()=>startChapter(i);box.appendChild(b);});}
 function ui(){const ex=mode==='explore';$('title').style.display=mode==='menu'?'flex':'none';$('chip').style.display=(ex||mode==='story')?'flex':'none';$('bar').style.display=(ex||mode==='menu')?'flex':'none';$('bMenu').style.display=ex?'':'none';
   $('pad').style.display=ex&&ctrl==='touch'?'grid':'none';$('hint').style.display=ex?'block':'none';
@@ -391,7 +393,7 @@ function frame(){requestAnimationFrame(frame);if(!W||!W.player)return;const dt=M
     if(I.s.visible){const by=I.P?I.P.g.position.y:(I.obj&&I.follow?I.obj.position.y:G(I.x,I.z)),sc=Math.max(.75,Math.min(3.2,camera.position.distanceTo(I.s.position)*.075))*(1+Math.sin(tt*5)*.06);I.s.position.set(I.x,by+I.h*(I.P&&I.P.o.S||1)+.12+Math.abs(Math.sin(tt*2.6))*.2,I.z);I.s.scale.setScalar(sc*.95);I.s.rotation.y=tt*2.2;}}
   const showP=mode==='explore'&&near&&!talking;$('prompt').style.display=showP?'block':'none';$('act').style.display=showP&&ctrl==='touch'?'block':'none';
   if(showP)$('prompt').textContent=(ctrl==='keys'?'E · ':'')+(near.verb||(near.P?'Trò chuyện với ':'Xem '))+near.name;
-  if(cine){camPos.copy(cine.pos);look.copy(cine.look);}
+  if(cine){camPos.copy(cine.pos);look.copy(cine.look);camPos.y=Math.max(camPos.y,G(camPos.x,camPos.z)+1.6);look.y=Math.max(look.y,G(look.x,look.z)+.4);}
   else if(mode==='menu'){const m=W.menuCam,a=tt*.05+.9;camPos.set(m.x+Math.cos(a)*m.r,m.y+m.h,m.z+Math.sin(a)*m.r);look.set(m.x,m.y,m.z);}
   else{look.set(pl.x,pl.g.position.y+2.2,pl.z);const cp=Math.cos(pitch);camPos.set(pl.x+Math.sin(yaw)*cp*dist,look.y+Math.sin(pitch)*dist,pl.z+Math.cos(yaw)*cp*dist);camPos.y=Math.max(camPos.y,Math.max(G(camPos.x,camPos.z),0)+.6);}
   if(first){camera.position.copy(camPos);W.look=look.clone();first=false;}else{camera.position.lerp(camPos,Math.min(1,dt*(cine||mode==='menu'?1.6:7)));W.look.lerp(look,Math.min(1,dt*(cine?2.2:12)));}
@@ -406,6 +408,6 @@ function frame(){requestAnimationFrame(frame);if(!W||!W.player)return;const dt=M
 Object.assign(CQ,{T,R,rr,sm,C,noise,toon,mesh,canvasTex,boxUV,M,grad,G,distPath,terrain,sky,water,setTod,jar,house,wallBox,palm,olive,bush,scatter,sheep,boat,campfire,crowd,ring,rockTomb,zones,goZone,balance,outlineMat,makeChar,place,walkTo,face,dove,addInter,byId,marks,say,lines,fillWord,choice,order,tapFill,story,fade,setCine,
   sfx,
   movePlayer:(x,z,y)=>{place(W.player,x,z);if(y!=null)yaw=y;first=true;},
-  boot:()=>{buildMenu();load(0);mode='menu';ui();frame();},
+  boot:()=>{CQ.chapters.sort((a,b)=>a.no-b.no);buildMenu();load(0);mode='menu';ui();frame();},
   dbg:{start:startChapter,state:()=>({mode,talking,step:W.step,steps:W.steps.length}),yaw:v=>{yaw=v;},pitch:v=>{pitch=v;},talkId:id=>talk(byId(id)),balWin:()=>{if(balSkip)balSkip();},tap,setCtrl}});
 })();

@@ -50,15 +50,15 @@ CQ.chapters.push({id:'ch2',no:2,title:'Sông Giô-đanh',sub:'Chúa Giê-su ch�
 
   W.player=CQ.place(CQ.makeChar(CQ.CAST.eli),0,26,Math.PI);
   W.steps=[
-   {at:'john',text:'Xuống bờ sông nghe Giăng giảng',run:n=>CQ.say('Người kể chuyện','Vả, Giăng mặc áo bằng lông lạc đà, buộc dây lưng bằng da; ăn, thì ăn những châu chấu và mật ong rừng.','Ma-thi-ơ 3:4 (Bản Truyền Thống 1925)',null,()=>
-     CQ.fillWord({name:'Giăng Báp-tít',before:'Các ngươi phải',after:', vì nước thiên đàng đã đến gần!',options:['đi ngủ','chạy trốn','ăn năn'],answer:'ăn năn',ref:'Ma-thi-ơ 3:2 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. Giăng kêu gọi mọi người quay về với Đức Chúa Trời.'},n))},
+   {at:'john',text:'Xuống bờ sông nghe Giăng giảng',run:n=>CQ.say('Người kể chuyện','Vả, Giăng mặc áo bằng lông lạc đà, buộc dây lưng bằng da; ăn, thì ăn những châu chấu và mật ong rừng.','Ma-thi-ơ 3:4',null,()=>
+     CQ.fillWord({name:'Giăng Báp-tít',before:'Các ngươi phải',after:', vì nước thiên đàng đã đến gần!',options:['đi ngủ','chạy trốn','ăn năn'],answer:'ăn năn',ref:'Ma-thi-ơ 3:2',wrong:'Chưa đúng. Giăng kêu gọi mọi người quay về với Đức Chúa Trời.'},n))},
    {text:'Có một người từ Ga-li-lê đến',run:n=>{jesus.g.visible=true;CQ.place(jesus,26,34,0);CQ.walkTo(jesus,4.4,10.6,3.4,()=>CQ.face(jesus,2,jz));CQ.setCine([-13,3.4,8.5,5,1.3,9.5]);john.noTurnT=1;
      CQ.say('Người kể chuyện','Khi ấy, Chúa Giê-su từ xứ Ga-li-lê đến cùng Giăng tại sông Giô-đanh, để chịu người làm phép báp-têm.','Theo Ma-thi-ơ 3:13',null,()=>{CQ.face(john,4.4,10.6);
-     CQ.say('Giăng Báp-tít','Chính tôi cần phải chịu Ngài làm phép báp-têm, mà Ngài lại trở đến cùng tôi sao!','Ma-thi-ơ 3:14 (Bản Truyền Thống 1925)',null,()=>
-     CQ.choice({name:'Chúa Giê-su',q:'Chúa Giê-su đáp lại Giăng thế nào?',options:['Bây giờ cứ làm đi, vì chúng ta nên làm cho trọn mọi việc công bình như vậy.','Vậy thôi, ta sẽ trở về Ga-li-lê.','Ngươi nói phải, hãy để ta làm phép báp-têm cho ngươi.'],ref:'Ma-thi-ơ 3:15 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. Chúa Giê-su vẫn muốn Giăng làm phép báp-têm cho Ngài.'},()=>{
+     CQ.say('Giăng Báp-tít','Chính tôi cần phải chịu Ngài làm phép báp-têm, mà Ngài lại trở đến cùng tôi sao!','Ma-thi-ơ 3:14',null,()=>
+     CQ.choice({name:'Chúa Giê-su',q:'Chúa Giê-su đáp lại Giăng thế nào?',options:['Bây giờ cứ làm đi, vì chúng ta nên làm cho trọn mọi việc công bình như vậy.','Vậy thôi, ta sẽ trở về Ga-li-lê.','Ngươi nói phải, hãy để ta làm phép báp-têm cho ngươi.'],ref:'Ma-thi-ơ 3:15',wrong:'Chưa đúng. Chúa Giê-su vẫn muốn Giăng làm phép báp-têm cho Ngài.'},()=>{
       jesus.dest=null;CQ.setCine([2.2,3.2,jz+7.6,2.7,.1,jz+.4]);john.raise=.3;CQ.walkTo(jesus,3.3,jz+.9,2.2,()=>{CQ.face(jesus,3.3,30);dip=0;});
       CQ.say('Người kể chuyện','Giăng làm phép báp-têm cho Ngài dưới sông. Vừa khi Chúa Giê-su ra khỏi nước, các từng trời mở ra.','Theo Ma-thi-ơ 3:16',null,()=>{john.raise=0;beamOn=1;bird.visible=true;CQ.setCine([-7,1.6,jz+7,3.3,9.5,jz+.6]);n();});}));});}},
    {at:'dove',taps:5,text:'Chạm vào chim bồ câu đang bay xuống',each:(I,k)=>{dn=k;},
     run:n=>{CQ.setCine([2.6,3.4,jz+7.2,3,.5,jz+.6]);CQ.say('Người kể chuyện','Thánh Linh của Đức Chúa Trời ngự xuống như chim bồ câu, đậu trên Ngài.','Theo Ma-thi-ơ 3:16',null,()=>
-     CQ.order({name:'Tiếng từ trên trời',q:'Có tiếng từ trên trời phán. Chạm vào các mảnh theo đúng thứ tự để ghép lại lời ấy.',chunks:['Nầy là','Con yêu dấu của ta,','đẹp lòng ta','mọi đàng.'],ref:'Ma-thi-ơ 3:17 (Bản Truyền Thống 1925)'},()=>{CQ.setCine(null);n();}));}}];
+     CQ.order({name:'Tiếng từ trên trời',q:'Có tiếng từ trên trời phán. Chạm vào các mảnh theo đúng thứ tự để ghép lại lời ấy.',chunks:['Nầy là','Con yêu dấu của ta,','đẹp lòng ta','mọi đàng.'],ref:'Ma-thi-ơ 3:17'},()=>{CQ.setCine(null);n();}));}}];
  }});

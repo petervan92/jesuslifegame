@@ -2,7 +2,7 @@
    ("đến tối", Mt 26:20: night), Gethsemane (the same night), Golgotha ("từ giờ thứ sáu đến giờ thứ chín,
    khắp cả xứ đều tối tăm mù mịt", Mt 27:45: dark sky). The crucifixion is told from a distance, without violence. */
 'use strict';
-CQ.chapters.push({id:'ch7',no:7,title:'Giê-ru-sa-lem',sub:'Vào thành, tiệc ly, Ghết-sê-ma-nê, thập tự giá',
+CQ.chapters.push({id:'ch7',no:17,title:'Giê-ru-sa-lem',sub:'Vào thành, tiệc ly, Ghết-sê-ma-nê, thập tự giá',
  intro:[
   {t:'Lễ Vượt Qua',x:'Gần đến lễ Vượt Qua, dân chúng từ khắp nơi kéo về thành Giê-ru-sa-lem. Nghe tin Chúa Giê-su sắp đến, họ ra đón Ngài.',ref:'Theo Giăng 12:12',cam:[-118,16,-74,-84,4,-95]},
   {t:'Vua cỡi lừa',x:'Chúa Giê-su không cỡi ngựa chiến như các vua. Ngài cỡi một con lừa con, đúng như lời đấng tiên tri đã nói từ xưa: Vua ngươi đến cùng ngươi, nhu mì, cỡi lừa.',ref:'Theo Ma-thi-ơ 21:4-5',cam:[-104,3,-90,-116,2.4,-95]}],
@@ -69,17 +69,17 @@ CQ.chapters.push({id:'ch7',no:7,title:'Giê-ru-sa-lem',sub:'Vào thành, tiệc 
    {collect:['p0','p1','p2','p3'],text:'Nhặt nhành chà là để đón Thầy vào thành',each:I=>{I.g.visible=false;I.hidden=true;},
     run:n=>CQ.order({name:'Đoàn dân',q:'Dân chúng trải áo và nhành cây trên đường, vừa đi vừa reo lên. Ghép lại lời họ reo.',chunks:['Hô-sa-na','con vua Đa-vít!','Đáng khen ngợi cho Đấng','nhân danh Chúa mà đến!'],ref:'Theo Ma-thi-ơ 21:9'},()=>{CQ.goZone('B',BX+3,BZ+3.4,0,toRoom);n();})},
    {at:'jesus',text:'Đến tối, Thầy ngồi ăn với mười hai môn đồ. Lại gần bàn',run:n=>{CQ.setCine([BX+1.5,FL+3.2,BZ+5.5,BX,FL+.8,BZ-2.6]);
-     const love=()=>CQ.order({name:'Chúa Giê-su',q:'Thầy còn cho các môn đồ một điều răn mới. Ghép lại lời ấy.',chunks:['Ta ban cho các ngươi','một điều răn mới,','nghĩa là các ngươi','phải yêu nhau'],ref:'Giăng 13:34 (Bản Truyền Thống 1925)'},()=>{CQ.setCine(null);CQ.goZone('C',GX+4,GZ+9,.4,toGarden);n();});
+     const love=()=>CQ.order({name:'Chúa Giê-su',q:'Thầy còn cho các môn đồ một điều răn mới. Ghép lại lời ấy.',chunks:['Ta ban cho các ngươi','một điều răn mới,','nghĩa là các ngươi','phải yêu nhau'],ref:'Giăng 13:34'},()=>{CQ.setCine(null);CQ.goZone('C',GX+4,GZ+9,.4,toGarden);n();});
      CQ.say('Người kể chuyện','Chúa Giê-su cầm lấy bánh, tạ ơn xong, bẻ ra phân phát cho các môn đồ.','Theo Lu-ca 22:19',null,()=>
-     CQ.fillWord({name:'Chúa Giê-su',before:'Nầy là',after:' ta, đã vì các ngươi mà phó cho; hãy làm sự nầy để nhớ đến ta.',options:['áo choàng','thân thể','ngôi nhà'],answer:'thân thể',ref:'Lu-ca 22:19 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. Tấm bánh bẻ ra nói về chính Ngài.'},love));}},
+     CQ.fillWord({name:'Chúa Giê-su',before:'Nầy là',after:' ta, đã vì các ngươi mà phó cho; hãy làm sự nầy để nhớ đến ta.',options:['áo choàng','thân thể','ngôi nhà'],answer:'thân thể',ref:'Lu-ca 22:19',wrong:'Chưa đúng. Tấm bánh bẻ ra nói về chính Ngài.'},love));}},
    {at:'jesus',text:'Trong vườn Ghết-sê-ma-nê, Thầy đang cầu nguyện',run:n=>{CQ.setCine([GX+5,2.6,GZ+5.5,GX,1.2,GZ-.5]);
      const taken=()=>CQ.say('Người kể chuyện','Rồi một toán người cầm gươm và gậy kéo đến bắt Chúa Giê-su. Các môn đồ đều bỏ Ngài mà trốn đi. Ngài không chống cự.','Theo Ma-thi-ơ 26:47-56',null,()=>{CQ.setCine(null);CQ.goZone('D',DX-2,DZ+4,-.75,toHill);n();});
      const watch=()=>CQ.balance({name:'Thức canh',text:'Thầy bảo các môn đồ: Hãy thức canh và cầu nguyện. Nhưng họ buồn ngủ quá. Giữ chấm tròn trong vùng xanh để ngọn đèn không tắt!',secs:6,onP:p=>{lampL.intensity=.5+p*1.2;}},taken);
      CQ.say('Người kể chuyện','Chúa Giê-su buồn bực lắm. Ngài đi xa các môn đồ một chút, sấp mặt xuống đất mà cầu nguyện.','Theo Ma-thi-ơ 26:37-39',null,()=>
-     CQ.fillWord({name:'Chúa Giê-su',before:'Cha ơi! nếu có thể được, xin cho chén nầy lìa khỏi Con! Song không theo ý muốn',after:', mà theo ý muốn Cha.',options:['Cha','Con','người'],answer:'Con',ref:'Ma-thi-ơ 26:39 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. Ngài chọn vâng theo ý Cha, chứ không theo ý riêng.'},watch));}},
+     CQ.fillWord({name:'Chúa Giê-su',before:'Cha ơi! nếu có thể được, xin cho chén nầy lìa khỏi Con! Song không theo ý muốn',after:', mà theo ý muốn Cha.',options:['Cha','Con','người'],answer:'Con',ref:'Ma-thi-ơ 26:39',wrong:'Chưa đúng. Ngài chọn vâng theo ý Cha, chứ không theo ý riêng.'},watch));}},
    {at:'mary',text:'Đồi Gô-gô-tha. Lại đứng với bà Ma-ri',run:n=>{CQ.setCine([DX-5,4.2,DZ+7,HX,hy+3,HZ]);
-     const love=()=>CQ.order({name:'Vì sao Chúa chịu chết?',q:'Kinh Thánh trả lời bằng một câu rất nổi tiếng. Ghép lại phần đầu câu ấy.',chunks:['Vì Đức Chúa Trời','yêu thương thế gian,','đến nỗi đã ban','Con một của Ngài'],ref:'Giăng 3:16 (Bản Truyền Thống 1925)'},()=>{CQ.setCine(null);n();});
-     const done=()=>CQ.say('Chúa Giê-su','Mọi việc đã được trọn.','Giăng 19:30 (Bản Truyền Thống 1925)',null,love);
+     const love=()=>CQ.order({name:'Vì sao Chúa chịu chết?',q:'Kinh Thánh trả lời bằng một câu rất nổi tiếng. Ghép lại phần đầu câu ấy.',chunks:['Vì Đức Chúa Trời','yêu thương thế gian,','đến nỗi đã ban','Con một của Ngài'],ref:'Giăng 3:16'},()=>{CQ.setCine(null);n();});
+     const done=()=>CQ.say('Chúa Giê-su','Mọi việc đã được trọn.','Giăng 19:30',null,love);
      CQ.say('Người kể chuyện','Họ đóng đinh Chúa Giê-su trên cây thập tự, giữa hai tên trộm cướp. Từ giờ thứ sáu đến giờ thứ chín, khắp cả xứ đều tối tăm mù mịt.','Theo Ma-thi-ơ 27:35-45',null,()=>
-     CQ.fillWord({name:'Chúa Giê-su',before:'Lạy Cha, xin',after:' cho họ, vì họ không biết mình làm điều gì.',options:['phạt','tha','quên'],answer:'tha',ref:'Lu-ca 23:34 (Bản Truyền Thống 1925)',wrong:'Chưa đúng. Ngay lúc đau đớn nhất, Ngài vẫn yêu thương họ.'},done));}}];
+     CQ.fillWord({name:'Chúa Giê-su',before:'Lạy Cha, xin',after:' cho họ, vì họ không biết mình làm điều gì.',options:['phạt','tha','quên'],answer:'tha',ref:'Lu-ca 23:34',wrong:'Chưa đúng. Ngay lúc đau đớn nhất, Ngài vẫn yêu thương họ.'},done));}}];
  }});

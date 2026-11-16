@@ -21,8 +21,8 @@
       The built-in figure is kept as a fallback while the model loads, or if it fails to load. */
 'use strict';
 CQ.CAST={
- jesus:{skin:'#c48d60',nose:'#b97f54',tunic:'#f1e7cf',clavi:'#7b4a5e',mantle:'#cfa869',tassel:'#3f6f9a',sash:'#b5483a',hair:'#3a281c',hairLong:1,beard:1,gesture:1},
- eli:{skin:'#c99468',tunic:'#dcae4f',hem:.5,sash:'#3a6ea5',hair:'#2e2018',bag:1,S:.74,head:1.16},
+ jesus:{skin:'#c48d60',tunic:'#fbf6ea',clavi:'#e2b84a',mantle:'#4f86c6',tassel:'#ffffff',sash:'#e2b84a',hair:'#3a281c',hairLong:1,beard:1,gesture:1},
+ eli:{skin:'#c99468',tunic:'#f08a4b',hem:.5,sash:'#fff1d6',band:'#2fb3a3',hair:'#2e2018',bag:1,S:.74,head:1.16},
  nathan:{skin:'#c99468',tunic:'#b9a47c',hem:.5,sash:'#a5483a',hair:'#2e2018',staff:1,S:.74,head:1.16},
  elder:{skin:'#b27a4e',tunic:'#7d8a5c',hem:.45,mantle:'#9a7a52',hair:'#d9d4c8',beard:2,staff:1,band:'#b5483a'},
  shepherd2:{skin:'#b9804f',tunic:'#8d7656',hem:.5,sash:'#6b4a2f',hair:'#241a13',beard:1,band:'#dcc9a0'},

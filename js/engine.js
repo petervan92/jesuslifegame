@@ -160,7 +160,7 @@ function crowd(pts,o){o=o||{};const n=pts.length,d=new T.Object3D(),col=new T.Co
   const body=mk(new T.CylinderGeometry(.2,.34,1,10).translate(0,.5,0)),head=mk(new T.SphereGeometry(.23,12,10)),hair=mk(new T.SphereGeometry(.25,12,8,0,6.283,0,1.5));
   const tun=['#b08a5e','#c9c0a8','#a5526a','#5f8f7a','#8d7656','#dcae4f','#7d8a5c','#c97b5a','#6f86a8','#e6d3ab'],sk=['#c99468','#b9804f','#c08a5e'],hr=['#2e2018','#241a13','#4a3a2c','#e6d3ab','#ebdfc4'],pk=a=>a[Math.floor(R()*a.length)];
   pts.forEach((p,i)=>{const s=(o.sit?.7:1)*rr(.9,1.06),y=G(p[0],p[1]);d.position.set(p[0],y,p[1]);d.rotation.set(0,p[2]==null?R()*6.28:p[2],0);d.scale.set(1,s,1);d.updateMatrix();body.setMatrixAt(i,d.matrix);body.setColorAt(i,col.set(pk(tun)));
-    d.position.y=y+1.2*s;d.scale.set(1,1,1);d.updateMatrix();head.setMatrixAt(i,d.matrix);head.setColorAt(i,col.set(pk(sk)));d.position.y+=.03;d.updateMatrix();hair.setMatrixAt(i,d.matrix);hair.setColorAt(i,col.set(pk(hr)));if(!o.noCol)W.circles.push({x:p[0],z:p[1],r:.4});});
+    d.position.y=y+1.2*s;d.scale.set(1,1,1);d.updateMatrix();head.setMatrixAt(i,d.matrix);head.setColorAt(i,col.copy(skinTone(pk(sk))));d.position.y+=.03;d.updateMatrix();hair.setMatrixAt(i,d.matrix);hair.setColorAt(i,col.set(pk(hr)));if(!o.noCol)W.circles.push({x:p[0],z:p[1],r:.4});});
   [body,head,hair].forEach(m=>{m.castShadow=true;m.receiveShadow=true;W.scene.add(m);});return body;}
 function ring(cx,cz,n,r0,r1,a0,a1){const a=[];for(let i=0;i<n;i++){const t=rr(a0==null?0:a0,a1==null?6.283:a1),r=rr(r0,r1);a.push([cx+Math.cos(t)*r,cz+Math.sin(t)*r,Math.atan2(-Math.cos(t),-Math.sin(t))]);}return a;}
 function rockTomb(x,z,rot){const g=new T.Group();g.position.set(x,W.H(x,z),z);g.rotation.y=rot||0;W.scene.add(g);const rk=toon('#b9a888'),rk2=toon('#a3927a');
@@ -173,9 +173,16 @@ function goZone(k,px,pz,yw,cb,instant){const f=()=>{W.zone=k;const d=W.zones[k];
 
 /* ---------- characters ---------- */
 const outlineMat=new T.ShaderMaterial({side:T.BackSide,uniforms:{t:{value:.014}},vertexShader:'uniform float t;void main(){gl_Position=projectionMatrix*modelViewMatrix*vec4(position+normal*t,1.);}',fragmentShader:'void main(){gl_FragColor=vec4(.16,.1,.08,1.);}'});
+/* skin: every character's skin colour is brightened toward a warm light tone and shaded more softly than cloth, so faces stay bright */
+const gradSoft=new T.DataTexture(new Uint8Array([205,205,232,255]),4,1,T.LuminanceFormat);gradSoft.minFilter=gradSoft.magFilter=T.NearestFilter;gradSoft.needsUpdate=true;
+const SKIN_LIGHT=C('#fbe0c4'),skinMats={};
+const skinTone=hex=>C(hex).lerp(SKIN_LIGHT,.55);
+const cheekMat=new T.MeshToonMaterial({color:'#f9b9a6',gradientMap:gradSoft});
+function skinMat(hex){if(!skinMats[hex])skinMats[hex]=new T.MeshToonMaterial({color:skinTone(hex),gradientMap:gradSoft});return skinMats[hex];}
+const STY={body:.9,headY:1.33,head:1.22,kid:1.12}; /* proportions: body height factor, head centre height, head size, extra for children */
 function makeChar(o){const g=new T.Group(),Wd=o.W||1,hem=o.hem==null?.1:o.hem,top=1.08,len=top-hem;const P={g,o,t:R()*6,move:0,bob:0,x:0,z:0};
   const em=o.emis?{emissive:o.emis,emissiveIntensity:.55}:null;
-  const skin=toon(o.skin),tun=toon(o.tunic,em),hairM=toon(o.hair||'#2e2018');
+  const skin=skinMat(o.skin),tun=toon(o.tunic,em),hairM=toon(o.hair||'#2e2018');
   const part=(geo,mat,x,y,z,par,noOut)=>{const m=mesh(geo,mat,x,y,z,par||g);if(!noOut)m.add(new T.Mesh(geo,outlineMat));return m;};
   P.legs=[-1,1].map(s=>{const l=new T.Group();l.position.set(s*.1*Wd,.55,0);g.add(l);part(new T.CylinderGeometry(.07,.06,.5,8),skin,0,-.27,0,l);part(new T.BoxGeometry(.13,.06,.27),toon('#6b4a2f'),0,-.52,.05,l);return l;});
   const rB=.2*Wd,rH=(.2+.14*(len/.98))*Wd;
@@ -193,21 +200,24 @@ function makeChar(o){const g=new T.Group(),Wd=o.W||1,hem=o.hem==null?.1:o.hem,to
   part(new T.CylinderGeometry(.075,.085,.12,8),skin,0,top+.07,0,g,true);
   const hd=new T.Group();hd.position.set(0,1.38,0);hd.scale.setScalar(o.head||1);g.add(hd);P.head=hd;
   part(new T.SphereGeometry(.25,22,16),skin,0,0,0,hd).scale.set(1,1.04,.97);
-  for(const s of[-1,1]){part(new T.SphereGeometry(.042,10,8),toon('#2a1c14'),s*.092,0,.226,hd,true).scale.set(.82,1.3,.4);part(new T.SphereGeometry(.014,6,5),new T.MeshBasicMaterial({color:'#fff'}),s*.082,.03,.243,hd,true);
-    part(new T.BoxGeometry(.085,.017,.02),hairM,s*.092,.088,.234,hd,true).rotation.z=-s*.14;part(new T.SphereGeometry(.045,8,6),skin,s*.247,-.01,0,hd,true);}
-  part(new T.SphereGeometry(.03,8,6),toon(o.nose||o.skin),0,-.045,.25,hd,true);
-  const mo=part(new T.TorusGeometry(.038,.008,4,10,Math.PI),toon('#6a2f25'),0,-.105,.236,hd,true);mo.rotation.z=Math.PI;
+  for(const s of[-1,1]){part(new T.SphereGeometry(.058,12,10),toon('#ffffff'),s*.096,.012,.222,hd,true).scale.set(.85,1.15,.35);part(new T.SphereGeometry(.037,10,8),toon('#3a2416'),s*.096,.006,.238,hd,true).scale.set(.85,1.15,.35);part(new T.SphereGeometry(.013,6,5),new T.MeshBasicMaterial({color:'#fff'}),s*.086,.032,.252,hd,true);
+    part(new T.SphereGeometry(.042,8,6),cheekMat,s*.158,-.07,.19,hd,true).scale.set(1,.65,.3);
+    part(new T.BoxGeometry(.085,.017,.02),hairM,s*.096,.1,.228,hd,true).rotation.z=-s*.1;part(new T.SphereGeometry(.045,8,6),skin,s*.247,-.01,0,hd,true);}
+  part(new T.SphereGeometry(.03,8,6),skin,0,-.045,.25,hd,true);
+  const mo=part(new T.TorusGeometry(.05,.011,5,12,Math.PI),toon('#7a3226'),0,-.085,.232,hd,true);mo.rotation.z=Math.PI;
   if(!o.veil){part(new T.SphereGeometry(.268,22,14,0,Math.PI*2,0,Math.PI*.5),hairM,0,.005,-.012,hd).rotation.x=-.3;
     if(o.hairLong)part(new T.SphereGeometry(.25,16,12),hairM,0,-.1,-.085,hd).scale.set(1.02,1.12,.72);
     for(const s of[-1,1])part(new T.SphereGeometry(.07,8,6),hairM,s*.215,.02+(o.hairLong?-.06:0),.03,hd,true).scale.set(.6,o.hairLong?2:1.3,1);}
   if(o.beard){part(new T.SphereGeometry(.2,16,10),hairM,0,-.165-.02*o.beard,.075,hd).scale.set(1.0,.5+.16*o.beard,.72);part(new T.BoxGeometry(.13,.028,.03),hairM,0,-.078,.243,hd,true);
-    const lip=part(new T.TorusGeometry(.038,.009,4,10,Math.PI),toon('#7a3a2c'),0,-.1,.262,hd,true);lip.rotation.z=Math.PI;mo.visible=false;}
+    const lip=part(new T.TorusGeometry(.048,.011,5,12,Math.PI),toon('#8a3a2c'),0,-.092,.262,hd,true);lip.rotation.z=Math.PI;mo.visible=false;}
   if(o.veil){part(new T.SphereGeometry(.285,22,14,0,Math.PI*2,0,Math.PI*.6),toon(o.veil),0,0,-.02,hd).rotation.x=-.42;part(new T.CylinderGeometry(.27,.33,.5,16,1,true,Math.PI*.55,Math.PI*.9),toon(o.veil,{side:T.DoubleSide}),0,-.3,-.03,hd);}
   if(o.band)part(new T.TorusGeometry(.262,.028,6,22),toon(o.band),0,.1,-.01,hd,true).rotation.x=Math.PI/2-.3;
   if(o.halo)part(new T.TorusGeometry(.2,.02,6,24),new T.MeshBasicMaterial({color:'#ffe38a'}),0,.38,0,hd,true).rotation.x=Math.PI/2;
   if(o.jar)jar(hd,0,.26,0,.62);
   if(o.staff)part(new T.CylinderGeometry(.025,.03,1.9,6),M.wood,0,-.2,.05,P.arms[1],true);
   if(o.glow){const L=new T.PointLight(o.glow,1.5,30,1.5);L.position.y=1.3;g.add(L);P.light=L;}
+  /* house style (see STY): about 2.6 heads tall, large friendly face */
+  const B=new T.Group();g.children.slice().forEach(c=>{if(c!==hd&&!c.isLight)B.add(c);});B.scale.y=STY.body;g.add(B);hd.position.y=STY.headY;hd.scale.setScalar(Math.max(STY.head,(o.head||1)*STY.kid));
   /* optional hand-made model: set `model:'models/name.glb'` in js/characters.js; the built-in figure stays as the fallback */
   if(o.model&&T.GLTFLoader){new T.GLTFLoader().load(o.model,gl=>{const m=gl.scene,bb=new T.Box3().setFromObject(m),h=(bb.max.y-bb.min.y)||1,k=(o.modelHeight||1.7)/h;m.scale.setScalar(k);m.position.y=-bb.min.y*k;m.traverse(c=>{if(c.isMesh)c.castShadow=true;});
     g.children.slice().forEach(c=>{if(!c.isLight)c.visible=false;});g.add(m);P.model=m;

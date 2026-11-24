@@ -288,8 +288,8 @@ const dlg=$('dlg');let spoken='';
 /* Recorded voice: audio/voice/<FNV-1a hash of the line>.mp3, made by tools/make_voice.py. Falls back to the system voice when a line has no file. */
 let voice=null;
 const vHash=s=>{let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,0x01000193);}return (h>>>0).toString(16).padStart(8,'0');};
-function sysSpeak(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='vi-VN';u.rate=.92;speechSynthesis.speak(u);}catch(e){}}
-function speak(){hush();if(!spoken)return;const t=spoken,a=new Audio('audio/voice/'+vHash(t)+'.mp3');voice=a;a.onerror=()=>{if(voice===a){voice=null;sysSpeak(t);}};a.play().catch(()=>{});}
+function sysSpeak(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='vi-VN';u.rate=.92;u.volume=AU.voice;speechSynthesis.speak(u);}catch(e){}}
+function speak(){hush();if(!spoken)return;const t=spoken,a=new Audio('audio/voice/'+vHash(t)+'.mp3');voice=a;a.volume=AU.voice;auRoute(a,'voice');a.onerror=()=>{if(voice===a){voice=null;sysSpeak(t);}};a.play().catch(()=>{});}
 function hush(){if(voice){voice.onerror=null;voice.pause();voice=null;}try{speechSynthesis.cancel();}catch(e){}}
 const canSpeak=true;
 /* Auto-read: on by default, saved in localStorage 'cq-auto'; toggled from the top bar (bRead) or Settings (rAuto). */
@@ -337,28 +337,40 @@ function fade(cb){const f=$('fade');f.style.opacity=1;f.style.pointerEvents='aut
 function setCine(c){cine=c?{pos:new T.Vector3(c[0],c[1],c[2]),look:new T.Vector3(c[3],c[4],c[5])}:null;}
 
 /* ---------- audio: background music with volume and mute ---------- */
-const AU={vol:.5,mute:false,fx:.7,fxMute:false};try{Object.assign(AU,JSON.parse(localStorage.getItem('cq-audio')||'{}'));}catch(e){}
+const AU={vol:.5,mute:false,fx:.7,fxMute:false,voice:1};try{Object.assign(AU,JSON.parse(localStorage.getItem('cq-audio')||'{}'));}catch(e){}
+/* iPhone/iPad ignore <audio>.volume, so there each element is routed through a Web Audio GainNode per channel.
+   audioSession 'playback' keeps it audible with the silent switch on (iOS 17+). Elsewhere element.volume is used. */
+const isIOS=/iP(hone|ad|od)/.test(navigator.userAgent)||(/Macintosh/.test(navigator.userAgent)&&navigator.maxTouchPoints>1);
+let AC=null;const GN={},auPend=[];
+function auCtx(){if(!isIOS)return null;if(!AC){try{try{if(navigator.audioSession)navigator.audioSession.type='playback';}catch(e){}
+  AC=new (window.AudioContext||window.webkitAudioContext)();for(const k of ['bgm','fx','voice']){GN[k]=AC.createGain();GN[k].connect(AC.destination);}auGain('bgm',AU.mute?0:AU.vol);auGain('voice',AU.voice);
+  auPend.splice(0).forEach(([el,k])=>auRoute(el,k));}catch(e){AC=null;}}
+  if(AC&&AC.state!=='running')AC.resume().catch(()=>{});return AC;}
+function auRoute(el,k){if(!isIOS||el._r)return;if(!AC){auPend.push([el,k]);return;}try{AC.createMediaElementSource(el).connect(GN[k]);el._r=1;}catch(e){}}
+function auGain(k,v){if(GN[k])GN[k].gain.value=v;}
+function vApply(){$('vVol').value=Math.round(AU.voice*100);$('vVolN').textContent=Math.round(AU.voice*100)+'%';if(voice)try{voice.volume=AU.voice;}catch(e){}auGain('voice',AU.voice);
+  try{localStorage.setItem('cq-audio',JSON.stringify(AU));}catch(e){}}
 const bgm=new Audio();bgm.loop=true;bgm.preload='auto';bgm.src='audio/followjesus_background.mp3';let bgmOn=false;
-function auApply(){const v=AU.mute?0:AU.vol;try{bgm.volume=v;}catch(e){}bgm.muted=AU.mute;
+function auApply(){const v=AU.mute?0:AU.vol;try{bgm.volume=v;}catch(e){}bgm.muted=AU.mute;auGain('bgm',v);
   $('bSnd').textContent=AU.mute?'Nhạc: tắt':'Nhạc: bật';$('bSnd').setAttribute('aria-pressed',!AU.mute);$('aMute').textContent=AU.mute?'Bật nhạc nền':'Tắt nhạc nền';$('aVol').value=Math.round(AU.vol*100);$('aVolN').textContent=Math.round(AU.vol*100)+'%';
   try{localStorage.setItem('cq-audio',JSON.stringify(AU));}catch(e){}}
-function auStart(){fxGo=true;if(bgmOn)return;
+function auStart(){fxGo=true;auCtx();if(bgmOn)return;
   /* Plain <audio> only: routing through Web Audio made the music silent on iPhone (it follows the ring/silent switch and needs its own unlock). */
   const p=bgm.play();if(p&&p.then)p.then(()=>{bgmOn=true;}).catch(()=>{});}
 ['pointerdown','pointerup','touchend','click','keydown'].forEach(ev=>addEventListener(ev,auStart,{passive:true}));
-const isIOS=/iP(hone|ad|od)/.test(navigator.userAgent)||(/Macintosh/.test(navigator.userAgent)&&navigator.maxTouchPoints>1);
 if(isIOS)document.body.classList.add('ios');
 document.addEventListener('visibilitychange',()=>{if(document.hidden){bgm.pause();bgmOn=false;}else auStart();});
 $('bSnd').onclick=$('aMute').onclick=()=>{AU.mute=!AU.mute;auApply();};
 $('aVol').oninput=()=>{AU.vol=$('aVol').value/100;if(AU.vol>0)AU.mute=false;auApply();};
-auApply();
+auRoute(bgm,'bgm');auApply();
+$('vVol').oninput=()=>{AU.voice=$('vVol').value/100;vApply();};vApply();
 /* ---------- sound effects: file map in js/sounds.js (window.CQ_SFX); plain audio elements, silent on any failure ---------- */
 let fxGo=false;const fxA={},fxLast={};
 (function(){const M=window.CQ_SFX||{};for(const k in M){try{const a=new Audio();a.preload='auto';a.onerror=()=>{fxA[k]=null;};a.src=M[k];fxA[k]=[a];}catch(e){}}})();
 function sfx(k,g){if(!fxGo||AU.fxMute||!(AU.fx>0))return;const p=fxA[k];if(!p)return;const now=performance.now();
   if(k==='open'&&now-(fxLast.tap||0)<150)return;fxLast[k]=now;
   try{let a=p.find(x=>x.paused||x.ended);if(!a){if(p.length<5){a=p[0].cloneNode();p.push(a);}else a=p[0];}
-    a.volume=Math.min(1,AU.fx*(g||1));a.currentTime=0;const r=a.play();if(r&&r.catch)r.catch(()=>{});}catch(e){}}
+    const fv=Math.min(1,AU.fx*(g||1));a.volume=fv;auRoute(a,'fx');auGain('fx',fv);a.currentTime=0;const r=a.play();if(r&&r.catch)r.catch(()=>{});}catch(e){}}
 function fxApply(){$('fxMute').textContent=AU.fxMute?'Bật hiệu ứng':'Tắt hiệu ứng';$('fxVol').value=Math.round(AU.fx*100);$('fxVolN').textContent=Math.round(AU.fx*100)+'%';
   try{localStorage.setItem('cq-audio',JSON.stringify(AU));}catch(e){}}
 $('fxMute').onclick=()=>{AU.fxMute=!AU.fxMute;fxApply();sfx('tap');};
@@ -383,10 +395,12 @@ function buildMenu(){const box=$('chList');box.innerHTML='';CQ.chapters.forEach(
 function ui(){const ex=mode==='explore';$('title').style.display=mode==='menu'?'flex':'none';$('chip').style.display=(ex||mode==='story')?'flex':'none';$('bar').style.display=(ex||mode==='menu'||mode==='story')?'flex':'none';$('bMenu').style.display=ex?'':'none';
   $('pad').style.display=ex&&ctrl==='touch'?'grid':'none';$('hint').style.display=ex?'block':'none';
   $('hint').textContent=ctrl==='touch'?'Nút mũi tên để đi · kéo màn hình để xoay · bấm vào nơi có dấu !':'W A S D để đi · kéo chuột để xoay · bấm vào nơi có dấu ! hoặc nhấn E';
-  $('cKeys').setAttribute('aria-pressed',ctrl==='keys');$('cTouch').setAttribute('aria-pressed',ctrl==='touch');if(!ex){$('prompt').style.display='none';$('act').style.display='none';if(mode!=='menu')$('set').style.display='none';}if(W)marks();hook('ui',mode);}
+  $('cKeys').setAttribute('aria-pressed',ctrl==='keys');$('cTouch').setAttribute('aria-pressed',ctrl==='touch');if(!ex){$('prompt').style.display='none';$('act').style.display='none';if(mode!=='menu'){$('set').style.display='none';$('setBg').style.display='none';}}if(W)marks();hook('ui',mode);}
 function setCtrl(c){ctrl=c;try{localStorage.setItem('cq-ctrl',c);}catch(e){}joyX=joyY=0;ui();}
 $('cKeys').onclick=()=>setCtrl('keys');$('cTouch').onclick=()=>setCtrl('touch');
-$('bSet').onclick=()=>{const o=$('set').style.display!=='block';$('set').style.display=o?'block':'none';};
+function setShow(o){$('set').style.display=o?'block':'none';$('setBg').style.display=o?'block':'none';}
+$('bSet').onclick=()=>setShow($('set').style.display!=='block');$('setX').onclick=$('setBg').onclick=()=>setShow(false);
+addEventListener('keydown',e=>{if(e.key==='Escape'&&$('set').style.display==='block')setShow(false);});
 $('bMenu').onclick=menu;$('dnMenu').onclick=menu;
 
 /* ---------- collisions ---------- */

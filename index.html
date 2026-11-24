@@ -59,15 +59,16 @@ button:focus-visible{outline:3px solid var(--wheat);outline-offset:2px}
 .opt.big{font-size:26px;padding:12px 34px;touch-action:none;user-select:none;-webkit-user-select:none}
 .tapbtn{width:132px;height:132px;border-radius:50%;background:var(--wheat);color:#2a2008;font-weight:800;font-size:26px;box-shadow:0 9px 0 #a87d1c;user-select:none;-webkit-user-select:none;touch-action:manipulation}
 .tapbtn:active{transform:translateY(6px);box-shadow:0 3px 0 #a87d1c}
-#set{position:fixed;z-index:9;right:16px;top:70px;width:min(340px,calc(100vw - 32px));background:rgba(15,51,68,.96);border-radius:12px;padding:14px 16px;display:none}
+#set{position:fixed;z-index:9;right:16px;top:70px;width:min(340px,calc(100vw - 32px));max-height:calc(100vh - 86px);max-height:calc(100dvh - 86px);overflow-y:auto;-webkit-overflow-scrolling:touch;background:rgba(15,51,68,.96);border-radius:12px;padding:14px 16px;display:none}
 #set h3{font-family:var(--display);margin:0 0 6px;font-size:20px;color:var(--wheat)}
 #set .sub{font-size:13px;opacity:.85;margin-bottom:8px}
 #set .seg{background:rgba(255,255,255,.08);flex-wrap:wrap}
 .vol{display:flex;align-items:center;gap:10px;font-size:14px}
 .vol input{flex:1;accent-color:var(--wheat);height:28px}
 .vol span{width:44px;text-align:right;font-variant-numeric:tabular-nums}
-.iosnote{display:none;margin:12px 0 0}body.ios .iosnote{display:block}body.ios .vol{display:none}
-#bar{z-index:21}#set{z-index:22}
+#setX{position:absolute;top:8px;right:8px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:22px;line-height:1;padding:0;display:flex;align-items:center;justify-content:center}
+#setBg{position:fixed;inset:0;z-index:21;display:none;background:transparent}
+#bar{z-index:21}#set{z-index:23}
 #pad{position:fixed;z-index:6;left:20px;bottom:64px;display:none;grid-template-areas:". u ." "l . r" ". d .";grid-template-columns:repeat(3,58px);grid-template-rows:repeat(3,58px);gap:4px;touch-action:none}
 #pad button{background:rgba(15,51,68,.72);border:2px solid rgba(246,237,216,.55);border-radius:14px;font-size:22px;touch-action:none;user-select:none;-webkit-user-select:none}
 #pad button.on{background:var(--wheat);color:#2a2008}
@@ -166,17 +167,19 @@ svg .ring{fill:none;stroke:#c2503c;stroke-width:3;transform-box:fill-box;transfo
   <button data-d="0,-1" style="grid-area:d" aria-label="Đi xuống">&#9660;</button>
 </div>
 <button id="act">Chọn</button>
-<div id="set">
+<div id="setBg"></div>
+<div id="set" role="dialog" aria-label="Cài đặt">
+  <button id="setX" aria-label="Đóng cài đặt">&times;</button>
   <h3>Cài đặt</h3>
   <div class="sub">Cách điều khiển nhân vật</div>
   <div class="seg" role="group" aria-label="Cách điều khiển">
     <button id="cKeys">Bàn phím và chuột</button>
     <button id="cTouch">Nút trên màn hình</button>
   </div>
-  <p class="sub iosnote">Trên iPhone và iPad, hãy chỉnh to nhỏ bằng nút âm lượng của máy. Ở đây chỉ bật hoặc tắt được.</p>
   <div class="sub" style="margin:14px 0 6px">Đọc truyện</div>
   <p class="sub" style="margin:0 0 6px">Khi bật, lời thoại và lời kể được đọc tự động. Vẫn có thể bấm "Nghe đọc" để nghe lại.</p>
-  <button class="alt" id="rAuto">Tắt tự động đọc</button>
+  <div class="vol"><label for="vVol">Âm lượng</label><input type="range" id="vVol" min="0" max="100" step="5" value="100"><span id="vVolN">100%</span></div>
+  <button class="alt" id="rAuto" style="margin-top:8px">Tắt tự động đọc</button>
   <div class="sub" style="margin:14px 0 6px">Nhạc nền</div>
   <div class="vol"><label for="aVol">Âm lượng</label><input type="range" id="aVol" min="0" max="100" step="5" value="50"><span id="aVolN">50%</span></div>
   <button class="alt" id="aMute" style="margin-top:8px">Tắt nhạc nền</button>

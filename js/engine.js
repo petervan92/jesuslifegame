@@ -169,7 +169,7 @@ function rockTomb(x,z,rot){const g=new T.Group();g.position.set(x,W.H(x,z),z);g.
   const stone=mesh(new T.CylinderGeometry(1.45,1.45,.45,22),toon('#cdbf9f'),0,1.4,1.5,g);stone.rotation.x=Math.PI/2;
   const c=Math.cos(rot||0),s=Math.sin(rot||0);W.obstacles.push({x:x+(-3.6)*s,z:z+(-3.6)*c,w:16,d:8.6,rot:rot||0,ox:0});return{g,stone};}
 function zones(def){W.zones=def;W.zone=null;W.bounds=(x,z)=>{const d=W.zones[W.zone];return !d||(d.rect?(Math.abs(x-d.c[0])<d.rect[0]&&Math.abs(z-d.c[1])<d.rect[1]):Math.hypot(x-d.c[0],z-d.c[1])<d.r);};}
-function goZone(k,px,pz,yw,cb,instant){const f=()=>{W.zone=k;const d=W.zones[k];if(d.tod){W.tgt=TOD[d.tod];applyTOD(1);}place(W.player,px,pz);if(yw!=null){yaw=yw;if(instant)W.startYaw=yw;}first=true;goTo=null;if(cb)cb();};if(instant)f();else fade(f);}
+function goZone(k,px,pz,yw,cb,instant){const f=()=>{W.zone=k;const d=W.zones[k];if(d.tod){W.tgt=TOD[d.tod];applyTOD(1);}place(W.player,px,pz);if(yw!=null){yaw=yw;if(instant)W.startYaw=yw;}first=true;goTo=null;hook('zone');if(cb)cb();};if(instant)f();else fade(f);}
 
 /* ---------- characters ---------- */
 const outlineMat=new T.ShaderMaterial({side:T.BackSide,uniforms:{t:{value:.014}},vertexShader:'uniform float t;void main(){gl_Position=projectionMatrix*modelViewMatrix*vec4(position+normal*t,1.);}',fragmentShader:'void main(){gl_FragColor=vec4(.16,.1,.08,1.);}'});
@@ -292,10 +292,15 @@ function sysSpeak(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtt
 function speak(){hush();if(!spoken)return;const t=spoken,a=new Audio('audio/voice/'+vHash(t)+'.mp3');voice=a;a.onerror=()=>{if(voice===a){voice=null;sysSpeak(t);}};a.play().catch(()=>{});}
 function hush(){if(voice){voice.onerror=null;voice.pause();voice=null;}try{speechSynthesis.cancel();}catch(e){}}
 const canSpeak=true;
+/* Auto-read: on by default, saved in localStorage 'cq-auto'; toggled from the top bar (bRead) or Settings (rAuto). */
+let AUTO=true;try{AUTO=localStorage.getItem('cq-auto')!=='0';}catch(e){}
+function autoUI(){const b=$('bRead');b.textContent='Đọc: '+(AUTO?'bật':'tắt');b.setAttribute('aria-pressed',AUTO);$('rAuto').textContent=AUTO?'Tắt tự động đọc':'Bật tự động đọc';}
+function setAuto(v){AUTO=v;try{localStorage.setItem('cq-auto',v?'1':'0');}catch(e){}if(v){if(spoken&&(dlg.style.display==='block'||$('story').style.display==='flex'))speak();}else hush();autoUI();}
+$('bRead').onclick=()=>setAuto(!AUTO);$('rAuto').onclick=()=>setAuto(!AUTO);autoUI();
 const strip=h=>h.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
 function open(name,html){sfx('open');dlg.style.display='block';dlg.className='';$('dName').textContent=name;$('dBody').innerHTML=html;spoken=strip(html);}
 function say(name,text,ref,btn,cb){open(name,'<p>'+text+'</p>'+(ref?'<div class="ref">'+ref+'</div>':'')+'<div class="row">'+(canSpeak?'<button class="alt" id="dHear">Nghe đọc</button>':'')+'<button class="go" id="dGo">'+(btn||'Tiếp')+'</button></div>');
-  spoken=strip(text);if(canSpeak)$('dHear').onclick=speak;$('dGo').onclick=()=>{hush();cb();};$('dGo').focus();}
+  spoken=strip(text);if(canSpeak)$('dHear').onclick=speak;$('dGo').onclick=()=>{hush();cb();};$('dGo').focus();if(AUTO)speak();}
 function lines(arr,cb){let i=0;const nx=()=>{if(i>=arr.length){cb();return;}const a=arr[i++];say(a[0],a[1],a[2],null,nx);};nx();}
 function endTalk(){dlg.style.display='none';talking=false;hush();}
 function doneRow(ref,cb){const r=$('ref');r.textContent=ref||'';const g=document.createElement('button');g.className='go';g.textContent='Tiếp';g.onclick=()=>{hush();cb();};$('opts').appendChild(g);g.focus();}
@@ -325,7 +330,7 @@ function balance(o,cb){open(o.name,'<p>'+o.text+'</p><div class="bal"><i></i><b 
     const inz=Math.abs(x)<.4;prog=Math.max(0,prog+(inz?.05:-.025));$('balP').style.left=(50+x*46)+'%';$('balP').className=inz?'in':'';const p=Math.min(1,prog/need);$('barI').style.width=p*100+'%';if(o.onP)o.onP(p,x);if(prog>=need)end();},50);
   balSkip=end;$('balR').focus();}
 function story(panels,cb){const el=$('story');let i=0;mode='story';ui();const show=()=>{const p=panels[i];cine=p.cam?{pos:new T.Vector3(p.cam[0],p.cam[1],p.cam[2]),look:new T.Vector3(p.cam[3],p.cam[4],p.cam[5])}:cine;
-    $('sT').textContent=p.t||'';$('sX').textContent=p.x;$('sR').textContent=p.ref||'';$('sN').textContent=(i+1)+' / '+panels.length;spoken=p.x;$('sGo').focus();};
+    $('sT').textContent=p.t||'';$('sX').textContent=p.x;$('sR').textContent=p.ref||'';$('sN').textContent=(i+1)+' / '+panels.length;spoken=p.x;$('sGo').focus();if(AUTO)speak();};
   el.style.display='flex';$('sHear').style.display=canSpeak?'':'none';$('sHear').onclick=speak;
   $('sGo').onclick=()=>{hush();i++;if(i>=panels.length){el.style.display='none';cine=null;mode='explore';ui();cb();}else show();};show();}
 function fade(cb){const f=$('fade');f.style.opacity=1;f.style.pointerEvents='auto';setTimeout(()=>{cb();setTimeout(()=>{f.style.opacity=0;f.style.pointerEvents='none';},120);},420);}
@@ -362,22 +367,23 @@ fxApply();
 
 /* ---------- chapter flow ---------- */
 let prog={};try{prog=JSON.parse(localStorage.getItem('cq-prog')||'{}');}catch(e){}
+const HK=CQ.hooks={load:[],zone:[],frame:[],ui:[],menu:[],finish:[]};const hook=(k,...a)=>{for(const f of HK[k])try{f(...a);}catch(e){console.error(e);}};
 function load(i){chIdx=i;const ch=CQ.chapters[i];if(W)W.scene.traverse(o=>{if(o.geometry)o.geometry.dispose();});
-  $('c').style.filter='';newWorld();seed=4000+i*977;ch.build(W);W.step=-1;yaw=W.startYaw;pitch=.17;dist=8;first=true;talking=false;goTo=null;cine=null;near=null;endTalk();
+  $('c').style.filter='';newWorld();seed=4000+i*977;ch.build(W);W.step=-1;yaw=W.startYaw;pitch=.17;dist=8;first=true;talking=false;goTo=null;cine=null;near=null;endTalk();hook('load',ch);
   $('chT').textContent='Chương '+ch.no+' · '+ch.title;$('chS').textContent=ch.sub;}
 function startChapter(i){const ch=CQ.chapters[i];if(!ch.build)return;fade(()=>{load(i);mode='explore';ui();$('done').style.display='none';sfx('chapter');
   if(ch.intro)story(ch.intro,advance);else advance();});}
 function finish(){sfx('stamp');const ch=CQ.chapters[chIdx];prog[ch.id]=1;try{localStorage.setItem('cq-prog',JSON.stringify(prog));}catch(e){}
   $('stNo').textContent=ch.no;$('stName').textContent=ch.title;$('dnT').textContent='Hoàn thành chương '+ch.no;$('dnX').textContent=ch.outro||'';$('dnR').textContent=ch.outroRef||'';
-  const nx=CQ.chapters[chIdx+1];$('dnNext').style.display=nx&&nx.build?'':'none';$('dnT').textContent=nx&&nx.build?'Hoàn thành chương '+ch.no:'Bạn đã đi hết hành trình!';$('dnNext').onclick=()=>startChapter(chIdx+1);$('done').style.display='flex';mode='done';ui();}
+  const nx=CQ.chapters[chIdx+1];$('dnNext').style.display=nx&&nx.build?'':'none';$('dnT').textContent=nx&&nx.build?'Hoàn thành chương '+ch.no:'Bạn đã đi hết hành trình!';$('dnNext').onclick=()=>startChapter(chIdx+1);$('done').style.display='flex';mode='done';ui();hook('finish',ch);}
 function menu(){fade(()=>{$('done').style.display='none';mode='menu';buildMenu();ui();});}
 const PARTS=[[1,'Phần 1 · Khởi đầu'],[5,'Phần 2 · Những dấu lạ đầu tiên'],[9,'Phần 3 · Khắp xứ Ga-li-lê và Giu-đê'],[15,'Phần 4 · Giê-ru-sa-lem']];
 function buildMenu(){const box=$('chList');box.innerHTML='';CQ.chapters.forEach((ch,i)=>{const pt=PARTS.find(p=>p[0]===ch.no);if(pt&&CQ.chapters.length>8){const hd=document.createElement('div');hd.className='part';hd.textContent=pt[1];box.appendChild(hd);}const b=document.createElement('button');b.className='chap'+(ch.build?'':' soon');b.disabled=!ch.build;
-    b.innerHTML='<span class="no">'+ch.no+'</span><span class="tx"><b>'+ch.title+'</b><small>'+(ch.build?ch.sub:'Sắp có')+'</small></span>'+(prog[ch.id]?'<span class="tem">Đã có tem</span>':'');b.onclick=()=>startChapter(i);box.appendChild(b);});}
-function ui(){const ex=mode==='explore';$('title').style.display=mode==='menu'?'flex':'none';$('chip').style.display=(ex||mode==='story')?'flex':'none';$('bar').style.display=(ex||mode==='menu')?'flex':'none';$('bMenu').style.display=ex?'':'none';
+    b.innerHTML='<span class="no">'+ch.no+'</span><span class="tx"><b>'+ch.title+'</b><small>'+(ch.build?ch.sub:'Sắp có')+'</small></span>'+(prog[ch.id]?'<span class="tem">Đã có tem</span>':'');b.dataset.i=i;b.onclick=()=>startChapter(i);box.appendChild(b);});hook('menu',box);}
+function ui(){const ex=mode==='explore';$('title').style.display=mode==='menu'?'flex':'none';$('chip').style.display=(ex||mode==='story')?'flex':'none';$('bar').style.display=(ex||mode==='menu'||mode==='story')?'flex':'none';$('bMenu').style.display=ex?'':'none';
   $('pad').style.display=ex&&ctrl==='touch'?'grid':'none';$('hint').style.display=ex?'block':'none';
   $('hint').textContent=ctrl==='touch'?'Nút mũi tên để đi · kéo màn hình để xoay · bấm vào nơi có dấu !':'W A S D để đi · kéo chuột để xoay · bấm vào nơi có dấu ! hoặc nhấn E';
-  $('cKeys').setAttribute('aria-pressed',ctrl==='keys');$('cTouch').setAttribute('aria-pressed',ctrl==='touch');if(!ex){$('prompt').style.display='none';$('act').style.display='none';if(mode!=='menu')$('set').style.display='none';}if(W)marks();}
+  $('cKeys').setAttribute('aria-pressed',ctrl==='keys');$('cTouch').setAttribute('aria-pressed',ctrl==='touch');if(!ex){$('prompt').style.display='none';$('act').style.display='none';if(mode!=='menu')$('set').style.display='none';}if(W)marks();hook('ui',mode);}
 function setCtrl(c){ctrl=c;try{localStorage.setItem('cq-ctrl',c);}catch(e){}joyX=joyY=0;ui();}
 $('cKeys').onclick=()=>setCtrl('keys');$('cTouch').onclick=()=>setCtrl('touch');
 $('bSet').onclick=()=>{const o=$('set').style.display!=='block';$('set').style.display=o?'block':'none';};
@@ -417,11 +423,12 @@ function frame(){requestAnimationFrame(frame);if(!W||!W.player)return;const dt=M
   for(const c of W.clouds){c.position.x+=dt*1.2;if(c.position.x>460)c.position.x=-460;}
   for(const s of W.sheep)s.hd.position.y=.78+Math.sin(tt*.8+s.ph)*.05;
   for(const f of W.tick)f(dt,tt);
+  hook('frame',dt,tt);
   renderer.render(W.scene,camera);}
 
 Object.assign(CQ,{T,R,rr,sm,C,noise,toon,mesh,canvasTex,boxUV,M,grad,G,distPath,terrain,sky,water,setTod,jar,house,wallBox,palm,olive,bush,scatter,sheep,boat,campfire,crowd,ring,rockTomb,zones,goZone,balance,outlineMat,makeChar,place,walkTo,face,dove,addInter,byId,marks,say,lines,fillWord,choice,order,tapFill,story,fade,setCine,
-  sfx,
-  movePlayer:(x,z,y)=>{place(W.player,x,z);if(y!=null)yaw=y;first=true;},
+  sfx,collide,st:()=>({mode,talking,chIdx}),prog:()=>prog,
+  movePlayer:(x,z,y)=>{place(W.player,x,z);if(y!=null)yaw=y;first=true;hook('zone');},
   boot:()=>{CQ.chapters.sort((a,b)=>a.no-b.no);buildMenu();load(0);mode='menu';ui();frame();},
   dbg:{start:startChapter,state:()=>({mode,talking,step:W.step,steps:W.steps.length}),yaw:v=>{yaw=v;},pitch:v=>{pitch=v;},talkId:id=>talk(byId(id)),balWin:()=>{if(balSkip)balSkip();},tap,setCtrl}});
 })();

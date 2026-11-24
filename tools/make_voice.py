@@ -17,12 +17,12 @@ async def one(item, sem, stats):
                 await edge_tts.Communicate(html.unescape(item["text"]), VOICE).save(out + ".part")
                 os.replace(out + ".part", out); stats["ok"] += 1; return
             except Exception as e:
-                err = e; await asyncio.sleep(2 * (attempt + 1))
+                err = e; await asyncio.sleep(5 * (attempt + 1))
         stats["fail"].append((item["id"], str(err)))
 
 async def main():
     items = json.load(open(os.path.join(ROOT, "lines.json"), encoding="utf-8"))
-    sem, stats = asyncio.Semaphore(6), {"ok": 0, "skip": 0, "fail": []}
+    sem, stats = asyncio.Semaphore(3), {"ok": 0, "skip": 0, "fail": []}
     await asyncio.gather(*(one(i, sem, stats) for i in items))
     print(f"tao moi {stats['ok']}, da co {stats['skip']}, loi {len(stats['fail'])}")
     for f in stats["fail"]: print("  loi", *f)

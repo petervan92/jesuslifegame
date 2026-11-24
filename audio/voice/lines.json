@@ -1,5 +1,1205 @@
 [
  {
+  "id": "514fbfa7",
+  "file": "js/acts_ananias.js",
+  "text": "Đêm nay cổng thành đóng sớm. Có người nói người Giu-đa đang tìm một ai đó."
+ },
+ {
+  "id": "99c53a6e",
+  "file": "js/acts_ananias.js",
+  "text": "Anh ơi, đèn của anh sáng quá! Mẹ em nói người sai tôi đến nhà ông Giu-đa là người tốt."
+ },
+ {
+  "id": "aee325a5",
+  "file": "js/acts_ananias.js",
+  "text": "Nhà ta ở ngay đường Ngay Thẳng này. Khách của ta đang cầu nguyện, đã mấy ngày rồi."
+ },
+ {
+  "id": "0e9cbc4b",
+  "file": "js/acts_ananias.js",
+  "text": "Thưa bác A-na-nia, hình như đây là nhà ông Giu-đa."
+ },
+ {
+  "id": "61c08bb2",
+  "file": "js/acts_ananias.js",
+  "text": "Con giữ đèn giúp bác. Bác vừa sợ vừa tin lời Chúa."
+ },
+ {
+  "id": "2b19f823",
+  "file": "js/acts_ananias.js",
+  "text": "Hỡi anh Sau-lơ, Chúa là Giê-su nầy, đã hiện ra cùng anh trên con đường anh đi tới đây, đã sai tôi đến, hầu cho anh được sáng mắt lại và đầy Đức Thánh Linh."
+ },
+ {
+  "id": "7d941c06",
+  "file": "js/acts_ananias.js",
+  "text": "Tức thì có như vảy từ mắt Sau-lơ rớt xuống, và người được sáng mắt, rồi chịu báp-têm."
+ },
+ {
+  "id": "4af27ed3",
+  "file": "js/acts_ananias.js",
+  "text": "Còn Sau-lơ lần lần càng thêm vững chí, bắt bẻ những người Giu-đa ở tại thành Đa-mách, mà nói rõ rằng Đức Chúa Giê-su là Đấng Christ."
+ },
+ {
+  "id": "49bd4c78",
+  "file": "js/acts_ananias.js",
+  "text": "Cách lâu ngày, người Giu-đa mưu với nhau để giết Sau-lơ."
+ },
+ {
+  "id": "12251059",
+  "file": "js/acts_ananias.js",
+  "text": "Cổng thành có người canh. Mình phải làm sao đây?"
+ },
+ {
+  "id": "99a251d3",
+  "file": "js/acts_ananias.js",
+  "text": "Song lúc ban đêm, các môn đồ lấy thúng dòng người xuống ngoài vách thành."
+ },
+ {
+  "id": "53f3049d",
+  "file": "js/acts_ananias.js",
+  "text": "Chiếc thúng chầm chậm xuống tới đất bên ngoài vách thành. Sau-lơ được cứu thoát."
+ },
+ {
+  "id": "7d6a9837",
+  "file": "js/acts_ananias.js",
+  "text": "Tại Đa-mách có một môn đồ tên A-na-nia. Chúa phán với ông trong sự hiện thấy, bảo đến nhà Giu-đa trên đường Ngay Thẳng."
+ },
+ {
+  "id": "01f2b0af",
+  "file": "js/acts_ananias.js",
+  "text": "A-na-nia nghe nói nhiều về Sau-lơ nên sợ. Chúa trấn an và A-na-nia vâng lời đi."
+ },
+ {
+  "id": "364665e6",
+  "file": "js/acts_ananias.js",
+  "text": "Ê-li xin cầm đèn dẫn đường cho A-na-nia qua các hẻm tối trong thành."
+ },
+ {
+  "id": "7280cc8a",
+  "file": "js/acts_antioch.js",
+  "text": "Ba mẹ em nói ở đây ai cũng là anh em, dù đến từ nước nào."
+ },
+ {
+  "id": "3eb00c01",
+  "file": "js/acts_antioch.js",
+  "text": "Có tiên tri báo sắp có cơn đói kém lớn khắp xứ. Chúng ta hãy lo giúp nhau."
+ },
+ {
+  "id": "1c7ab02b",
+  "file": "js/acts_antioch.js",
+  "text": "Thành lớn quá, Ba-na-ba ạ! Có đủ các dân tộc nữa."
+ },
+ {
+  "id": "41fd9567",
+  "file": "js/acts_antioch.js",
+  "text": "Chúa dùng những người tản lạc để đem tin lành đến đây."
+ },
+ {
+  "id": "bd0d45ba",
+  "file": "js/acts_antioch.js",
+  "text": "Khi người đến nơi và thấy ơn Đức Chúa Trời, bèn vui mừng và khuyên mọi người phải cứ vững lòng theo Chúa."
+ },
+ {
+  "id": "e9127b3f",
+  "file": "js/acts_antioch.js",
+  "text": "Kế đó, Ba-na-ba đi đến thành Tạt sơ, để tìm Sau-lơ, tìm gặp rồi, bèn đưa đến thành An-ti-ốt."
+ },
+ {
+  "id": "872dbba7",
+  "file": "js/acts_antioch.js",
+  "text": "Ấy là ở thành An-ti-ốt, người ta bắt đầu xưng môn đồ là Cơ rê tiên."
+ },
+ {
+  "id": "8cb0c856",
+  "file": "js/acts_antioch.js",
+  "text": "Các môn đồ quyết định mỗi người tùy sức mình gởi giúp anh em ở xứ Giu-đê gặp cơn đói kém."
+ },
+ {
+  "id": "88bc3ab1",
+  "file": "js/acts_antioch.js",
+  "text": "Hội thánh nhịn ăn, cầu nguyện, đặt tay và sai Ba-na-ba và Sau-lơ đi giảng xa."
+ },
+ {
+  "id": "68f398f2",
+  "file": "js/acts_antioch.js",
+  "text": "Sau cái chết của Ê-tiên, nhiều tín đồ phải đi xa. Họ đem tin lành đến đảo Chíp-rơ và thành An-ti-ốt."
+ },
+ {
+  "id": "93a08a0f",
+  "file": "js/acts_antioch.js",
+  "text": "Hội thánh ở Giê-ru-sa-lem sai Ba-na-ba, người lành và đầy đức tin, đến An-ti-ốt. Ê-li cũng đi theo."
+ },
+ {
+  "id": "0f93fa25",
+  "file": "js/acts_antioch.js",
+  "text": "Ba-na-ba đến thành Tạt-sơ tìm Sau-lơ và đưa người về An-ti-ốt cùng dạy dỗ."
+ },
+ {
+  "id": "ae435972",
+  "file": "js/acts_athens.js",
+  "text": "Lời ông nói nghe lạ mà dịu dàng. Tôi muốn nghe thêm."
+ },
+ {
+  "id": "2bb86965",
+  "file": "js/acts_athens.js",
+  "text": "Hoa để dâng cho các thần đó, cháu ạ. Cả thành A-thên có bao nhiêu bàn thờ, bà đếm không xuể!"
+ },
+ {
+  "id": "47a1245f",
+  "file": "js/acts_athens.js",
+  "text": "Bác Phao-lô, nhiều tượng quá, tượng nào cũng có hoa!"
+ },
+ {
+  "id": "507376df",
+  "file": "js/acts_athens.js",
+  "text": "Hãy đếm giúp bác. Có cả bàn thờ ghi: Đức Chúa Trời chưa biết."
+ },
+ {
+  "id": "e4c19f46",
+  "file": "js/acts_athens.js",
+  "text": "Ông giảng cho chúng tôi nghe sự lạ."
+ },
+ {
+  "id": "3564e285",
+  "file": "js/acts_athens.js",
+  "text": "Họ dẫn Phao-lô lên đồi A-rê-ô-ba để nghe ông nói."
+ },
+ {
+  "id": "7627c802",
+  "file": "js/acts_athens.js",
+  "text": "Hỡi người A-thên, phàm việc gì ta cũng thấy các ngươi sốt sắng quá chừng."
+ },
+ {
+  "id": "d4fe262d",
+  "file": "js/acts_athens.js",
+  "text": "Đức Chúa Trời đã dựng nên thế giới và mọi vật trong đó, là Chúa của trời đất, chẳng ngự tại đền thờ bởi tay người ta dựng nên đâu."
+ },
+ {
+  "id": "5d3f24f1",
+  "file": "js/acts_athens.js",
+  "text": "Khi chúng nghe nói về sự sống lại của kẻ chết, kẻ thì nhạo báng, người thì nói rằng: Lúc khác chúng ta sẽ nghe ngươi nói về việc đó."
+ },
+ {
+  "id": "84190ba0",
+  "file": "js/acts_athens.js",
+  "text": "Có mấy người theo Phao-lô và tin, trong đó có Đi-ô-ni-xiu, người thuộc tòa A-rê-ô-ba, và một người đàn bà tên Đa-ma-ri."
+ },
+ {
+  "id": "b7e4ca64",
+  "file": "js/acts_athens.js",
+  "text": "Phao-lô đợi Si-la và Ti-mô-thê ở A-thên, thấy khắp thành đầy những tượng thần. Lòng người buồn."
+ },
+ {
+  "id": "a30a8313",
+  "file": "js/acts_athens.js",
+  "text": "Mỗi ngày Phao-lô nói với những ai gặp ở chợ về Chúa Giê-su và sự sống lại. Ê-li đi theo."
+ },
+ {
+  "id": "e605570d",
+  "file": "js/acts_athens.js",
+  "text": "Có người dẫn ông lên đồi A-rê-ô-ba: Ông giảng cho chúng tôi nghe sự lạ."
+ },
+ {
+  "id": "c70e448a",
+  "file": "js/acts_cornelius.js",
+  "text": "Ông đội trưởng của chúng tôi là người kính sợ Đức Chúa Trời, hay cầu nguyện và giúp đỡ người nghèo."
+ },
+ {
+  "id": "22c7cd57",
+  "file": "js/acts_cornelius.js",
+  "text": "Chủ tôi nhận lời thiên sứ, sai tôi đi mời ông Phi-e-rơ. Nay ông đã đến, ai cũng vui mừng!"
+ },
+ {
+  "id": "ad2430e4",
+  "file": "js/acts_cornelius.js",
+  "text": "Bác Phi-e-rơ ơi, có người đến tìm bác."
+ },
+ {
+  "id": "ee381781",
+  "file": "js/acts_cornelius.js",
+  "text": "Thần Chúa bảo ta đi cùng họ, đừng nghi ngại."
+ },
+ {
+  "id": "c06bcbcf",
+  "file": "js/acts_cornelius.js",
+  "text": "Phi-e-rơ cùng mấy anh em từ Giốp-bê đến thành Sê-sa-rê."
+ },
+ {
+  "id": "a9432f63",
+  "file": "js/acts_cornelius.js",
+  "text": "Xin ông đến nhà tôi, chúng tôi muốn nghe điều Chúa dạy ông."
+ },
+ {
+  "id": "2162cad7",
+  "file": "js/acts_cornelius.js",
+  "text": "Khi Phi-e-rơ còn đang nói, Đức Thánh Linh giáng xuống trên mọi người nghe lời, và họ ngợi khen Đức Chúa Trời."
+ },
+ {
+  "id": "c123e3f3",
+  "file": "js/acts_cornelius.js",
+  "text": "Phi-e-rơ bảo cho họ nhân danh Đức Chúa Giê-su Christ mà chịu báp-têm."
+ },
+ {
+  "id": "5721331c",
+  "file": "js/acts_cornelius.js",
+  "text": "Cháu mừng quá! Cả nhà bác Cọt-nây cùng tin Chúa!"
+ },
+ {
+  "id": "d2977792",
+  "file": "js/acts_cornelius.js",
+  "text": "Tại Sê-sa-rê có đội trưởng Cọt-nây, người công bình, hay cầu nguyện và giúp người nghèo."
+ },
+ {
+  "id": "b08f4c63",
+  "file": "js/acts_cornelius.js",
+  "text": "Một thiên sứ bảo Cọt-nây sai người đến Giốp-bê mời Phi-e-rơ. Cọt-nây liền sai hai đầy tớ đi."
+ },
+ {
+  "id": "aad01691",
+  "file": "js/acts_cornelius.js",
+  "text": "Trên mái nhà ở Giốp-bê, Phi-e-rơ thấy một tấm khăn lớn thả xuống chứa đủ loại thú. Ông bối rối về ý nghĩa."
+ },
+ {
+  "id": "e6943e32",
+  "file": "js/acts_damascus.js",
+  "text": "Ông Sau-lơ đi gấp lắm. Chúng tôi theo ông từ Giê-ru-sa-lem, mang thư của thầy cả thượng phẩm."
+ },
+ {
+  "id": "738d3909",
+  "file": "js/acts_damascus.js",
+  "text": "Đa-mách là thành xưa lắm, trời trưa nóng quá. Cháu nhớ uống nước nhé."
+ },
+ {
+  "id": "d72291ba",
+  "file": "js/acts_damascus.js",
+  "text": "Thưa ông Sau-lơ, trời nắng quá. Còn bao xa đến Đa-mách ạ?"
+ },
+ {
+  "id": "585e86f7",
+  "file": "js/acts_damascus.js",
+  "text": "Gần đến rồi. Ta đã có thư cho phép bắt họ."
+ },
+ {
+  "id": "7f935041",
+  "file": "js/acts_damascus.js",
+  "text": "Sau-lơ đang đi đường gần đến thành Đa-mách, thình lình có ánh sáng từ trời soi sáng chung quanh người."
+ },
+ {
+  "id": "beed1b89",
+  "file": "js/acts_damascus.js",
+  "text": "Hỡi Sau-lơ, Sau-lơ, sao ngươi bắt bớ ta?"
+ },
+ {
+  "id": "bc55b944",
+  "file": "js/acts_damascus.js",
+  "text": "Lạy Chúa, Ngài là ai?"
+ },
+ {
+  "id": "e0b32ed8",
+  "file": "js/acts_damascus.js",
+  "text": "Hãy dậy, vào thành, sẽ có người nói cho ngươi biết điều ngươi phải làm."
+ },
+ {
+  "id": "7d360a65",
+  "file": "js/acts_damascus.js",
+  "text": "Thưa ông, xin nắm tay cháu. Cháu sẽ dẫn ông vào thành."
+ },
+ {
+  "id": "ab4cd9dc",
+  "file": "js/acts_damascus.js",
+  "text": "Trong ba ngày Sau-lơ không thấy, không ăn không uống, chỉ cầu nguyện."
+ },
+ {
+  "id": "eb26f81d",
+  "file": "js/acts_damascus.js",
+  "text": "Sau-lơ, một người học rộng, hăm hở đi bắt những ai theo đạo của Chúa Giê-su. Ê-li nghe tin và e ngại."
+ },
+ {
+  "id": "0c21a974",
+  "file": "js/acts_damascus.js",
+  "text": "Sau-lơ cùng mấy người đi dưới nắng trưa, càng lúc càng gần thành Đa-mách."
+ },
+ {
+  "id": "bee4801b",
+  "file": "js/acts_damascus.js",
+  "text": "Thình lình có ánh sáng từ trời soi sáng chung quanh người. Một tiếng gọi vang lên."
+ },
+ {
+  "id": "ac6014c6",
+  "file": "js/acts_dorcas.js",
+  "text": "Giốp-bê là cảng của chúng tôi. Ai đến đây cũng nghe tiếng bà Ta-bi-tha hay giúp người nghèo."
+ },
+ {
+  "id": "db834aed",
+  "file": "js/acts_dorcas.js",
+  "text": "Chiếc áo nầy bà Ta-bi-tha may cho tôi. Ấm lắm cháu ạ."
+ },
+ {
+  "id": "83af357c",
+  "file": "js/acts_dorcas.js",
+  "text": "Hai người từ Giốp-bê đến mời Phi-e-rơ đi gấp, vì bà Ta-bi-tha đã qua đời."
+ },
+ {
+  "id": "adc66177",
+  "file": "js/acts_dorcas.js",
+  "text": "Con đi theo bác Phi-e-rơ lên nhà bà ạ."
+ },
+ {
+  "id": "c32c1279",
+  "file": "js/acts_dorcas.js",
+  "text": "Xin bác xem những chiếc áo Ta-bi-tha đã may cho chúng tôi."
+ },
+ {
+  "id": "fa4f4a04",
+  "file": "js/acts_dorcas.js",
+  "text": "Cháu mang áo lên đây ạ."
+ },
+ {
+  "id": "c9e84205",
+  "file": "js/acts_dorcas.js",
+  "text": "Phi-e-rơ biểu người ta ra ngoài hết, rồi quì gối mà cầu nguyện."
+ },
+ {
+  "id": "3704f623",
+  "file": "js/acts_dorcas.js",
+  "text": "Hỡi Ta-bi-tha, hãy chờ dậy!"
+ },
+ {
+  "id": "cb6164c9",
+  "file": "js/acts_dorcas.js",
+  "text": "Người mở mắt ra, thấy Phi-e-rơ thì ngồi dậy."
+ },
+ {
+  "id": "495e0314",
+  "file": "js/acts_dorcas.js",
+  "text": "Này, Ta-bi-tha đã sống rồi."
+ },
+ {
+  "id": "5527450c",
+  "file": "js/acts_dorcas.js",
+  "text": "Mọi người ơi, bà Ta-bi-tha sống lại rồi!"
+ },
+ {
+  "id": "80c49676",
+  "file": "js/acts_dorcas.js",
+  "text": "Phi-e-rơ ở lại nhiều ngày tại Giốp-bê, nơi nhà người thợ thuộc da tên Si-môn."
+ },
+ {
+  "id": "00f8c503",
+  "file": "js/acts_dorcas.js",
+  "text": "Hai người từ Giốp-bê vội đến mời Phi-e-rơ: Ta-bi-tha, người hay làm việc lành, đã qua đời. Ê-li đi theo."
+ },
+ {
+  "id": "5483158a",
+  "file": "js/acts_dorcas.js",
+  "text": "Ta-bi-tha, tiếng Hy Lạp gọi là Đô-ca, may nhiều áo cho các bà góa. Mọi người đều thương bà."
+ },
+ {
+  "id": "cc9c3ea8",
+  "file": "js/acts_dorcas.js",
+  "text": "Trên gác, các bà góa khóc và giơ ra những áo bà đã may. Phi-e-rơ nhẹ nhàng bước vào."
+ },
+ {
+  "id": "955f52ba",
+  "file": "js/acts_ethiopian.js",
+  "text": "Có một quan lớn từ xa đi qua đây. Xe ông ấy chạy chậm lắm, và ông cứ vừa đi vừa đọc to một cuộn sách!"
+ },
+ {
+  "id": "14237e0b",
+  "file": "js/acts_ethiopian.js",
+  "text": "Con đường này từ Giê-ru-sa-lem xuống Ga-xa vắng lắm, ít ai đi. Chúc hai bác cháu bình an!"
+ },
+ {
+  "id": "b89eb838",
+  "file": "js/acts_ethiopian.js",
+  "text": "Người này giảng về Chúa Giê-su và chữa lành bệnh tật. Chúng tôi vui lắm!"
+ },
+ {
+  "id": "0a0cefc2",
+  "file": "js/acts_ethiopian.js",
+  "text": "Hãy tin Đấng Christ, vì Ngài yêu thương tất cả mọi người."
+ },
+ {
+  "id": "af59f165",
+  "file": "js/acts_ethiopian.js",
+  "text": "Hãy chờ dậy, đi qua phía nam, trên con đường từ thành Giê-ru-sa-lem xuống thành Ga-xa."
+ },
+ {
+  "id": "38b996b7",
+  "file": "js/acts_ethiopian.js",
+  "text": "Con đi cùng bác. Đường này vắng quá!"
+ },
+ {
+  "id": "ef1f5485",
+  "file": "js/acts_ethiopian.js",
+  "text": "Thần Chúa phán cùng Phi-líp: hãy lại gần xe ấy mà theo."
+ },
+ {
+  "id": "4ffbb48e",
+  "file": "js/acts_ethiopian.js",
+  "text": "Viên quan Ê-thi-ô-bi đang ngồi trên xe, đọc to sách tiên tri Ê-sai."
+ },
+ {
+  "id": "eb42f4f9",
+  "file": "js/acts_ethiopian.js",
+  "text": "Nếu chẳng ai dạy tôi, thì làm sao hiểu được? Xin mời ông lên xe ngồi cùng tôi."
+ },
+ {
+  "id": "221e1e67",
+  "file": "js/acts_ethiopian.js",
+  "text": "Lời tiên tri Ê-sai nói về Chúa Giê-su. Ngài chịu khổ vì chúng ta."
+ },
+ {
+  "id": "1d6475a9",
+  "file": "js/acts_ethiopian.js",
+  "text": "Kìa có nước, có gì ngăn cản tôi chịu phép báp-têm không?"
+ },
+ {
+  "id": "8e889baa",
+  "file": "js/acts_ethiopian.js",
+  "text": "Cháu đã múc nước suối đây ạ!"
+ },
+ {
+  "id": "82cfc266",
+  "file": "js/acts_ethiopian.js",
+  "text": "Phi-líp xuống thành Sa-ma-ri giảng về Đấng Christ, và nhiều người vui mừng tin theo."
+ },
+ {
+  "id": "dafbbcc8",
+  "file": "js/acts_ethiopian.js",
+  "text": "Thiên sứ của Chúa bảo Phi-líp đi về phía nam, trên con đường vắng từ Giê-ru-sa-lem xuống Ga-xa. Ê-li đi theo."
+ },
+ {
+  "id": "9ddabd8a",
+  "file": "js/acts_ethiopian.js",
+  "text": "Một viên quan Ê-thi-ô-bi đang ngồi trên xe, đọc to sách tiên tri Ê-sai khi trở về nước."
+ },
+ {
+  "id": "f2d4fa4c",
+  "file": "js/acts_gate.js",
+  "text": "Bác đến đền thờ cầu nguyện mỗi chiều. Người ngồi bên cổng ấy ngày nào cũng ở đó."
+ },
+ {
+  "id": "66a5c15d",
+  "file": "js/acts_gate.js",
+  "text": "Cổng Đẹp lớn quá, bác Giăng ạ. Sao mà đông người thế!"
+ },
+ {
+  "id": "3c5d5051",
+  "file": "js/acts_gate.js",
+  "text": "Giờ cầu nguyện mà. Con đi sát bên bác nhé."
+ },
+ {
+  "id": "5eafb2c5",
+  "file": "js/acts_gate.js",
+  "text": "Xin thương tôi, cho tôi chút tiền."
+ },
+ {
+  "id": "1693b289",
+  "file": "js/acts_gate.js",
+  "text": "Cháu chỉ có ít đồng xu. Cháu xin gửi bác ạ."
+ },
+ {
+  "id": "1717317b",
+  "file": "js/acts_gate.js",
+  "text": "Ta chẳng có vàng bạc chi hết, song đều ta có thì ta cho ngươi: nhơn danh Đức Chúa Giê-su Christ ở Na-xa-rét, hãy bước đi!"
+ },
+ {
+  "id": "ceade3b2",
+  "file": "js/acts_gate.js",
+  "text": "Tức thì bàn chơn và mắt cá người trở nên cứng vững; người liền nhảy, đứng lên và bước đi cùng hai người vào đền thờ, vừa đi, vừa nhảy, vừa ngợi khen Đức Chúa Trời."
+ },
+ {
+  "id": "b4eaf083",
+  "file": "js/acts_gate.js",
+  "text": "Dân chúng nhận ra người từng ngồi xin ăn ở Cổng Đẹp, bèn lấy làm lạ và sững sờ."
+ },
+ {
+  "id": "ebf8bb99",
+  "file": "js/acts_gate.js",
+  "text": "Sao các anh lạ lùng? Chẳng phải do quyền phép của chúng tôi, nhưng do danh Chúa Giê-su."
+ },
+ {
+  "id": "659250f1",
+  "file": "js/acts_gate.js",
+  "text": "Mọi người ơi, bác ấy đi được rồi! Nhờ danh Chúa Giê-su!"
+ },
+ {
+  "id": "790d2f57",
+  "file": "js/acts_gate.js",
+  "text": "Chiều hôm ấy, Phi-e-rơ và Giăng lên đền thờ vào giờ cầu nguyện thứ chín. Ê-li đi theo sau, tay xách giỏ nhỏ."
+ },
+ {
+  "id": "792e4320",
+  "file": "js/acts_gate.js",
+  "text": "Có một người què từ lúc mới sanh, hằng ngày được khiêng đến ngồi bên Cổng Đẹp để xin ăn."
+ },
+ {
+  "id": "9d6e3ec9",
+  "file": "js/acts_gate.js",
+  "text": "Người ấy vừa chìa tay ra thì hai sứ đồ dừng lại nhìn. Một điều tốt đẹp hơn tiền bạc sắp đến."
+ },
+ {
+  "id": "b296bac2",
+  "file": "js/acts_lystra.js",
+  "text": "Cả thành nói tiếng Ly-cao-ni nên cháu không hiểu hết. Nhưng cháu thấy bác què đứng dậy rồi!"
+ },
+ {
+  "id": "7e1b243f",
+  "file": "js/acts_lystra.js",
+  "text": "Chum nào cũng chắc, nhưng tin lành của hai ông kia mới là quý nhất."
+ },
+ {
+  "id": "9656b578",
+  "file": "js/acts_lystra.js",
+  "text": "Bác Phao-lô giảng hay quá, bác ấy nhìn ông què kìa."
+ },
+ {
+  "id": "43cb1183",
+  "file": "js/acts_lystra.js",
+  "text": "Người què liền nhảy lên và đi được! Dân chúng cùng reo lên."
+ },
+ {
+  "id": "8e7c0658",
+  "file": "js/acts_lystra.js",
+  "text": "Phao-lô chăm mắt trên người, thấy có đức tin để chữa lành được, bèn nói lớn tiếng rằng: Ngươi hãy chờ dậy, đứng thẳng chơn lên."
+ },
+ {
+  "id": "bea51a5e",
+  "file": "js/acts_lystra.js",
+  "text": "Hai vị ấy là thần Giu-bi-tê và thần Mẹt-cu-rơ! Ta đem bò và hoa đến dâng!"
+ },
+ {
+  "id": "0fb18ff4",
+  "file": "js/acts_lystra.js",
+  "text": "Chúng ta chỉ là loài người, giống như các ngươi; chúng ta giảng Tin lành cho các ngươi, hầu cho xây bỏ các thần hư không kia, mà trở về cùng Đức Chúa Trời hằng sống."
+ },
+ {
+  "id": "b9d0646a",
+  "file": "js/acts_lystra.js",
+  "text": "Về sau có những người từ nơi khác đến, xúi giục dân chúng, rồi họ ném đá Phao-lô và kéo ra ngoài thành."
+ },
+ {
+  "id": "d46cbc87",
+  "file": "js/acts_lystra.js",
+  "text": "Có người bị ném đá ngoài thành. Cháu xin mang nước đến."
+ },
+ {
+  "id": "951d2d75",
+  "file": "js/acts_lystra.js",
+  "text": "Nhưng các môn đồ đương nhóm chung quanh người, thì người vùng đứng dậy và vào trong thành."
+ },
+ {
+  "id": "e74ce452",
+  "file": "js/acts_lystra.js",
+  "text": "Hội thánh An-ti-ốt sai Phao-lô và Ba-na-ba đi qua Chíp-rơ và vùng cao nguyên. Họ đến Lít-trơ, Ê-li theo sau."
+ },
+ {
+  "id": "7eaf96a6",
+  "file": "js/acts_lystra.js",
+  "text": "Ở Lít-trơ có một người què từ lúc mới sanh, chẳng hề đi được. Ông ngồi nghe Phao-lô giảng."
+ },
+ {
+  "id": "3eb1542e",
+  "file": "js/acts_lystra.js",
+  "text": "Dân chúng thấy phép lạ thì kêu lên bằng tiếng Ly-cao-ni, tưởng hai sứ đồ là thần."
+ },
+ {
+  "id": "b62835fe",
+  "file": "js/acts_malta.js",
+  "text": "Mẹ em nói người lạ đến từ biển cần được sưởi ấm. Lửa của làng em to lắm!"
+ },
+ {
+  "id": "cbf347de",
+  "file": "js/acts_malta.js",
+  "text": "Chúng tôi lạnh run, nhưng nhờ ngọn lửa này ai cũng ấm lại rồi."
+ },
+ {
+  "id": "33d57cbe",
+  "file": "js/acts_malta.js",
+  "text": "Củi này khô lắm, con đem lại cho bác Phao-lô."
+ },
+ {
+  "id": "ac306a07",
+  "file": "js/acts_malta.js",
+  "text": "Phao-lô lượm được một bó củi khô, quăng vào trong lửa, xảy có con rắn lục từ trong bó củi bị nóng bò ra, quấn trên tay người."
+ },
+ {
+  "id": "10413d1a",
+  "file": "js/acts_malta.js",
+  "text": "Chắc ông ấy là một vị thần!"
+ },
+ {
+  "id": "e9e2710f",
+  "file": "js/acts_malta.js",
+  "text": "Bác Phao-lô chỉ là một người được Đức Chúa Trời gìn giữ thôi."
+ },
+ {
+  "id": "f24d41fc",
+  "file": "js/acts_malta.js",
+  "text": "Cha tôi đang đau nặng. Xin ông giúp."
+ },
+ {
+  "id": "ed6a6514",
+  "file": "js/acts_malta.js",
+  "text": "Phao-lô vào thăm, cầu nguyện, đặt tay và cha Búp-li-ô được lành. Những người ốm khác trên đảo cũng đến và được chữa."
+ },
+ {
+  "id": "ff889893",
+  "file": "js/acts_malta.js",
+  "text": "Sau khi được cứu, chúng ta mới biết cù lao đó tên là Man-tơ. Trời mưa lạnh."
+ },
+ {
+  "id": "2d470266",
+  "file": "js/acts_malta.js",
+  "text": "Dân đảo đốt lửa lớn và tiếp rước mọi người rất nhân từ vì trời mưa và lạnh."
+ },
+ {
+  "id": "18224349",
+  "file": "js/acts_malta.js",
+  "text": "Phao-lô lượm một bó củi để bỏ vào lửa. Ê-li chạy lại giúp."
+ },
+ {
+  "id": "9eae9049",
+  "file": "js/acts_pentecost.js",
+  "text": "Mẹ em nói các môn đồ cùng ăn bánh chung với nhau, lòng vui mừng và thật thà. Anh có đói không?"
+ },
+ {
+  "id": "e4c7a25a",
+  "file": "js/acts_pentecost.js",
+  "text": "Tôi từ đảo Cơ-rết đến dự lễ. Sáng nay tôi nghe người Ga-li-lê nói tiếng quê tôi, tôi mừng đến rơi nước mắt."
+ },
+ {
+  "id": "c1adca1a",
+  "file": "js/acts_pentecost.js",
+  "text": "Thưa bác Phi-e-rơ, cho con ngồi chờ cùng mọi người nhé."
+ },
+ {
+  "id": "d8f18c0f",
+  "file": "js/acts_pentecost.js",
+  "text": "Được con. Chúa đã dặn chúng ta ở lại và cầu nguyện, nên ta cứ vui lòng chờ."
+ },
+ {
+  "id": "00d8495b",
+  "file": "js/acts_pentecost.js",
+  "text": "Bác Giăng ơi, mọi người đang chờ điều gì vậy ạ?"
+ },
+ {
+  "id": "cea79491",
+  "file": "js/acts_pentecost.js",
+  "text": "Chúa Giê-su đã hứa với chúng ta như thế này."
+ },
+ {
+  "id": "02c2cd8e",
+  "file": "js/acts_pentecost.js",
+  "text": "Nhưng khi Đức Thánh Linh giáng trên các ngươi, thì các ngươi sẽ nhận lấy quyền phép"
+ },
+ {
+  "id": "1dd50992",
+  "file": "js/acts_pentecost.js",
+  "text": "Thình lình có tiếng từ trời đến như tiếng gió thổi ào ào, và những lưỡi như lửa đậu trên mỗi người."
+ },
+ {
+  "id": "7c3e7e9f",
+  "file": "js/acts_pentecost.js",
+  "text": "Hết thảy đều được đầy dẫy Đức Thánh Linh, khởi sự nói các thứ tiếng khác, theo như Đức Thánh Linh cho mình nói."
+ },
+ {
+  "id": "b016f37d",
+  "file": "js/acts_pentecost.js",
+  "text": "Hết thảy người nói đó, há chẳng phải là người Ga-li-lê sao?"
+ },
+ {
+  "id": "d142de8a",
+  "file": "js/acts_pentecost.js",
+  "text": "Vâng, mà bác nghe xem, họ nói đúng tiếng xứ của bác đó!"
+ },
+ {
+  "id": "3bddc37b",
+  "file": "js/acts_pentecost.js",
+  "text": "Hỡi các anh em, Chúa Giê-su mà anh em đã đóng đinh, Đức Chúa Trời đã khiến Ngài sống lại."
+ },
+ {
+  "id": "62c62eb8",
+  "file": "js/acts_pentecost.js",
+  "text": "Vậy, những kẻ nhận lời đó đều chịu phép báp têm; và trong ngày ấy, có độ ba ngàn người thêm vào Hội thánh."
+ },
+ {
+  "id": "3d0ece2e",
+  "file": "js/acts_pentecost.js",
+  "text": "Con xin múc nước cho mọi người ạ. Hôm nay vui quá!"
+ },
+ {
+  "id": "cdab1e57",
+  "file": "js/acts_pentecost.js",
+  "text": "Sau khi Chúa Giê-su lên trời, các môn đồ trở về Giê-ru-sa-lem và cùng nhau cầu nguyện trong một căn phòng cao. Ê-li, nay đã lớn thêm, xin theo họ."
+ },
+ {
+  "id": "8813eb9f",
+  "file": "js/acts_pentecost.js",
+  "text": "Chúa Giê-su đã hứa sẽ ban Đức Thánh Linh cho họ. Ai nấy kiên nhẫn chờ, lòng đầy mong đợi."
+ },
+ {
+  "id": "63b254a3",
+  "file": "js/acts_pentecost.js",
+  "text": "Giê-ru-sa-lem đông người từ nhiều xứ về dự lễ. Buổi sáng hôm ấy, một điều lạ lùng sắp xảy ra."
+ },
+ {
+  "id": "4028a017",
+  "file": "js/acts_philippi.js",
+  "text": "Sắc tía này nhuộm từ một loại ốc biển đó cháu. Bà Ly-đi bán cho cả thành này."
+ },
+ {
+  "id": "a1936466",
+  "file": "js/acts_philippi.js",
+  "text": "Dù ở trong ngục tối, chúng ta vẫn có thể hát ngợi khen Đức Chúa Trời. Cháu đừng sợ nhé."
+ },
+ {
+  "id": "4aebeb8d",
+  "file": "js/acts_philippi.js",
+  "text": "Cháu giúp bà xách vải ạ."
+ },
+ {
+  "id": "b0d5e209",
+  "file": "js/acts_philippi.js",
+  "text": "Nếu các ông thấy tôi thật lòng tin Chúa, xin mời về nhà tôi nghỉ."
+ },
+ {
+  "id": "07f8ef00",
+  "file": "js/acts_philippi.js",
+  "text": "Chúa mở lòng cho người, đặng chăm chỉ nghe lời Phao-lô nói."
+ },
+ {
+  "id": "8ca008b6",
+  "file": "js/acts_philippi.js",
+  "text": "Hai bác Phao-lô và Si-la đã bị đánh đòn rồi bị giam ở đây. Cháu sẽ ngồi gần cửa ngục để nghe."
+ },
+ {
+  "id": "d786cbff",
+  "file": "js/acts_philippi.js",
+  "text": "Được lịnh đó, đề lao bỏ hai người vào ngục tối và tra chơn vào cùm."
+ },
+ {
+  "id": "324e4e49",
+  "file": "js/acts_philippi.js",
+  "text": "Lối nửa đêm, Phao-lô và Si-la đương cầu nguyện, hát ngợi khen Đức Chúa Trời; và những tù phạm đều nghe."
+ },
+ {
+  "id": "9db74747",
+  "file": "js/acts_philippi.js",
+  "text": "Thình lình, có cơn động đất rất lớn, đến nỗi nền ngục rúng động; cùng một lúc, các cửa mở ra, xiềng tù phạm thảy đều tháo cả."
+ },
+ {
+  "id": "54868d45",
+  "file": "js/acts_philippi.js",
+  "text": "Thưa các ông, tôi phải làm chi cho được cứu?"
+ },
+ {
+  "id": "7e87562b",
+  "file": "js/acts_philippi.js",
+  "text": "Hãy tin Đức Chúa Giê-su, thì ngươi và cả nhà đều sẽ được cứu rỗi."
+ },
+ {
+  "id": "97702306",
+  "file": "js/acts_philippi.js",
+  "text": "Người đề lao đem hai sứ đồ về nhà mình, rửa vết thương cho hai ông. Cả nhà người vui mừng vì đã tin Đức Chúa Trời."
+ },
+ {
+  "id": "c95708c4",
+  "file": "js/acts_philippi.js",
+  "text": "Đêm kia, Phao-lô thấy một người Ma-xê-đoan xin: hãy qua giúp chúng tôi. Cả đoàn xuống thuyền đến Phi-líp."
+ },
+ {
+  "id": "49b15aec",
+  "file": "js/acts_philippi.js",
+  "text": "Ngày Sa-bát, họ ra bờ sông gặp mấy người đàn bà đang cầu nguyện. Ê-li đứng nghe."
+ },
+ {
+  "id": "d9385281",
+  "file": "js/acts_philippi.js",
+  "text": "Ly-đi bán hàng sắc tía, quê ở Thi-a-ti-rơ. Chúa mở lòng bà để chăm chỉ nghe lời Phao-lô nói."
+ },
+ {
+  "id": "3d493992",
+  "file": "js/acts_prison.js",
+  "text": "Đây là nhà mẹ con. Đêm nay anh em họp lại đông lắm, ai cũng cầu nguyện cho bác Phi-e-rơ."
+ },
+ {
+  "id": "c87a0907",
+  "file": "js/acts_prison.js",
+  "text": "Hội thánh cầu nguyện không thôi. Chúa là Đấng nghe lời con cái Ngài."
+ },
+ {
+  "id": "dc84d2f3",
+  "file": "js/acts_prison.js",
+  "text": "Con thắp đèn nhé. Mình xin Chúa giữ gìn bác Phi-e-rơ."
+ },
+ {
+  "id": "8aee0750",
+  "file": "js/acts_prison.js",
+  "text": "Cứ tin, con ạ. Chúa nghe lời cầu nguyện của anh em."
+ },
+ {
+  "id": "367fd4e7",
+  "file": "js/acts_prison.js",
+  "text": "Cùng lúc ấy, trong khám, Phi-e-rơ đang ngủ giữa hai tên lính, tay mang xiềng."
+ },
+ {
+  "id": "bc124ad9",
+  "file": "js/acts_prison.js",
+  "text": "Thình lình, một thiên sứ của Chúa đến, và có ánh sáng soi trong ngục tối."
+ },
+ {
+  "id": "a0f1c5ce",
+  "file": "js/acts_prison.js",
+  "text": "Xiềng liền rớt khỏi tay Phi-e-rơ. Hai tên lính vẫn ngủ say."
+ },
+ {
+  "id": "6f480ca5",
+  "file": "js/acts_prison.js",
+  "text": "Phi-e-rơ cứ ngỡ mình thấy dị tượng. Ông theo thiên sứ đi qua các tốp lính canh, đến cổng sắt."
+ },
+ {
+  "id": "2140d7d1",
+  "file": "js/acts_prison.js",
+  "text": "Cổng sắt tự mở ra cho ông. Đi hết một đường phố, thiên sứ bèn lìa khỏi ông."
+ },
+ {
+  "id": "96e87288",
+  "file": "js/acts_prison.js",
+  "text": "Phi-e-rơ gõ cổng ngoài. Một con đòi tên là Rô-đơ ra nghe. Nhận ra tiếng Phi-e-rơ, chị mừng quá đến nỗi quên mở cổng, chạy vào báo tin."
+ },
+ {
+  "id": "45ced1a8",
+  "file": "js/acts_prison.js",
+  "text": "Là bác Phi-e-rơ thật rồi! Mời bác vào ạ!"
+ },
+ {
+  "id": "e7c152b6",
+  "file": "js/acts_prison.js",
+  "text": "Chúa đã sai thiên sứ giải cứu tôi. Xin báo tin cho anh em."
+ },
+ {
+  "id": "2c9e514c",
+  "file": "js/acts_prison.js",
+  "text": "Vua Hê-rốt bắt Phi-e-rơ bỏ vào khám, có bốn tốp lính canh giữ. Nhưng Hội thánh cứ cầu nguyện cho ông."
+ },
+ {
+  "id": "03ca435a",
+  "file": "js/acts_prison.js",
+  "text": "Đêm trước ngày Hê-rốt định đem ông ra, Phi-e-rơ ngủ yên giữa hai tên lính, tay mang xiềng."
+ },
+ {
+  "id": "d5dc9001",
+  "file": "js/acts_prison.js",
+  "text": "Anh em nhóm tại nhà bà Ma-ri và cầu nguyện thâu đêm. Ê-li ngồi gần cửa, tay cầm đèn nhỏ."
+ },
+ {
+  "id": "01b96360",
+  "file": "js/acts_rome.js",
+  "text": "Đường Áp-bi-a dài lắm! Cháu đếm đá đến mỏi cả chân."
+ },
+ {
+  "id": "67079684",
+  "file": "js/acts_rome.js",
+  "text": "Rô-ma có đủ người từ khắp nơi đến. Ông khách kia hình như có tin vui lắm."
+ },
+ {
+  "id": "4251186d",
+  "file": "js/acts_rome.js",
+  "text": "Phao-lô thấy anh em, thì cảm tạ Đức Chúa Trời và vững chí."
+ },
+ {
+  "id": "a3dcf444",
+  "file": "js/acts_rome.js",
+  "text": "Cháu mang giỏ vào ạ. Nhà trọ thoáng quá!"
+ },
+ {
+  "id": "f97b5967",
+  "file": "js/acts_rome.js",
+  "text": "Hỡi anh em ta, tôi chẳng từng làm điều gì nghịch cùng dân chúng."
+ },
+ {
+  "id": "db48d8aa",
+  "file": "js/acts_rome.js",
+  "text": "Từ buổi sáng đến chiều, người cứ làm chứng và giảng giải với họ về nước Đức Chúa Trời, lấy luật pháp Môi-se và các đấng tiên tri mà gắng sức khuyên bảo họ về Đức Chúa Giê-su."
+ },
+ {
+  "id": "68e75587",
+  "file": "js/acts_rome.js",
+  "text": "Người tiếp rước mọi người đến thăm mình, giảng về nước Đức Chúa Trời, và dạy dỗ về Đức Chúa Giê-su Christ cách tự do trọn vẹn, chẳng ai ngăn cấm người hết."
+ },
+ {
+  "id": "3eaf472d",
+  "file": "js/acts_rome.js",
+  "text": "Sau ba tháng ở Man-tơ, họ xuống tàu đi tiếp. Họ đến Phô-rum Áp-bi-u, rồi đến Ba Quán trên đường vào Rô-ma."
+ },
+ {
+  "id": "cf48b245",
+  "file": "js/acts_rome.js",
+  "text": "Anh em ở Rô-ma nghe tin, bèn ra tận đường đón. Phao-lô cảm tạ Chúa và vững chí."
+ },
+ {
+  "id": "407569bf",
+  "file": "js/acts_rome.js",
+  "text": "Phao-lô được ở riêng với một người lính canh giữ. Ê-li bắt đầu mời khách đến."
+ },
+ {
+  "id": "9960c654",
+  "file": "js/acts_sharing.js",
+  "text": "Mỗi ngày em cùng mẹ đến hiên cửa Sa-lô-môn. Ở đây ai cũng có bánh ăn!"
+ },
+ {
+  "id": "919c39e0",
+  "file": "js/acts_sharing.js",
+  "text": "Các sứ đồ làm nhiều phép lạ. Ai cũng kính sợ, và anh em thương yêu nhau lắm."
+ },
+ {
+  "id": "77174a2c",
+  "file": "js/acts_sharing.js",
+  "text": "Cháu xin giúp bác phát bánh cho các gia đình."
+ },
+ {
+  "id": "4dbafad9",
+  "file": "js/acts_sharing.js",
+  "text": "Cảm ơn con. Nhờ anh em chia sẻ nên nhà bác chẳng thiếu thốn."
+ },
+ {
+  "id": "b200dee3",
+  "file": "js/acts_sharing.js",
+  "text": "Chẳng ai kể của mình là của riêng; nhưng kể mọi vật là của chung cho nhau."
+ },
+ {
+  "id": "7ff8de08",
+  "file": "js/acts_sharing.js",
+  "text": "Nhà này nhiều người, nhà kia ít người. Mình chia sao cho vừa đủ nhỉ?"
+ },
+ {
+  "id": "2da3798d",
+  "file": "js/acts_sharing.js",
+  "text": "Đây là tiền bán đám ruộng của tôi. Xin các sứ đồ cứ dùng giúp người thiếu."
+ },
+ {
+  "id": "476c577e",
+  "file": "js/acts_sharing.js",
+  "text": "Cảm ơn anh Ba-na-ba, thật là con trai của sự yên ủi."
+ },
+ {
+  "id": "8f0e7403",
+  "file": "js/acts_sharing.js",
+  "text": "Các thầy cả ghen tức, bắt các sứ đồ bỏ vào khám công."
+ },
+ {
+  "id": "f1ee4014",
+  "file": "js/acts_sharing.js",
+  "text": "Nhưng ban đêm có thiên sứ của Chúa mở cửa khám, dẫn các sứ đồ ra."
+ },
+ {
+  "id": "c7c45ba8",
+  "file": "js/acts_sharing.js",
+  "text": "Đi đi, hãy chường mặt nơi đền thờ, mà rao giảng cho dân chúng mọi lời nầy của sự sống."
+ },
+ {
+  "id": "789653ff",
+  "file": "js/acts_sharing.js",
+  "text": "Hằng ngày các tín đồ nhóm tại đền thờ, bẻ bánh và dùng bữa chung với nhau cách vui vẻ."
+ },
+ {
+  "id": "0de0d9dc",
+  "file": "js/acts_sharing.js",
+  "text": "Ai có của dư thì bán đi, đem tiền chia cho người thiếu. Ê-li giúp phát bánh cho các gia đình."
+ },
+ {
+  "id": "2dba2e18",
+  "file": "js/acts_sharing.js",
+  "text": "Có một người Lê-vi quê ở đảo Chíp-rơ, tên Giô-sép. Các sứ đồ gọi người là Ba-na-ba, nghĩa là con trai của sự yên ủi."
+ },
+ {
+  "id": "7588f28a",
+  "file": "js/acts_stephen.js",
+  "text": "Anh Ê-tiên cho nhà em bánh mỗi ngày! Anh ấy hiền lắm."
+ },
+ {
+  "id": "9cacce17",
+  "file": "js/acts_stephen.js",
+  "text": "Cảm ơn hội thánh đã nhớ đến tôi. Xin Chúa ban phước cho các con."
+ },
+ {
+  "id": "e3f0ec20",
+  "file": "js/acts_stephen.js",
+  "text": "Anh em hãy chọn trong bọn mình bảy người có danh tốt, đầy dẫy Đức Thánh Linh và trí khôn, rồi chúng ta sẽ giao việc nầy cho."
+ },
+ {
+  "id": "8d8ba3ce",
+  "file": "js/acts_stephen.js",
+  "text": "Anh Ê-tiên, em xin xách giỏ giúp anh nhé."
+ },
+ {
+  "id": "1c846ca1",
+  "file": "js/acts_stephen.js",
+  "text": "Cảm ơn em. Làm việc nhỏ cho người khác cũng là làm việc cho Chúa."
+ },
+ {
+  "id": "c8c0f5e8",
+  "file": "js/acts_stephen.js",
+  "text": "Bấy giờ, phàm những người ngồi tại tòa công luận đều ngó chăm Ê-tiên, thấy mặt người như mặt thiên sứ vậy."
+ },
+ {
+  "id": "af8c0899",
+  "file": "js/acts_stephen.js",
+  "text": "Tổ phụ chúng ta, Áp-ra-ham, Môi-se, đều được Chúa dẫn dắt. Nhưng nhiều người cứng lòng, không chịu nghe."
+ },
+ {
+  "id": "26dd1a69",
+  "file": "js/acts_stephen.js",
+  "text": "Lạy Chúa, xin đừng đổ tội nầy cho họ!"
+ },
+ {
+  "id": "df22d2eb",
+  "file": "js/acts_stephen.js",
+  "text": "Ê-tiên ngủ trong Chúa. Có một thanh niên tên Sau-lơ đứng đó, chưa biết rằng Chúa sẽ gọi người."
+ },
+ {
+  "id": "fe7014c4",
+  "file": "js/acts_stephen.js",
+  "text": "Anh Ê-tiên đã tha thứ cho cả những người làm đau anh. Em sẽ nhớ mãi."
+ },
+ {
+  "id": "624ff1f0",
+  "file": "js/acts_stephen.js",
+  "text": "Số tín đồ càng đông, các bà góa cần được chăm sóc chu đáo. Các sứ đồ muốn dành thì giờ cầu nguyện và giảng dạy."
+ },
+ {
+  "id": "ae1ba187",
+  "file": "js/acts_stephen.js",
+  "text": "Cả hội chọn Ê-tiên, Phi-líp và năm người khác. Ê-tiên đầy đức tin và Đức Thánh Linh."
+ },
+ {
+  "id": "029a1d96",
+  "file": "js/acts_stephen.js",
+  "text": "Có người ghen ghét đưa Ê-tiên ra tòa công luận. Mọi người nhìn thấy mặt người như mặt thiên sứ."
+ },
+ {
+  "id": "4049c29d",
+  "file": "js/acts_storm.js",
+  "text": "Cứ ở yên trên tàu. Phao-lô nói thì đừng ai sợ nữa nhé."
+ },
+ {
+  "id": "0e8e6120",
+  "file": "js/acts_storm.js",
+  "text": "Bác đi biển bao năm chưa gặp bão nào như vậy. Nhưng nghe Phao-lô nói, bác thấy yên lòng."
+ },
+ {
+  "id": "83c9a51d",
+  "file": "js/acts_storm.js",
+  "text": "Cháu giữ dây giúp các bác thủy thủ ạ."
+ },
+ {
+  "id": "536fb606",
+  "file": "js/acts_storm.js",
+  "text": "Đến ngày mai, vì bão cứ thổi cũng mạnh như vậy luôn, họ bèn quăng hàng hóa xuống biển."
+ },
+ {
+  "id": "1ba841c6",
+  "file": "js/acts_storm.js",
+  "text": "Tôi tin Đức Chúa Trời, ai cũng được cứu, chẳng ai mất mạng."
+ },
+ {
+  "id": "e5be7a64",
+  "file": "js/acts_storm.js",
+  "text": "Vậy, ta khuyên các ngươi hãy ăn, vì thật là rất cần cho sự cứu của các ngươi; và chẳng ai trong vòng các ngươi sẽ mất một sợi tóc trên đầu mình."
+ },
+ {
+  "id": "b04d0f17",
+  "file": "js/acts_storm.js",
+  "text": "Nói như vậy rồi, người bèn lấy bánh, đứng trước mặt mọi người, tạ ơn Đức Chúa Trời rồi, thì bẻ ra và ăn."
+ },
+ {
+  "id": "7734d099",
+  "file": "js/acts_storm.js",
+  "text": "Người biết bơi nhảy xuống trước, người khác bám ván và mảnh tàu. Cả hai trăm bảy mươi sáu người đều lên được bờ."
+ },
+ {
+  "id": "dedf9f80",
+  "file": "js/acts_storm.js",
+  "text": "Phao-lô và các tù nhân khác được giao cho thầy đội Giu-lơ. Ê-li xin được đi cùng với cương vị bạn."
+ },
+ {
+  "id": "ccb30f93",
+  "file": "js/acts_storm.js",
+  "text": "Gió Ơ-ra-qui-lôn thổi mạnh, tàu bị đẩy đi mãi. Mấy ngày không thấy mặt trời, không thấy sao."
+ },
+ {
+  "id": "2ee8ac01",
+  "file": "js/acts_storm.js",
+  "text": "Phao-lô đứng giữa mọi người nói lời khích lệ, rằng Chúa sẽ gìn giữ mọi người."
+ },
+ {
+  "id": "1845b7a7",
+  "file": "js/acts_troas.js",
+  "text": "Bánh nóng đây, mời các con. Đêm nay Phao-lô nói chuyện lâu lắm, vì mai người đã đi rồi."
+ },
+ {
+  "id": "0e3cb1fb",
+  "file": "js/acts_troas.js",
+  "text": "Tàu ra biển lúc sáng sớm. Nghe nói các ông ấy đi bộ đến thành A-sốt."
+ },
+ {
+  "id": "62a1e095",
+  "file": "js/acts_troas.js",
+  "text": "Con thêm dầu cho các ngọn đèn nhé, kẻo tối quá."
+ },
+ {
+  "id": "7e6468f6",
+  "file": "js/acts_troas.js",
+  "text": "Phao-lô giảng rất dài, kéo dài đến nửa đêm."
+ },
+ {
+  "id": "1588f812",
+  "file": "js/acts_troas.js",
+  "text": "Ơ-tích ngủ mê, té từ từng lầu thứ ba xuống đất. Ê-li vội chạy xuống đỡ."
+ },
+ {
+  "id": "6d81af3e",
+  "file": "js/acts_troas.js",
+  "text": "Một gã tuổi trẻ tên là Ơ-tích, ngồi trên cửa sổ, ngủ gục trong khi Phao-lô giảng rất dài."
+ },
+ {
+  "id": "631e8669",
+  "file": "js/acts_troas.js",
+  "text": "Phao-lô bước xuống, nghiêng mình trên người, ôm lấy mà nói rằng: Chớ bối rối, linh hồn còn ở trong người."
+ },
+ {
+  "id": "60c65581",
+  "file": "js/acts_troas.js",
+  "text": "Còn gã tuổi trẻ người ta đem đi, thì được sống, sự ấy làm cho mọi người đều được yên ủi lắm."
+ },
+ {
+  "id": "7f11a350",
+  "file": "js/acts_troas.js",
+  "text": "Anh ơi, Ơ-tích sống rồi! Cả nhà yên lòng rồi!"
+ },
+ {
+  "id": "05c814d6",
+  "file": "js/acts_troas.js",
+  "text": "Phải nhớ lời Chúa Giê-su phán: Ban cho thì có phước hơn là nhận lãnh."
+ },
+ {
+  "id": "19169911",
+  "file": "js/acts_troas.js",
+  "text": "Ở Trô-ách, các anh em nhóm lại trên gác ba để bẻ bánh. Phao-lô sắp lên đường, nên người nói chuyện rất lâu."
+ },
+ {
+  "id": "def3cdf3",
+  "file": "js/acts_troas.js",
+  "text": "Trên gác ba có nhiều ngọn đèn. Ê-li ngồi gần cửa sổ, lo thêm dầu cho từng ngọn."
+ },
+ {
+  "id": "78d42b21",
+  "file": "js/acts_troas.js",
+  "text": "Một gã tuổi trẻ tên là Ơ-tích ngồi trên cửa sổ, nghe Phao-lô giảng và buồn ngủ."
+ },
+ {
   "id": "569cb08d",
   "file": "js/ch1_bethlehem.js",
   "text": "Nhà quán hết chỗ mất rồi cháu ạ. Có hai vợ chồng từ Na-xa-rét mới tới, bà đành để họ nghỉ tạm chỗ máng cỏ."
@@ -428,6 +1628,21 @@
   "id": "05fc30b0",
   "file": "js/ch_bethesda.js",
   "text": "Người ấy đứng dậy! Ông cuốn chiếu lại và vác lên vai."
+ },
+ {
+  "id": "80fe1748",
+  "file": "js/ch_bethesda.js",
+  "text": "Tôi nằm chờ bên ao này đã hai năm rồi. Ngày nào tôi cũng nhìn mặt nước."
+ },
+ {
+  "id": "1484952f",
+  "file": "js/ch_bethesda.js",
+  "text": "Tôi ngồi chờ ở đây từ đầu mùa mưa. Ở đây có rất nhiều người bịnh lắm cháu ạ."
+ },
+ {
+  "id": "a23577d3",
+  "file": "js/ch_bethesda.js",
+  "text": "Tôi mới đến được ít ngày. Có một người nằm bên kia ao đã đau rất lâu, lâu hơn ai hết."
  },
  {
   "id": "7e0a73db",
@@ -955,6 +2170,21 @@
   "text": "Thầy còn hứa ban cho chiên Ngài sự sống đời đời, và không ai cướp được chiên khỏi tay Ngài."
  },
  {
+  "id": "1d190d21",
+  "file": "js/ch_shepherd.js",
+  "text": "Chiên ơi, chiên ơi! Lại đây với ta nào!"
+ },
+ {
+  "id": "c8a65646",
+  "file": "js/ch_shepherd.js",
+  "text": "Nhưng chiên chẳng theo người lạ; trái lại, nó chạy trốn, vì chẳng quen tiếng người lạ."
+ },
+ {
+  "id": "f5253743",
+  "file": "js/ch_shepherd.js",
+  "text": "Ê, mấy con chiên kia! Theo ta đi, ta có cỏ ngon!"
+ },
+ {
   "id": "a46e61ab",
   "file": "js/ch_shepherd.js",
   "text": "Chúa Giê-su ngồi trên một ngọn đồi xanh và dạy dỗ dân chúng. Gần đó có một chuồng chiên xây bằng đá, chỉ có một cái cửa."
@@ -1008,35 +2238,5 @@
   "id": "8504c736",
   "file": "js/ch_transfig.js",
   "text": "Lối mòn ngoằn ngoèo, càng lên cao càng nhiều đá. Ê-li đi theo sau các môn đồ. Trên đỉnh núi sẽ có một điều thật lạ lùng."
- },
- {
-  "id": "80fe1748",
-  "file": "js/ch_bethesda.js",
-  "text": "Tôi nằm chờ bên ao này đã hai năm rồi. Ngày nào tôi cũng nhìn mặt nước."
- },
- {
-  "id": "1484952f",
-  "file": "js/ch_bethesda.js",
-  "text": "Tôi ngồi chờ ở đây từ đầu mùa mưa. Ở đây có rất nhiều người bịnh lắm cháu ạ."
- },
- {
-  "id": "a23577d3",
-  "file": "js/ch_bethesda.js",
-  "text": "Tôi mới đến được ít ngày. Có một người nằm bên kia ao đã đau rất lâu, lâu hơn ai hết."
- },
- {
-  "id": "1d190d21",
-  "file": "js/ch_shepherd.js",
-  "text": "Chiên ơi, chiên ơi! Lại đây với ta nào!"
- },
- {
-  "id": "f5253743",
-  "file": "js/ch_shepherd.js",
-  "text": "Ê, mấy con chiên kia! Theo ta đi, ta có cỏ ngon!"
- },
- {
-  "id": "c8a65646",
-  "file": "js/ch_shepherd.js",
-  "text": "Nhưng chiên chẳng theo người lạ; trái lại, nó chạy trốn, vì chẳng quen tiếng người lạ."
  }
 ]

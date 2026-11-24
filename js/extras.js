@@ -9,7 +9,9 @@ const LV=[[0,'Người lữ khách nhỏ'],[6,'Người tìm kiếm'],[14,'Ngư�
 const TREASURE={ch1:'Cây gậy chăn chiên nhỏ',ch2:'Vỏ sò múc nước sông Giô-đanh',ch3:'Cuộn sách Phục truyền Luật lệ ký',cana:'Ché đá đựng nước',nico:'Ngọn đèn dầu',
   samaria:'Vò nước bên giếng',bethesda:'Chiếc chiếu được cuốn lại',ch4:'Tấm lưới đầy cá',ch5:'Giỏ bánh mạch nha',gerasa:'Sợi xích bị bẻ gãy',jairus:'Tua áo của Thầy',
   transfig:'Viên đá trên núi cao',blind:'Chén nước ao Si-lô-ê',shepherd:'Cây sáo của người chăn',ch6:'Cành cây sung của Xa-chê',footwash:'Chiếc khăn lau chân',
-  ch7:'Cành chà là',ch8:'Bếp than hồng bên bờ biển'};
+  ch7:'Cành chà là',ch8:'Bếp than hồng bên bờ biển',
+  /* Part 2: Acts */
+  pentecost:'Ngọn lửa nhỏ ngày Ngũ Tuần',gate:'Chiếc nạng gỗ bỏ lại bên cổng',sharing:'Ổ bánh chia cho mọi người',stephen:'Chiếc khăn lau của Ê-tiên',ethiopian:'Cuộn sách tiên tri Ê-sai',damascus:'Chiếc khăn che mắt trên đường Đa-mách',ananias:'Chiếc giỏ thoát thân ở Đa-mách',dorcas:'Chiếc áo may bởi Ta-bi-tha',cornelius:'Tấm khăn lớn của Phi-e-rơ',antioch:'Chiếc chiếu nhóm họp ở An-ti-ốt',prison:'Sợi xiềng rơi xuống',lystra:'Chiếc nón rơm của người dân Lít-trơ',philippi:'Cuộn vải sắc tía của Ly-đi',athens:'Bàn thờ của Đức Chúa Trời chưa biết',troas:'Ngọn đèn trên gác ba',storm:'Chiếc neo nhỏ của con tàu',malta:'Bó củi và ngọn lửa trên bãi cát',rome:'Cuộn thư của Phao-lô gửi Hội thánh'};
 let save={};try{save=JSON.parse(localStorage.getItem('cq-gems')||'{}');}catch(e){}
 const store=()=>{try{localStorage.setItem('cq-gems',JSON.stringify(save));}catch(e){}};
 const bits=m=>{let n=0;for(let i=0;i<NG;i++)if(m&(1<<i))n++;return n;};
@@ -101,15 +103,43 @@ const PL={
   tabor:{n:'Núi Tha-bô',r:'gl',at:[32.687,35.39],dx:1,x:'Theo truyền thống, đây là núi Chúa Giê-su hóa hình. Có ý kiến khác cho là núi Hẹt-môn ở xa hơn về phía bắc.'},
   cap:{n:'Ca-bê-na-um',r:'gl',at:[32.881,35.575],dx:-1,x:'Thành bên bờ bắc biển Ga-li-lê, nơi Chúa Giê-su ở trong thời gian đi giảng đạo.'},
   lake:{n:'Biển Ga-li-lê',r:'gl',at:[32.77,35.585],dx:1,x:'Hồ nước ngọt lớn, nơi các ngư dân đánh cá. Trên hồ thường nổi bão bất chợt.'},
-  gerasa:{n:'Xứ Giê-ra-sê',r:'dc',at:[32.826,35.65],dx:1,x:'Bờ đông biển Ga-li-lê, thuộc vùng Đê-ca-bô-lơ, nơi phần đông là người ngoại.'}};
+  gerasa:{n:'Xứ Giê-ra-sê',r:'dc',at:[32.826,35.65],dx:1,x:'Bờ đông biển Ga-li-lê, thuộc vùng Đê-ca-bô-lơ, nơi phần đông là người ngoại.'},
+  /* Part 2 places, shown on the Mediterranean map (js/map_med.js) */
+  jer2:{m:'med',n:'Giê-ru-sa-lem',rn:'Giu-đê',at:[31.778,35.235],dx:1,big:1,x:'Thành thánh có đền thờ. Hội thánh đầu tiên ra đời ở đây vào ngày Lễ Ngũ Tuần.'},
+  gaza:{m:'med',n:'Đường xuống Ga-xa',rn:'Giu-đê',at:[31.6,34.7],dx:-1,x:'Con đường vắng đi từ Giê-ru-sa-lem về phía nam đến Ga-xa, trên đường ra Ai Cập.'},
+  joppa:{m:'med',n:'Giốp-bê',rn:'Giu-đê',at:[32.054,34.752],dx:-1,x:'Hải cảng nhỏ bên bờ Địa Trung Hải, nơi tàu bè cập bến. Giô-na từng xuống tàu ở đây.'},
+  caesarea:{m:'med',n:'Sê-sa-rê',rn:'Giu-đê',at:[32.5,34.892],dx:-1,x:'Thành cảng lớn bên biển do vua Hê-rốt xây, nơi quan Rô-ma đóng quân.'},
+  damascus:{m:'med',n:'Đa-mách',rn:'Sy-ri',at:[33.514,36.277],dx:-1,x:'Thành cổ lớn của xứ Sy-ri, có đường Ngay Thẳng chạy qua. Sau-lơ gặp Chúa trên đường vào thành này.'},
+  antioch:{m:'med',n:'An-ti-ốt',rn:'Sy-ri',at:[36.2,36.16],dx:-1,x:'Thành lớn bên sông Oron-tơ, thủ phủ xứ Sy-ri, nơi nhiều dân tộc cùng sống chung.'},
+  lystra:{m:'med',n:'Lít-trơ',rn:'Ly-cao-ni',at:[37.57,32.45],dx:1,x:'Thành nhỏ ở cao nguyên Ly-cao-ni, nơi người dân nói tiếng địa phương và thờ nhiều thần.'},
+  troas:{m:'med',n:'Trô-ách',rn:'A-si',at:[39.757,26.14],dx:1,x:'Thành cảng nhìn ra biển Ê-giê, là nơi Phao-lô thường xuống tàu qua Ma-xê-đoan.'},
+  philippi:{m:'med',n:'Phi-líp',rn:'Ma-xê-đoan',at:[41.014,24.287],dx:1,x:'Thành thuộc địa Rô-ma ở Ma-xê-đoan, phía bắc Hy Lạp, nơi Tin Lành lần đầu đến châu Âu.'},
+  athens:{m:'med',n:'A-thên',rn:'A-chai',at:[37.972,23.726],dx:-1,x:'Thành nổi tiếng với các nhà thông thái, nằm ở nam Hy Lạp. Đồi A-rê-ô-ba ở ngay dưới đền Pạc-tê-nông.'},
+  sea:{m:'med',n:'Bão biển gần Cơ-rết',rn:'Biển Lớn',at:[34.6,22.6],dx:-1,x:'Vùng biển giữa Cơ-rết và Man-tơ, nơi gió bão thường nổi lên vào cuối thu.'},
+  malta:{m:'med',n:'Đảo Man-tơ',rn:'Man-tơ',at:[35.9,14.4],dx:1,x:'Đảo nhỏ giữa Địa Trung Hải, phía nam đảo Si-xin. Dân đảo nổi tiếng hiếu khách.'},
+  rome:{m:'med',n:'Rô-ma',rn:'Ý-đại-lợi',at:[41.9,12.5],dx:1,big:1,x:'Kinh đô của đế quốc Rô-ma, có đường lát đá lớn, nhà cao và đông người nhiều dân tộc.'}};
 const AT={ch1:'bet',ch2:'jordan',ch3:'wild',cana:'cana',nico:'jer',samaria:'sychar',bethesda:'jer',ch4:'cap',ch5:'lake',gerasa:'gerasa',jairus:'cap',
-  transfig:'tabor',blind:'jer',shepherd:'jer',ch6:'jericho',footwash:'jer',ch7:'jer',ch8:'jer'};
+  transfig:'tabor',blind:'jer',shepherd:'jer',ch6:'jericho',footwash:'jer',ch7:'jer',ch8:'jer',
+  pentecost:'jer2',gate:'jer2',sharing:'jer2',stephen:'jer2',prison:'jer2',ethiopian:'gaza',dorcas:'joppa',cornelius:'caesarea',damascus:'damascus',ananias:'damascus',antioch:'antioch',lystra:'lystra',troas:'troas',philippi:'philippi',athens:'athens',storm:'sea',malta:'malta',rome:'rome'};
 const COAST=[[33.5,35.12],[33.27,35.19],[33.1,35.11],[32.92,35.07],[32.83,34.97],[32.7,34.93],[32.5,34.89],[32.3,34.84],[32.05,34.75],[31.8,34.63],[31.67,34.55],[31.5,34.43],[31.3,34.3],[30.9,34.22]];
 const GAL=[[32.89,35.59],[32.88,35.62],[32.85,35.645],[32.8,35.655],[32.75,35.645],[32.71,35.62],[32.7,35.585],[32.73,35.56],[32.79,35.52],[32.84,35.53],[32.87,35.55]];
 const DEAD=[[31.77,35.5],[31.75,35.58],[31.55,35.56],[31.35,35.53],[31.1,35.5],[31.03,35.43],[31.2,35.4],[31.45,35.43],[31.65,35.45],[31.76,35.46]];
 const JOR1=[[33.3,35.63],[33.1,35.61],[32.9,35.615]],JOR2=[[32.7,35.575],[32.55,35.56],[32.4,35.555],[32.2,35.54],[32.0,35.52],[31.85,35.54],[31.77,35.51]];
 function lab(la,lo,t,cls,rot){const [x,y]=P(la,lo);return '<text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" class="'+cls+'"'+(rot?' transform="rotate('+rot+' '+x.toFixed(1)+' '+y.toFixed(1)+')"':'')+'>'+t+'</text>';}
-function mapSvg(here){const prog=CQ.prog();let s='<svg viewBox="0 0 400 612" role="img" aria-label="Bản đồ xứ Y-sơ-ra-ên thời Chúa Giê-su"><rect width="400" height="612" class="sea"/>'+
+const MED=window.CQ_MED,PM=(la,lo)=>[(lo-MED.x0)*MED.cs*MED.k,(MED.y1-la)*MED.k],ptsM=a=>a.map(([la,lo])=>PM(la,lo).map(v=>v.toFixed(1)).join(',')).join(' ');
+const ROME=[[32.5,34.89],[33.56,35.37],[36.26,29.98],[36.68,27.37],[35.3,26.3],[34.93,24.8],[34.6,22.6],[35.9,14.45],[37.07,15.29],[38.11,15.65],[40.82,14.12],[41.9,12.5]];
+function labM(la,lo,t,cls){const [x,y]=PM(la,lo);return '<text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" class="'+cls+'">'+t+'</text>';}
+function pins(here,map,Pf){const prog=CQ.prog();let s='';for(const [k,p] of Object.entries(PL)){if((p.m||'il')!==map)continue;const [x,y]=Pf(...p.at),chs=CQ.chapters.filter(c=>AT[c.id]===k),done=chs.length&&chs.every(c=>prog[c.id]),r=p.big?8:(map==='med'?5.5:6),isH=k===here;
+    s+='<g class="pin'+(done?' done':'')+(isH?' here':'')+'" data-k="'+k+'" tabindex="0" role="button" aria-label="'+p.n+'">'+(isH?'<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+r+'" class="ring"/>':'')+
+      '<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="12" class="hit"/><circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+r+'" class="dot"/>'+
+      (chs.length>1?'<text x="'+x.toFixed(1)+'" y="'+(y+3.6).toFixed(1)+'" class="cnt" text-anchor="middle">'+chs.length+'</text>':'')+
+      '<text x="'+(x+p.dx*(r+4)).toFixed(1)+'" y="'+(y+4).toFixed(1)+'" class="pn" text-anchor="'+(p.dx>0?'start':'end')+'">'+p.n+'</text></g>';}return s;}
+function medSvg(here){return '<svg viewBox="0 0 '+MED.w+' '+MED.h+'" role="img" aria-label="Bản đồ vùng Địa Trung Hải thời các sứ đồ"><rect width="'+MED.w+'" height="'+MED.h+'" class="sea"/><path class="land" d="'+MED.d+'"/>'+
+  '<polyline class="route" points="'+ptsM(ROME)+'"/>'+labM(33.75,16.6,'Hành trình đến Rô-ma','rt')+
+  labM(33.4,20,'BIỂN LỚN','wreg')+labM(40.9,21.6,'MA-XÊ-ĐOAN','reg')+labM(38.6,21.6,'A-CHAI','reg')+labM(38.7,29.6,'A-SI','reg')+labM(38.3,33.6,'GA-LA-TI','reg')+
+  labM(34.9,37.6,'SY-RI','reg')+labM(40.6,16.2,'Ý-ĐẠI-LỢI','reg')+labM(30.4,30.5,'AI CẬP','reg')+labM(35.55,24.9,'Cơ-rết','isl')+labM(35.5,33.2,'Chíp-rơ','isl')+
+  pins(here,'med',PM)+'</svg>';}
+function mapSvg(here){let s='<svg viewBox="0 0 400 612" role="img" aria-label="Bản đồ xứ Y-sơ-ra-ên thời Chúa Giê-su"><rect width="400" height="612" class="sea"/>'+
   '<polygon class="land" points="'+pts(COAST.concat([[30.9,36.3],[33.5,36.3]]))+'"/>'+
   '<polyline class="bord" points="'+pts([[32.6,34.95],[32.55,35.25],[32.52,35.55]])+'"/><polyline class="bord" points="'+pts([[32.03,34.8],[32.0,35.2],[31.98,35.52]])+'"/>'+
   '<polyline class="bord" points="'+pts([[32.52,35.55],[32.45,35.7],[32.4,36.3]])+'"/>'+
@@ -118,20 +148,22 @@ function mapSvg(here){const prog=CQ.prog();let s='<svg viewBox="0 0 400 612" rol
   lab(32.97,35.22,'GA-LI-LÊ','reg')+lab(32.3,35.08,'SA-MA-RI','reg')+lab(31.45,34.98,'GIU-ĐÊ','reg')+lab(32.1,35.86,'PÊ-RÊ','reg')+lab(32.62,35.92,'ĐÊ-CA-BÔ-LƠ','reg')+
   lab(32.3,34.48,'Biển Lớn','wat',-70)+lab(31.4,35.5,'Biển Chết','wat',-80)+lab(32.3,35.6,'Sông Giô-đanh','riv',-84)+
   (()=>{const [x,y]=P(32.70,35.30);return '<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="3" class="town"/><text x="'+(x-6).toFixed(1)+'" y="'+(y+12).toFixed(1)+'" class="tn" text-anchor="end">Na-xa-rét</text>';})();
-  for(const [k,p] of Object.entries(PL)){const [x,y]=P(...p.at),chs=CQ.chapters.filter(c=>AT[c.id]===k),done=chs.length&&chs.every(c=>prog[c.id]),r=p.big?8:6,isH=k===here;
-    s+='<g class="pin'+(done?' done':'')+(isH?' here':'')+'" data-k="'+k+'" tabindex="0" role="button" aria-label="'+p.n+'">'+(isH?'<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+r+'" class="ring"/>':'')+
-      '<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="14" class="hit"/><circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+r+'" class="dot"/>'+
-      (chs.length>1?'<text x="'+x.toFixed(1)+'" y="'+(y+3.6).toFixed(1)+'" class="cnt" text-anchor="middle">'+chs.length+'</text>':'')+
-      '<text x="'+(x+p.dx*(r+4)).toFixed(1)+'" y="'+(y+4).toFixed(1)+'" class="pn" text-anchor="'+(p.dx>0?'start':'end')+'">'+p.n+'</text></g>';}
+  s+=pins(here,'il',P);
   return s+'</svg>';}
 function caption(k,here){const p=PL[k],prog=CQ.prog(),chs=CQ.chapters.filter(c=>AT[c.id]===k);
   $('mapCap').innerHTML=(k===here?'<div class="eyebrow">Bạn đang ở đây</div>':'')+'<h4>'+p.n+'</h4><div class="rg">Xứ '+REG[p.r]+'</div><p>'+p.x+'</p><ul>'+
     chs.map(c=>'<li'+(c===cur()&&k===here?' class="now"':'')+'>Chương '+c.no+': '+c.title+(prog[c.id]?' <span class="ok">✓</span>':'')+'</li>').join('')+'</ul>';
   for(const g of $('mapSvg').querySelectorAll('.pin'))g.classList.toggle('sel',g.dataset.k===k);}
-function openMap(){const st=CQ.st(),here=st.mode==='explore'?AT[cur().id]:null;$('mapSvg').innerHTML=mapSvg(here);
+let mapTab='il';
+function drawMap(here){$('mapSvg').innerHTML=mapTab==='med'?medSvg(here):mapSvg(here);
+  for(const b of document.querySelectorAll('#mapTabs button'))b.setAttribute('aria-pressed',b.dataset.m===mapTab);
   for(const g of $('mapSvg').querySelectorAll('.pin')){g.onclick=()=>caption(g.dataset.k,here);g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();caption(g.dataset.k,here);}};}
-  if(here)caption(here,here);else $('mapCap').innerHTML='<h4>Xứ Y-sơ-ra-ên thời Chúa Giê-su</h4><p>Khoảng năm 30 sau Công nguyên, xứ này thuộc đế quốc La Mã. Chạm vào một địa điểm để xem các chương diễn ra ở đó.</p>';
-  openPanel('mapP');}
+  if(here&&(PL[here].m||'il')===mapTab)caption(here,here);
+  else $('mapCap').innerHTML=mapTab==='med'?'<h4>Thời các sứ đồ</h4><p>Sau khi Chúa Giê-su về trời, các sứ đồ đem Tin Lành từ Giê-ru-sa-lem đi khắp đế quốc La Mã, đến tận Rô-ma. Chạm vào một địa điểm để xem các chương diễn ra ở đó.</p>':
+    '<h4>Xứ Y-sơ-ra-ên thời Chúa Giê-su</h4><p>Khoảng năm 30 sau Công nguyên, xứ này thuộc đế quốc La Mã. Chạm vào một địa điểm để xem các chương diễn ra ở đó.</p>';}
+function openMap(){const st=CQ.st(),here=st.mode==='explore'?AT[cur().id]:null;if(here)mapTab=PL[here].m||'il';
+  for(const b of document.querySelectorAll('#mapTabs button'))b.onclick=()=>{mapTab=b.dataset.m;drawMap(here);};
+  drawMap(here);openPanel('mapP');}
 
 /* ---------- wire up ---------- */
 $('bGem').onclick=book;$('bMap').onclick=openMap;

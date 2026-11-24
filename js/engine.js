@@ -285,9 +285,13 @@ function tap(x,y){if(mode!=='explore'||talking)return;ndc.set(x/innerWidth*2-1,-
 
 /* ---------- dialogue, story, mini-games ---------- */
 const dlg=$('dlg');let spoken='';
-function speak(){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(spoken);u.lang='vi-VN';u.rate=.92;speechSynthesis.speak(u);}catch(e){}}
-function hush(){try{speechSynthesis.cancel();}catch(e){}}
-const canSpeak='speechSynthesis' in window;
+/* Recorded voice: audio/voice/<FNV-1a hash of the line>.mp3, made by tools/make_voice.py. Falls back to the system voice when a line has no file. */
+let voice=null;
+const vHash=s=>{let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,0x01000193);}return (h>>>0).toString(16).padStart(8,'0');};
+function sysSpeak(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='vi-VN';u.rate=.92;speechSynthesis.speak(u);}catch(e){}}
+function speak(){hush();if(!spoken)return;const t=spoken,a=new Audio('audio/voice/'+vHash(t)+'.mp3');voice=a;a.onerror=()=>{if(voice===a){voice=null;sysSpeak(t);}};a.play().catch(()=>{});}
+function hush(){if(voice){voice.onerror=null;voice.pause();voice=null;}try{speechSynthesis.cancel();}catch(e){}}
+const canSpeak=true;
 const strip=h=>h.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
 function open(name,html){sfx('open');dlg.style.display='block';dlg.className='';$('dName').textContent=name;$('dBody').innerHTML=html;spoken=strip(html);}
 function say(name,text,ref,btn,cb){open(name,'<p>'+text+'</p>'+(ref?'<div class="ref">'+ref+'</div>':'')+'<div class="row">'+(canSpeak?'<button class="alt" id="dHear">Nghe đọc</button>':'')+'<button class="go" id="dGo">'+(btn||'Tiếp')+'</button></div>');

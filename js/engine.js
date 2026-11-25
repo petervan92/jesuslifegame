@@ -438,9 +438,10 @@ function frame(){requestAnimationFrame(frame);if(!W||!W.player)return;const dt=M
   for(const s of W.sheep)s.hd.position.y=.78+Math.sin(tt*.8+s.ph)*.05;
   for(const f of W.tick)f(dt,tt);
   hook('frame',dt,tt);
-  renderer.render(W.scene,camera);}
+  if(CQ.render)CQ.render(W.scene,camera);else renderer.render(W.scene,camera);}
 
-Object.assign(CQ,{T,R,rr,sm,C,noise,toon,mesh,canvasTex,boxUV,M,grad,G,distPath,terrain,sky,water,setTod,jar,house,wallBox,palm,olive,bush,scatter,sheep,boat,campfire,crowd,ring,rockTomb,zones,goZone,balance,outlineMat,makeChar,place,walkTo,face,dove,addInter,byId,marks,say,lines,fillWord,choice,order,tapFill,story,fade,setCine,
+/* renderer, camera, view: read-only access for optional layers such as js/hd.js; CQ.render (unset by default) may replace the final draw */
+Object.assign(CQ,{renderer,camera,view:()=>({yaw,pitch,dist,mode,cine,talking}),T,R,rr,sm,C,noise,toon,mesh,canvasTex,boxUV,M,grad,G,distPath,terrain,sky,water,setTod,jar,house,wallBox,palm,olive,bush,scatter,sheep,boat,campfire,crowd,ring,rockTomb,zones,goZone,balance,outlineMat,makeChar,place,walkTo,face,dove,addInter,byId,marks,say,lines,fillWord,choice,order,tapFill,story,fade,setCine,
   sfx,collide,st:()=>({mode,talking,chIdx}),prog:()=>prog,
   movePlayer:(x,z,y)=>{place(W.player,x,z);if(y!=null)yaw=y;first=true;hook('zone');},
   boot:()=>{CQ.chapters.sort((a,b)=>a.no-b.no);buildMenu();load(0);mode='menu';ui();frame();},
